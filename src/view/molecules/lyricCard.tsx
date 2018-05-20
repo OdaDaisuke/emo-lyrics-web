@@ -18,25 +18,50 @@ export interface LyricCardProps {
 export class LyricCard extends React.Component<LyricCardProps, any> {
     render(): JSX.Element {
         return (
-            <div>
-	      <p className={css(this.style.content)}>
-                {this.props.content}
-	      </p>
-		{this.props.title}
-		{this.props.singer}
-		<a href={this.props.url} target="_blank">
-		  {this.props.url}
-		</a>
+            <div className={css(this.style.wrapper)}>
+	      <div className={css(this.style.inner)}>
+		<p className={css(this.style.content)}>
+		  {this.props.content}
+		</p>
+		  <span className={css(this.style.title)}>{this.props.title}</span>
+		  <span className={css(this.style.singer)}>{this.props.singer}</span>
+		  <a href={this.props.url} target="_blank">
+		    {this.props.url}
+		  </a>
+	      </div>
             </div>
         )
     }
 
   get style() {
     return StyleSheet.create({
+      wrapper: {
+	alignItems: 'center',
+	display: 'flex',
+	height: '100%',
+	width: '100%',
+      },
+      inner: {
+	marginRight: 'auto',
+	marginLeft: 'auto',
+	maxWidth: '800px',
+	width: '80%',
+      },
       content: {
-	fontSize: '1.25rem',
+	fontFamily: 'YuGothic',
+	fontSize: '1.38rem',
 	letterSpacing: '2px',
-	lineHeight: '1.75',
+	lineHeight: '1.82',
+      },
+      title: {
+	fontStyle: 'italic',
+	marginRight: '1rem',
+	letterSpacing: '1px',
+      },
+      singer: {
+	color: '#3f3f3f',
+	fontSize: '0.95rem',
+	letterSpacing: '1px',
       },
     })
   }

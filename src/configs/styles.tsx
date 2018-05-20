@@ -32,10 +32,12 @@ export const styles = {
     borderRadius: '2px',
     color: '#fff',
     cursor: 'pointer',
-    // fontWeight: 500,
+    fontSize: '1.05rem',
     letterSpacing: '2px',
     marginTop: '10px',
+    marginRight: '10px',
     marginBottom: '10px',
+    marginLeft: '10px',
     outline: 'none',
     paddingTop: '12px',
     paddingRight: '40px',
@@ -44,6 +46,9 @@ export const styles = {
     transition: 'all 0.2s',
     ':hover': {
         transform: 'scale(1.03)',
+    },
+    ':focus': {
+      backgroundImage: 'linear-gradient(afeff, #3fafFf, #6fcfff)',
     },
   },
 
