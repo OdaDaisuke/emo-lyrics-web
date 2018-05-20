@@ -19,7 +19,7 @@ export class AppRoute extends React.Component<AppRouteProps, any> {
             <Switch>
               <Route path="/home" component={Home} />
               <Route path="/admin" component={Admin} />
-	      <Route path="/lyric" component={Lyric} />
+              <Route path="/lyric" component={Lyric} />
             </Switch>
           </div>
         </Router>

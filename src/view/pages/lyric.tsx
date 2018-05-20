@@ -13,11 +13,11 @@ export class Lyric extends React.Component<LyricProps, any> {
   render(): JSX.Element {
     return (
       <div>
-	<LyricCard vm={this.lyricCardVM} />
+        <LyricCard vm={this.lyricCardVM} />
       </div>
     )
   }
-  
+
   get lyricCardVM() {
     return new LyricCardVM()
   }

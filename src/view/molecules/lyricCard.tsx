@@ -1,9 +1,10 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { bind } from 'bind-decorator'
-import { computed, observable } from 'mobx'
+import { observable } from 'mobx'
 import { observer } from 'mobx-react'
+import { bind } from 'bind-decorator'
 import { LyricService } from '../../domain/lyric'
+import { LyricProps } from '../../data'
 
 export interface LyricCardProps {
   vm: LyricCardVM
@@ -11,6 +12,10 @@ export interface LyricCardProps {
 
 @observer
 export class LyricCard extends React.Component<LyricCardProps, any> {
+  constructor(props: any) {
+    super(props)
+    this.props.vm.initialize()
+  }
     render(): JSX.Element {
         return (
             <div>
@@ -29,11 +34,12 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
         if(!this.props.vm.lyrics) {
             return null
         }
-        const dom = this.props.vm.lyrics.map((lyric: any) => {
-            console.log(lyric)
+        const dom = this.props.vm.lyrics.map((lyric: LyricProps) => {
             return (
-                <div>
-                    lyric
+                <div key={lyric.CreatedAt}>
+                    {lyric.Content}
+                    {lyric.Title}
+                    {lyric.Url}
                 </div>
             )
         })
@@ -48,6 +54,9 @@ export class LyricCardVM {
     @observable
     lyrics: any = []
 
+    @observable
+    lyricIdx: number = 0
+
     initialize() {
         this.lyricService = new LyricService()
     }
@@ -59,7 +68,8 @@ export class LyricCardVM {
         this.lyricService.get(this.getLyricsCallback)
     }
 
-    private getLyricsCallback(lyrics: any) {
+    @bind
+    getLyricsCallback(lyrics: LyricProps) {
         this.lyrics = lyrics
     }
 
