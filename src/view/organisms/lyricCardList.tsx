@@ -120,7 +120,20 @@ export class LyricCardListVM {
 
   @bind
   getLyricsCallback(lyrics: LyricProps[]) {
-    this.lyrics = lyrics
+    this.lyrics = this.shuffle(lyrics)
+  }
+
+  private shuffle(lyrics: LyricProps[]) {
+    const SHUFFLE_ROUND = 30
+    const len = lyrics.length
+    for(let i = 0; i < SHUFFLE_ROUND; ++i) {
+      const r1 = parseInt(Math.random() * len)
+      const r2 = parseInt(Math.random() * len)
+      const tmp = lyrics[r1]
+      lyrics[r1] = lyrics[r2]
+      lyrics[r2] = tmp
+    }
+    return lyrics
   }
 
   incrementIdx() {

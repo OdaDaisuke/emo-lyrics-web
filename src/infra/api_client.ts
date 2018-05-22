@@ -44,8 +44,7 @@ export class APIClient<APIClientProps> {
       }
     } else {
       let params = new URLSearchParams()
-      let k:string = ""
-      for(k in postParams) {
+      for(let k in postParams) {
 	params.append(k, postParams[k])
       }
       reqOption = {
