@@ -21,7 +21,6 @@ export const styles = {
   },
 
   p: {
-    // fontWeight: '100',
     letterSpacing: '2px',
     fontSize: '1.02rem',
   },
@@ -46,9 +45,6 @@ export const styles = {
     transition: 'all 0.2s',
     ':hover': {
         transform: 'scale(1.03)',
-    },
-    ':focus': {
-      backgroundImage: 'linear-gradient(afeff, #3fafFf, #6fcfff)',
     },
   },
 

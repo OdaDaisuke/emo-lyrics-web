@@ -27,7 +27,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 		  <span className={css(this.style.singer)}>{this.props.singer}</span>
 		  <div>
 		    <a className={css(this.style.url)} href={this.props.url} target="_blank">
-		      >
+		      > この曲を聴いてみる
 		    </a>
 		  </div>
 	      </div>
@@ -53,35 +53,48 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
       content: {
 	color: '#3f3456',
 	fontFamily: 'YuGothic',
-	fontSize: '1.38rem',
+	fontSize: '2rem',
+	fontWeight: 'bold',
 	letterSpacing: '2px',
 	lineHeight: '1.82',
       },
       title: {
-	color: '#4f4f5f',
+	color: '#70707f',
 	fontStyle: 'italic',
 	marginRight: '1rem',
 	letterSpacing: '1px',
       },
       singer: {
-	color: '#4f4f5f',
+	color: '#70707f',
 	fontSize: '0.95rem',
 	letterSpacing: '1px',
       },
       url: {
+	borderWidth: '1px',
+	borderStyle: 'solid',
+	borderColor: '#24a8b9',
 	color: "#24a8b9",
-	borderRadius: "2px",
-	display: "flex",
+	borderRadius: "30px",
+	display: "inline-block",
 	fontSize: "0.85rem",
-	marginTop: "10px",
+	marginTop: "20px",
 	marginRight: "auto",
 	marginLeft: "auto",
 	textDecoration: "none",
 	letterSpacing: "1px",
 	fontStyle: "italic",
 	alignItems: "center",
-	fontWeight: "bold",
 	justifyContent: "center",
+	paddingTop: '9px',
+	paddingRight: '18px',
+	paddingBottom: '9px',
+	paddingLeft: '18px',
+	transition: 'all 0.2s',
+	':hover': {
+	  backgroundColor: '#24a8b9',
+	  color: '#fff',
+	  transform: 'scale(1.05)',
+	},
       },
     })
   }
