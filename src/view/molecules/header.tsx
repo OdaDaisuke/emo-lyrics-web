@@ -37,7 +37,7 @@ export class Header extends React.Component<HeaderProps, any> {
 class Logo extends React.Component<any, any> {
     render(): JSX.Element {
         return (
-	    <Link className={css(this.style.link)} to="/home">
+	    <Link className={css(this.style.link)} to="/">
 	      <span className={css(this.style.logo)}>
                 EmoLyrics
 	      </span>

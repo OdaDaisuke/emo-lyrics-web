@@ -3,7 +3,7 @@ import *  as ReactDOM from 'react-dom'
 import { Route, Switch } from 'react-router'
 import { Router } from 'react-router-dom'
 import { Header } from '../view/molecules/header'
-import { Home, Admin, Lyric } from '../view/pages'
+import { Home, Lyric } from '../view/pages'
 
 export interface AppRouteProps {
   history: any
@@ -17,8 +17,7 @@ export class AppRoute extends React.Component<AppRouteProps, any> {
           <div>
             <Header />
             <Switch>
-              <Route path="/home" component={Home} />
-              <Route path="/admin" component={Admin} />
+              <Route path="/" exact component={Home} />
               <Route path="/lyric" component={Lyric} />
             </Switch>
           </div>
