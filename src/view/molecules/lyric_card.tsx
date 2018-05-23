@@ -25,9 +25,11 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 		</p>
 		  <span className={css(this.style.title)}>「{this.props.title}」</span>
 		  <span className={css(this.style.singer)}>{this.props.singer}</span>
-		  <a href={this.props.url} target="_blank">
-		    {this.props.url}
-		  </a>
+		  <div>
+		    <a className={css(this.style.url)} href={this.props.url} target="_blank">
+		      >
+		    </a>
+		  </div>
 	      </div>
             </div>
         )
@@ -45,10 +47,11 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	marginRight: 'auto',
 	marginLeft: 'auto',
 	maxWidth: '800px',
+	textAlign: "center",
 	width: '80%',
       },
       content: {
-	color: '#92862c',
+	color: '#3f3456',
 	fontFamily: 'YuGothic',
 	fontSize: '1.38rem',
 	letterSpacing: '2px',
@@ -64,6 +67,21 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	color: '#4f4f5f',
 	fontSize: '0.95rem',
 	letterSpacing: '1px',
+      },
+      url: {
+	color: "#24a8b9",
+	borderRadius: "2px",
+	display: "flex",
+	fontSize: "0.85rem",
+	marginTop: "10px",
+	marginRight: "auto",
+	marginLeft: "auto",
+	textDecoration: "none",
+	letterSpacing: "1px",
+	fontStyle: "italic",
+	alignItems: "center",
+	fontWeight: "bold",
+	justifyContent: "center",
       },
     })
   }

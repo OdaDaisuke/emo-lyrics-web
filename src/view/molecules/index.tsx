@@ -1,2 +1,3 @@
 export * from './header'
-export * from './lyricCard'
+export * from './lyric_card'
+export * from './share_alert'

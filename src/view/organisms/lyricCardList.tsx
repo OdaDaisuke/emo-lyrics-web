@@ -5,9 +5,10 @@ import { observer } from 'mobx-react'
 import { bind } from 'bind-decorator'
 import { css, StyleSheet } from 'aphrodite'
 import { LyricService } from '../../domain/lyric'
-import { LyricProps } from '../../data'
 import { LyricCard } from '../molecules'
+import { LyricProps } from '../../data'
 import { Button } from '../atoms'
+import { ShareAlert } from '../molecules'
 
 export interface LyricCardListProps {
   vm: LyricCardListVM
@@ -29,6 +30,7 @@ export class LyricCardList extends React.Component<LyricCardListProps, any> {
 	  {this.prevButton}
 	  {this.nextButton}
 	</div>
+	{this.shareAlert}
       </div>
     )
   }
@@ -72,6 +74,13 @@ export class LyricCardList extends React.Component<LyricCardListProps, any> {
 	  key={curLyric.Content}
 	/>
     )
+  }
+
+  get shareAlert() {
+    if(!this.props.vm.isAtLast) {
+      return null
+    }
+    return (<ShareAlert />)
   }
 
   get prevButton() {
@@ -120,20 +129,10 @@ export class LyricCardListVM {
 
   @bind
   getLyricsCallback(lyrics: LyricProps[]) {
-    this.lyrics = this.shuffle(lyrics)
-  }
-
-  private shuffle(lyrics: LyricProps[]) {
-    const SHUFFLE_ROUND = 30
-    const len = lyrics.length
-    for(let i = 0; i < SHUFFLE_ROUND; ++i) {
-      const r1 = parseInt(Math.random() * len)
-      const r2 = parseInt(Math.random() * len)
-      const tmp = lyrics[r1]
-      lyrics[r1] = lyrics[r2]
-      lyrics[r2] = tmp
+    if(!this.lyricService) {
+      return null
     }
-    return lyrics
+    this.lyrics = this.lyricService.shuffle(lyrics)
   }
 
   incrementIdx() {
