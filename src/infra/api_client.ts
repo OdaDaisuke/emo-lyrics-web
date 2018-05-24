@@ -98,4 +98,21 @@ export class APIClient<APIClientProps> {
     this.postData(options)
   }
 
+  static getTwitterAuthUrl(callback: any) {
+    const options = {
+      callback: callback,
+      endpoint: '/auth/get_twitter_auth_url',
+    }
+    this.getData(options)
+  }
+
+  static sendTwitterVerificationCode(s: string, callback: any) {
+    const options = {
+      callback: callback,
+      endpoint: '/auth/twitter_verification_code',
+      params: { verification_code: s }
+    }
+    this.postData(options)
+  }
+
 }

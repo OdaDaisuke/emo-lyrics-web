@@ -1,14 +1,15 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 import { css, StyleSheet } from 'aphrodite'
 import { Link } from 'react-router-dom'
 import * as configs from '../../configs'
-import { Button, Sentence } from '../atoms'
+import { LoginButton, LoginButtonVM } from '../molecules'
+import { withRouter } from 'react-router-dom'
+import { Sentence } from '../atoms'
 
 export interface HomeProps {
 }
 
-export class Home extends React.Component<HomeProps, any> {
+class Home extends React.Component<any, any> {
     render(): JSX.Element {
         return (
             <div>
@@ -21,9 +22,7 @@ export class Home extends React.Component<HomeProps, any> {
                             <Sentence label="もしかしたら、いま世界は商業音楽で溢れているかもしれないけど" />
                             <Sentence label="本当は違うかもしれない" />
                             <Sentence label="詩には本物の想いが込められているかもしれない。" />
-                           <Link to="/lyric">
-			    <Button label="Twitterログイン" />
-			  </Link>
+			  <LoginButton history={this.props.history} vm={new LoginButtonVM()} />
                         </div>
                     </div>
                 </div>
@@ -72,3 +71,5 @@ export class Home extends React.Component<HomeProps, any> {
     }
 
 }
+
+export default withRouter(Home)

@@ -1,23 +1,33 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { css, StyleSheet } from 'aphrodite'
+import { observable } from 'mobx'
+import { observer } from 'mobx-react'
+import { bind } from 'bind-decorator'
 
 export interface IinputProps {
-  onChange: any
   placeholder?: any
   maxLength?: any
   type: any
+  vm: InputVm
 }
 
+@observer
 export class Input extends React.Component<IinputProps, any> {
   render(): JSX.Element {
     return (
       <input
-        onChange={this.props.onChange}
+        onChange={(e: any) => this.onChange(e.target.value)}
         placeholder={this.placeholder}
         className={css(this.style.input)}
+	value={this.props.vm.value}
       />
     )
+  }
+
+  @bind
+  onChange(s: string) {
+    this.props.vm.value = s
   }
 
   get style() {
@@ -53,4 +63,11 @@ export class Input extends React.Component<IinputProps, any> {
     }
   }
 
+}
+
+export class InputVm {
+  @observable
+  value: string = ""
+  initialize() {
+  }
 }
