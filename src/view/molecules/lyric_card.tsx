@@ -43,11 +43,11 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
     }
 
   get tweetLink() {
-    let content = this.props.content.substr(0, 50)
+    let content = this.props.content.substr(0, 80)
     if(this.props.content.length > 80) {
       content += "..."
     }
-    return `https://twitter.com/intent/tweet?url=https://aa.com&text=「${content}」&hashtags=エモ詩&via=hinodeya_pon`
+    return `https://twitter.com/intent/tweet?url=${configs.env.siteUrl}&text=「${content}」&hashtags=エモ詩&via=hinodeya_pon`
   }
 
   get style() {

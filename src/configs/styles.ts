@@ -29,6 +29,9 @@ export const styles = {
     fontWeight: '200',
     letterSpacing: '2px',
     lineHeight: '1.75',
+    [breakpoints.sm]: {
+      fontSize: '0.9rem',
+    },
   },
 
   button: {

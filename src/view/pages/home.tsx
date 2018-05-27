@@ -23,7 +23,7 @@ class Home extends React.Component<any, any> {
 			      <Sentence label="あなたが青春時代に口ずさんだ曲は何ですか？想い出のアーティストは、誰ですか？もしかしたら、いま世界は商業音楽で溢れているかもしれないけど、本当は違うかもしれない。だから歌詞から曲を好きになるのもありかもしれないですよ。" />
 			    </div>
 			    <div>
-			      <a href={`${configs.env.tweetBaseUri}?url=https://aa.com&text=【エモリリック】歌詞から曲を好きになる&hashtags=エモ詩`}
+			      <a href={`${configs.env.tweetBaseUri}?url=${configs.env.siteUrl}&text=【エモリリック】歌詞から曲を好きになる&hashtags=エモ詩`}
 				target="_blank"
 			      >
 				<Button type="tweet" label="つぶやく" />
