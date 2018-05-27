@@ -4,6 +4,7 @@ import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { bind } from 'bind-decorator'
 import { css, StyleSheet } from 'aphrodite'
+import * as configs from '../../configs'
 import { LyricService } from '../../domain/lyric'
 import { LyricProps } from '../../data'
 
@@ -29,14 +30,29 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 		    <a className={css(this.style.url)} href={this.props.url} target="_blank">
 		      > この曲を聴いてみる
 		    </a>
+		    <a href={this.tweetLink}
+		      target="_blank"
+		      className={css(this.style.tweetButton)}
+		    >
+	  	      つぶやく
+	  	    </a>
 		  </div>
 	      </div>
             </div>
         )
     }
 
+  get tweetLink() {
+    let content = this.props.content.substr(0, 50)
+    if(this.props.content.length > 50) {
+      content += "..."
+    }
+    return `https://twitter.com/intent/tweet?url=https://aa.com&text=「${content}」&hashtags=エモ詩&via=hinodeya_pon`
+  }
+
   get style() {
     return StyleSheet.create({
+      tweetButton: configs.styles.tweetButton,
       wrapper: {
 	alignItems: 'center',
 	display: 'flex',

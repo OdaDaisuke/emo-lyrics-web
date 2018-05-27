@@ -21,9 +21,10 @@ export const styles = {
   },
 
   p: {
-    letterSpacing: '2px',
-    fontSize: '1.02rem',
+    fontSize: '1rem',
     fontWeight: '200',
+    letterSpacing: '2px',
+    lineHeight: '1.75',
   },
 
   button: {
@@ -49,18 +50,20 @@ export const styles = {
     },
   },
 
-  smallButton: {
+  tweetButton: {
     backgroundColor: '#2196f3',
     borderRadius: '100px',
     borderStyle: 'none',
     color: '#fff',
     cursor: 'pointer',
-    fontSize: '0.92rem',
+    fontSize: '0.85rem',
     letterSpacing: '1px',
-    paddingTop: '10px',
-    paddingRight: '20px',
-    paddingBottom: '10px',
-    paddingLeft: '20px',
+    margin: '10px',
+    paddingTop: '8px',
+    paddingRight: '22px',
+    paddingBottom: '8px',
+    paddingLeft: '22px',
+    textDecoration: 'none',
     transition: 'all 0.2s',
     ':hover': {
       backgroundColor: '#3fafff',

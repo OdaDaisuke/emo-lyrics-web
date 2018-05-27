@@ -20,16 +20,14 @@ class Home extends React.Component<any, any> {
                     <div className={css(this.style.container)}>
                         <div className={this.innerStyle}>
                             <h2 className={css(this.style.fvTitle)}>歌詞から曲を、好きになる</h2>
-                            <Sentence label="あなたが青春時代に口ずさんだ曲は何ですか？" />
-                            <Sentence label="想い出のアーティストは、誰ですか？" />
-                            <Sentence label="もしかしたら、いま世界は商業音楽で溢れているかもしれないけど" />
-                            <Sentence label="本当は違うかもしれない" />
-                            <Sentence label="だから歌詞から曲を好きになるというのもありかもしれない。" />
+			    <div className={css(this.style.sentenceWrap)}>
+			      <Sentence label="あなたが青春時代に口ずさんだ曲は何ですか？想い出のアーティストは、誰ですか？もしかしたら、いま世界は商業音楽で溢れているかもしれないけど、本当は違うかもしれない。だから歌詞から曲を好きになるのもありかもしれないですよ。" />
+			    </div>
 			    <div>
 			      <a href="https://twitter.com/intent/tweet?url=https://aa.com&text=【エモリリック】歌詞から曲を好きになる&hashtags=エモ詩"
 				target="_blank"
 			      >
-				<Button type="tweet" label="Twitterでつぶやく" />
+				<Button type="tweet" label="つぶやく" />
 			      </a>
 			    </div>
 			    {this.loginButton}
@@ -73,6 +71,20 @@ class Home extends React.Component<any, any> {
             textCenter: {
         	    textAlign: 'center',
             },
+	    sentenceWrap: {
+	      borderColor: '#fff',
+	      borderRadius: '5px',
+	      borderStyle: 'solid',
+	      borderWidth: '1px',
+	      marginRight: 'auto',
+	      marginBottom: '10px',
+	      marginLeft: 'auto',
+	      maxWidth: '450px',
+	      minWidth: '250px',
+	      paddingRight: '20px',
+	      paddingLeft: '20px',
+	      width: '65%',
+	    },
             firstview: {
             	backgroundImage: "url('./assets/images/guitar.jpg')",
             	backgroundSize: 'cover',

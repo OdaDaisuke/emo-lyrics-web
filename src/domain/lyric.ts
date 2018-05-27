@@ -16,7 +16,7 @@ export class LyricService {
   }
 
   shuffle(lyrics: LyricProps[]) {
-    const SHUFFLE_ROUND = 55
+    const SHUFFLE_ROUND = 70
     const len = lyrics.length
     for(let i = 0; i < SHUFFLE_ROUND; ++i) {
       const r1 = parseInt(String(Math.random() * len))

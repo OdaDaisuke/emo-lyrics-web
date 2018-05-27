@@ -25,7 +25,7 @@ export class Button extends React.Component<IButtonProps, any> {
 
     get buttonClass() {
       if(this.props.type == "tweet") {
-	return css(this.style.smallButton)
+	return css(this.style.tweetButton)
       }
       return css(this.style.button)
     }
@@ -42,7 +42,7 @@ export class Button extends React.Component<IButtonProps, any> {
     get style() {
         return StyleSheet.create({
             button: configs.styles.button,
-	    smallButton: configs.styles.smallButton,
+	    tweetButton: configs.styles.tweetButton,
         })
     }
 

@@ -13,7 +13,7 @@ export interface LyricCardListProps {
   vm: LyricCardListVM
 }
 
-observer
+@observer
 export class LyricCardList extends React.Component<LyricCardListProps, any> {
   constructor(props: any) {
     super(props)
@@ -59,7 +59,7 @@ export class LyricCardList extends React.Component<LyricCardListProps, any> {
 
   /*------ dom ------*/
   get mainDom() {
-    if(this.props.vm.lyrics == null) {
+    if(!this.props.vm.lyrics) {
       return null
     }
     const curLyric = this.props.vm.lyrics.$mobx.values[this.props.vm.lyricIdx]
