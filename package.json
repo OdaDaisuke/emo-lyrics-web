@@ -21,13 +21,6 @@
     "@types/react-router-dom": "^4.2.5",
     "aphrodite": "^2.1.0",
     "axios": "^0.18.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-import": "^1.6.7",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
     "browser-sync": "^2.23.6",
     "browser-sync-webpack-plugin": "^2.2.1",
     "mobx": "^4.1.0",
@@ -46,8 +39,9 @@
   },
   "devDependencies": {
     "@types/react-icons": "^2.2.5",
+    "@types/webpack-env": "1.13.5",
     "bind-decorator": "^1.0.11",
-    "dotenv-webpack": "^1.5.5",
+    "dotenv-webpack": "1.5.4",
     "mobx-react": "^5.1.2",
     "react-hot-loader": "^4.0.0"
   }

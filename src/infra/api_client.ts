@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const API_BASE_URI = 'http://localhost:8888/api/v1'
+import * as configs from '../configs'
 
 // axiosのオプションを返す
 interface reqOpProps {
@@ -24,9 +23,10 @@ interface reqOption {
 
 export class APIClient<APIClientProps> {
   private static getReqOption(option: reqOpProps) {
+    console.log(configs.env.apiBaseUri + option.endpoint)
     return {
       method: option.method,
-      url: API_BASE_URI + option.endpoint,
+      url: configs.env.apiBaseUri + option.endpoint,
       data: option.data,
       params: option.params
     }

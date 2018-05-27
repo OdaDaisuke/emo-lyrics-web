@@ -1,5 +1,6 @@
 import { APIClient } from '../infra'
 import { LyricProps } from '../data'
+import * as configs from '../configs'
 
 export class LyricService {
 
@@ -16,9 +17,8 @@ export class LyricService {
   }
 
   shuffle(lyrics: LyricProps[]) {
-    const SHUFFLE_ROUND = 70
     const len = lyrics.length
-    for(let i = 0; i < SHUFFLE_ROUND; ++i) {
+    for(let i = 0; i < parseInt(configs.env.lyricShuffleRound); ++i) {
       const r1 = parseInt(String(Math.random() * len))
       const r2 = parseInt(String(Math.random() * len))
       const tmp = lyrics[r1]
