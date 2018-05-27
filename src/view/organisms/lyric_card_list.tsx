@@ -9,13 +9,14 @@ import { LyricCard } from '../molecules'
 import { LyricProps } from '../../data'
 import { Button } from '../atoms'
 
-export interface LyricCardListProps {
+export interface ILyricCardList {
   vm: LyricCardListVM
+  onLast: any
 }
 
 @observer
-export class LyricCardList extends React.Component<LyricCardListProps, any> {
-  constructor(props: any) {
+export class LyricCardList extends React.Component<ILyricCardList, any> {
+  constructor(props: ILyricCardList) {
     super(props)
     this.props.vm.initialize()
     this.props.vm.getLyrics()
@@ -50,6 +51,9 @@ export class LyricCardList extends React.Component<LyricCardListProps, any> {
   @bind
   handleNext() {
     this.props.vm.incrementIdx()
+    if(this.props.vm.isAtLast) {
+       this.props.onLast()
+    }
   }
 
   @bind
@@ -127,6 +131,9 @@ export class LyricCardListVM {
   }
 
   incrementIdx() {
+    if(!this.lyrics) {
+      return
+    }
     const nextIdx = this.lyricIdx + 1
     if(nextIdx < this.lyrics.length) {
       this.lyricIdx = nextIdx

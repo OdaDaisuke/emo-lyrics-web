@@ -5,6 +5,7 @@ import * as configs from '../../configs'
 
 export interface ISentenceProps {
   label: string
+  center?: boolean
 }
 
 export class Sentence extends React.Component<ISentenceProps, any> {
@@ -22,8 +23,11 @@ export class Sentence extends React.Component<ISentenceProps, any> {
 
 
     get style() {
+	const centering = this.props.center
         return StyleSheet.create({
-            p: configs.styles.p
+            p: Object.assign({}, configs.styles.p, {
+	      textAlign: (centering) ? 'center': 'left',
+	    })
         })
     }
 

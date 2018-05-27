@@ -23,7 +23,6 @@ interface reqOption {
 
 export class APIClient<APIClientProps> {
   private static getReqOption(option: reqOpProps) {
-    console.log(configs.env.apiBaseUri + option.endpoint)
     return {
       method: option.method,
       url: configs.env.apiBaseUri + option.endpoint,
