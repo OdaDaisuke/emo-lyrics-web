@@ -23,6 +23,7 @@ export const styles = {
   p: {
     letterSpacing: '2px',
     fontSize: '1.02rem',
+    fontWeight: '200',
   },
 
   button: {
@@ -45,6 +46,24 @@ export const styles = {
     transition: 'all 0.2s',
     ':hover': {
         transform: 'scale(1.03)',
+    },
+  },
+
+  smallButton: {
+    backgroundColor: '#2196f3',
+    borderRadius: '100px',
+    borderStyle: 'none',
+    color: '#fff',
+    cursor: 'pointer',
+    fontSize: '0.92rem',
+    letterSpacing: '1px',
+    paddingTop: '10px',
+    paddingRight: '20px',
+    paddingBottom: '10px',
+    paddingLeft: '20px',
+    transition: 'all 0.2s',
+    ':hover': {
+      backgroundColor: '#3fafff',
     },
   },
 

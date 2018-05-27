@@ -24,9 +24,16 @@ class Home extends React.Component<any, any> {
                             <Sentence label="想い出のアーティストは、誰ですか？" />
                             <Sentence label="もしかしたら、いま世界は商業音楽で溢れているかもしれないけど" />
                             <Sentence label="本当は違うかもしれない" />
-                            <Sentence label="詩には本物の想いが込められているかもしれない。" />
-			  {this.loginButton}
-			  {this.towardButton}
+                            <Sentence label="だから歌詞から曲を好きになるというのもありかもしれない。" />
+			    <div>
+			      <a href="https://twitter.com/intent/tweet?url=https://aa.com&text=【エモリリック】歌詞から曲を好きになる&hashtags=エモ詩"
+				target="_blank"
+			      >
+				<Button type="tweet" label="Twitterでつぶやく" />
+			      </a>
+			    </div>
+			    {this.loginButton}
+			    {this.towardButton}
                         </div>
                     </div>
                 </div>
@@ -77,14 +84,22 @@ class Home extends React.Component<any, any> {
                 height: '100vh',
             },
             fvTitle: {
+		backgroundColor: '#fff',
+		color: '#333',
             	display: 'inline-block',
             	fontWeight: 600,
             	letterSpacing: '3px',
             	fontSize: '2rem',
+		borderTop: '1px solid #fff',
+		borderRight: '1px solid #fff',
             	borderBottom: '1px solid #fff',
+		borderLeft: '1px solid #fff',
                 marginTop: '60px',
                 marginBottom: '15px',
+		paddingTop: '0.75rem',
+		paddingRight: '1.5rem',
             	paddingBottom: '0.75rem',
+		paddingLeft: '1.5rem',
             	transform: 'skew(-10deg)',
             },
             sectionTitle: {

@@ -8,13 +8,12 @@ import { LyricService } from '../../domain/lyric'
 import { LyricCard } from '../molecules'
 import { LyricProps } from '../../data'
 import { Button } from '../atoms'
-import { ShareAlert } from '../molecules'
 
 export interface LyricCardListProps {
   vm: LyricCardListVM
 }
 
-@observer
+observer
 export class LyricCardList extends React.Component<LyricCardListProps, any> {
   constructor(props: any) {
     super(props)
@@ -30,7 +29,6 @@ export class LyricCardList extends React.Component<LyricCardListProps, any> {
 	  {this.prevButton}
 	  {this.nextButton}
 	</div>
-	{this.shareAlert}
       </div>
     )
   }
@@ -61,7 +59,7 @@ export class LyricCardList extends React.Component<LyricCardListProps, any> {
 
   /*------ dom ------*/
   get mainDom() {
-    if(!this.props.vm.lyrics) {
+    if(this.props.vm.lyrics == null) {
       return null
     }
     const curLyric = this.props.vm.lyrics.$mobx.values[this.props.vm.lyricIdx]
@@ -74,13 +72,6 @@ export class LyricCardList extends React.Component<LyricCardListProps, any> {
 	  key={curLyric.Content}
 	/>
     )
-  }
-
-  get shareAlert() {
-    if(!this.props.vm.isAtLast) {
-      return null
-    }
-    return (<ShareAlert />)
   }
 
   get prevButton() {
