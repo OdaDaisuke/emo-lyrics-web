@@ -43,6 +43,13 @@ export class LoginButtonVM {
     this.accountService.getTwitterAuthUrl(this.setAuthUrl)
   }
 
+  get userData(): string | null {
+    if(!this.accountService) {
+      return null
+    }
+    return this.accountService.loadAccount()
+  }
+
   @bind
   private setAuthUrl(url: string) {
     this.authUrl = url

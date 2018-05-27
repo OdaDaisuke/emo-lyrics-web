@@ -1,4 +1,4 @@
-import { APIClient } from '../infra'
+import { APIClient, AccountStorage } from '../infra'
 
 export class AccountService {
   getTwitterAuthUrl(callback: any) {
@@ -7,5 +7,13 @@ export class AccountService {
 
   sendVerificationCode(s: string, callback: any) {
     APIClient.sendTwitterVerificationCode(s, callback)
+  }
+
+  saveAccount() {
+    AccountStorage.save()
+  }
+
+  loadAccount(): string | null {
+    return AccountStorage.load()
   }
 }

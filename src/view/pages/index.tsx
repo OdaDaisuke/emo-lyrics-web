@@ -1,3 +1,3 @@
 export * from './home'
 export * from './lyric'
-export * from './notFound'
+export * from './not_found'

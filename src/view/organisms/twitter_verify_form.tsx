@@ -36,6 +36,7 @@ export class TwitterVerifyForm extends React.Component<TwitterVerifyFormProps, a
   onSubmit() {
     this.props.vm.sendVerificationCode(this.inputVm.value)
     // if(this.props.vm.verifyResult) {
+      this.props.vm.saveUser()
       this.props.history.push("/lyric")
     // } else {
     //   alert("エラーが発生しました。コードが間違っているようです。")
@@ -58,6 +59,12 @@ export class TwitterVerifyFormVM {
       return null
     }
     this.accountService.sendVerificationCode(s, this.verifyCodeCallback)
+  }
+
+  saveUser() {
+    if(this.accountService) {
+      this.accountService.saveAccount()
+    }
   }
 
   @bind

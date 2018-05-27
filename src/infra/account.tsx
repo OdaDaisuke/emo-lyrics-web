@@ -1,19 +1,19 @@
 export class AccountStorage {
-  private storage = localStorage
+  private static storage = localStorage
 
-  save(userId: string) {
-    this.storage.setItem("userAuthToken", JSON.stringify(userId))
+  static save() {
+    this.storage.setItem("emoL.user", "true")
   }
 
-  destroy() {
-    this.storage.removeItem("userAuthToken")
+  static destroy() {
+    this.storage.removeItem("emoL.user")
   }
 
-  load(): string | null {
+  static load(): string | null {
     try {
-      const userId = this.storage.getItem("userAuthToken")
-      if(userId) {
-	return JSON.parse(userId)
+      const user = this.storage.getItem("emoL.user")
+      if(user) {
+	return user
       }
       return null
     } catch {

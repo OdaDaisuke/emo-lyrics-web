@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom'
 import * as configs from '../../configs'
 import { LoginButton, LoginButtonVM } from '../molecules'
 import { withRouter } from 'react-router-dom'
-import { Sentence } from '../atoms'
+import { Sentence, Button } from '../atoms'
+import { AccountService } from '../../domain'
 
 export interface HomeProps {
 }
 
 class Home extends React.Component<any, any> {
+    private accountService: AccountService = new AccountService()
+
     render(): JSX.Element {
         return (
             <div>
@@ -22,12 +25,33 @@ class Home extends React.Component<any, any> {
                             <Sentence label="もしかしたら、いま世界は商業音楽で溢れているかもしれないけど" />
                             <Sentence label="本当は違うかもしれない" />
                             <Sentence label="詩には本物の想いが込められているかもしれない。" />
-			  <LoginButton history={this.props.history} vm={new LoginButtonVM()} />
+			  {this.loginButton}
+			  {this.towardButton}
                         </div>
                     </div>
                 </div>
             </div>
         )
+    }
+
+    get loginButton() {
+      if(this.accountService.loadAccount()) {
+	return null
+      }
+      return (
+	<LoginButton history={this.props.history} vm={new LoginButtonVM()} />
+      )
+    }
+
+    get towardButton() {
+      if(!this.accountService.loadAccount()) {
+	return null
+      }
+      return (
+	<Link to="/lyric">
+	  <Button label="歌詞をめくる" />
+	</Link>
+      )
     }
 
     get innerStyle() {
@@ -45,7 +69,7 @@ class Home extends React.Component<any, any> {
             firstview: {
             	backgroundImage: "url('./assets/images/guitar.jpg')",
             	backgroundSize: 'cover',
-            	backgroundColor: 'rgba(32, 36, 6, 0.85)',
+            	backgroundColor: 'rgba(0, 0, 0, 0.78)',
             	backgroundBlendMode: 'overlay',
             	backgroundPosition: 'center',
             	color: '#ffffff',
