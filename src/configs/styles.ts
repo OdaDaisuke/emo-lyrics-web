@@ -1,3 +1,7 @@
+export enum breakpoints {
+  sm = '@media (max-width: 576px)',
+}
+
 export const styles = {
   // constants
   bg_default: '#ffffff',
@@ -56,6 +60,7 @@ export const styles = {
     borderStyle: 'none',
     color: '#fff',
     cursor: 'pointer',
+    display: 'inline-block',
     fontSize: '0.85rem',
     letterSpacing: '1px',
     margin: '10px',
@@ -119,10 +124,18 @@ export const styles = {
     /*------ spacing ------ */
     containerPaddingY: {
         paddingTop: '100px',
-        paddingBottom: '100px',
+	paddingBottom: '100px',
+	[breakpoints.sm]: {
+	  paddingTop: '50px',
+	  paddingBottom: '50px',
+	},
     },
     containerPaddingYs: {
         paddingTop: '50px',
-        paddingBottom: '50px',
+	paddingBottom: '50px',
+	[breakpoints.sm]: {
+	  paddingTop: '25px',
+	  paddingBottom: '25px',
+	},
     },
 }

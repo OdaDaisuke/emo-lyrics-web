@@ -44,7 +44,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 
   get tweetLink() {
     let content = this.props.content.substr(0, 50)
-    if(this.props.content.length > 50) {
+    if(this.props.content.length > 80) {
       content += "..."
     }
     return `https://twitter.com/intent/tweet?url=https://aa.com&text=「${content}」&hashtags=エモ詩&via=hinodeya_pon`
@@ -65,6 +65,9 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	maxWidth: '800px',
 	textAlign: "center",
 	width: '80%',
+	[configs.breakpoints.sm]: {
+	  width: '90%',
+	},
       },
       content: {
 	color: '#3f3456',
@@ -73,17 +76,27 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	fontWeight: 'bold',
 	letterSpacing: '2px',
 	lineHeight: '1.82',
+	marginTop: '0',
+	[configs.breakpoints.sm]: {
+	  fontSize: '1.35rem',
+	},
       },
       title: {
 	color: '#70707f',
 	fontStyle: 'italic',
 	marginRight: '1rem',
 	letterSpacing: '1px',
+	[configs.breakpoints.sm]: {
+	  fontSize: '0.8rem',
+	},
       },
       singer: {
 	color: '#70707f',
 	fontSize: '0.95rem',
 	letterSpacing: '1px',
+	[configs.breakpoints.sm]: {
+	  fontSize: '0.8rem',
+	},
       },
       url: {
 	borderWidth: '1px',

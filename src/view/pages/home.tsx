@@ -112,6 +112,10 @@ class Home extends React.Component<any, any> {
             	paddingBottom: '0.75rem',
 		paddingLeft: '1.5rem',
             	transform: 'skew(-10deg)',
+		[configs.breakpoints.sm]: {
+		  fontSize: '1.1rem',
+		  marginTop: '0',
+		},
             },
             sectionTitle: {
         	    fontWeight: 200,
