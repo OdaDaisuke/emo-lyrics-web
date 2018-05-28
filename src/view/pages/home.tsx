@@ -20,7 +20,7 @@ class Home extends React.Component<any, any> {
                         <div className={this.innerStyle}>
                             <h2 className={css(this.style.fvTitle)}>歌詞から曲を、好きになる</h2>
 			    <div className={css(this.style.sentenceWrap)}>
-			      <Sentence label="あなたが青春時代に口ずさんだ曲は何ですか？想い出のアーティストは、誰ですか？もしかしたら、いま世界は商業音楽で溢れているかもしれないけど、本当は違うかもしれない。だから歌詞から曲を好きになるのもありかもしれないですよ。" />
+			      <Sentence label="あなたが青春時代に口ずさんだ曲は何ですか？想い出のアーティストは、誰ですか？もしかしたら、いま世界は商業音楽で溢れているかもしれないけど、本当は違うかもしれない。一度、歌詞から曲を好きになってみませんか？" />
 			    </div>
 			    <div>
 			      <a href={`${configs.env.tweetBaseUri}?url=${configs.env.siteUrl}&text=【エモリリック】歌詞から曲を好きになる&hashtags=エモ詩`}
@@ -72,11 +72,13 @@ class Home extends React.Component<any, any> {
             },
 	    sentenceWrap: {
 	      borderColor: '#fff',
-	      borderRadius: '5px',
 	      borderStyle: 'solid',
-	      borderWidth: '1px',
+	      borderTopWidth: '1px',
+	      borderRightWidth: '0',
+	      borderBottomWidth: '1px',
+	      borderLeftWidth: '0',
 	      marginRight: 'auto',
-	      marginBottom: '10px',
+	      marginBottom: '25px',
 	      marginLeft: 'auto',
 	      maxWidth: '450px',
 	      minWidth: '250px',
@@ -106,7 +108,7 @@ class Home extends React.Component<any, any> {
             	borderBottom: '1px solid #fff',
 		borderLeft: '1px solid #fff',
                 marginTop: '60px',
-                marginBottom: '15px',
+                marginBottom: '25px',
 		paddingTop: '0.75rem',
 		paddingRight: '1.5rem',
             	paddingBottom: '0.75rem',

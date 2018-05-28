@@ -12,6 +12,10 @@ export class LyricService {
     APIClient.getLyric(callback)
   }
 
+  getNotFoundLyric(callback: any) {
+    APIClient.getNotFoundLyric(callback)
+  }
+
   create(options: any, callback: any) {
     APIClient.create(options, callback)
   }

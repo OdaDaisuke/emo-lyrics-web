@@ -10,9 +10,7 @@ interface reqOpProps {
   headers?: any
 }
 
-// ------------------------------- //
-
-interface APIClientProps {
+interface IAPIClient {
 }
 
 interface reqOption {
@@ -21,7 +19,7 @@ interface reqOption {
   params?: any, // parameter
 }
 
-export class APIClient<APIClientProps> {
+export class APIClient<IAPIClient> {
   private static getReqOption(option: reqOpProps) {
     return {
       method: option.method,
@@ -112,6 +110,14 @@ export class APIClient<APIClientProps> {
       params: { verification_code: s }
     }
     this.postData(options)
+  }
+
+  static getNotFoundLyric(callback: any) {
+    const options = {
+      callback: callback,
+      endpoint: "/404_lyric",
+    }
+    this.getData(options)
   }
 
 }
