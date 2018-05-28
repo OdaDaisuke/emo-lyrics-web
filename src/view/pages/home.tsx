@@ -29,8 +29,9 @@ class Home extends React.Component<any, any> {
 				<Button type="tweet" fill={true} label="tweet" />
 			      </a>
 			    </div>
-			    {this.loginButton}
-			    {this.towardButton}
+			    <Link to="/lyric">
+			      <Button label="歌詞をさがす" />
+			    </Link>
                         </div>
                     </div>
                 </div>
@@ -44,17 +45,6 @@ class Home extends React.Component<any, any> {
       }
       return (
 	<LoginButton history={this.props.history} vm={new LoginButtonVM()} />
-      )
-    }
-
-    get towardButton() {
-      if(!this.accountService.loadAccount()) {
-	return null
-      }
-      return (
-	<Link to="/lyric">
-	  <Button label="歌詞をめくる" />
-	</Link>
       )
     }
 
