@@ -2,9 +2,11 @@ import * as React from 'react'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
 import { bind } from 'bind-decorator'
+import { css, StyleSheet } from 'aphrodite'
 import { LyricService } from '../../domain'
 import { LyricProps } from '../../data'
 import { LyricCard } from '../molecules'
+import * as configs from '../../configs'
 
 export interface INotFoundCard {
   vm: NotFoundCardVM
@@ -20,7 +22,8 @@ export class NotFoundCard extends React.Component<INotFoundCard, any> {
 
   render(): JSX.Element {
     return (
-      <div>
+      <div className={css(this.style.wrapper)}>
+	<h2 className={css(this.style.caption)}>404 Page not found</h2>
 	<LyricCard
 	  title={this.lyricTitle}
 	  content={this.lyricContent}
@@ -29,6 +32,27 @@ export class NotFoundCard extends React.Component<INotFoundCard, any> {
 	/>
       </div>
     )
+  }
+
+  get style() {
+    return StyleSheet.create({
+      wrapper: {
+	height: '90vh',
+	textAlign: 'center',
+      },
+      caption: {
+	color: '#4f4f5f',
+	fontSize: '2.2rem',
+	fontStyle: 'italic',
+	fontWeight: 'lighter',
+	letterSpacing: '5px',
+	marginTop: '80px',
+	marginBottom: '-80px',
+	[configs.breakpoints.sm]: {
+	  fontSize: '1.2rem',
+	},
+      },
+    })
   }
 
   get lyricTitle() {

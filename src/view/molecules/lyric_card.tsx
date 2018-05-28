@@ -7,6 +7,7 @@ import { css, StyleSheet } from 'aphrodite'
 import * as configs from '../../configs'
 import { LyricService } from '../../domain/lyric'
 import { LyricProps } from '../../data'
+import { Button } from '../atoms'
 
 export interface LyricCardProps {
   title: string
@@ -30,11 +31,8 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 		    <a className={css(this.style.url)} href={this.props.url} target="_blank">
 		      > この曲を聴いてみる
 		    </a>
-		    <a href={this.tweetLink}
-		      target="_blank"
-		      className={css(this.style.tweetButton)}
-		    >
-	  	      つぶやく
+		    <a href={this.tweetLink} target="_blank">
+	  	      <Button type="tweet" label="tweet" />
 	  	    </a>
 		  </div>
 	      </div>
@@ -52,7 +50,6 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 
   get style() {
     return StyleSheet.create({
-      tweetButton: configs.styles.tweetButton,
       wrapper: {
 	alignItems: 'center',
 	display: 'flex',
@@ -66,19 +63,19 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	textAlign: "center",
 	width: '80%',
 	[configs.breakpoints.sm]: {
-	  width: '90%',
+	  width: '85%',
 	},
       },
       content: {
 	color: '#3f3456',
 	fontFamily: 'YuGothic',
 	fontSize: '2rem',
-	fontWeight: 'bold',
+	fontWeight: 'normal',
 	letterSpacing: '2px',
 	lineHeight: '1.82',
 	marginTop: '0',
 	[configs.breakpoints.sm]: {
-	  fontSize: '1.35rem',
+	  fontSize: '1.12rem',
 	},
       },
       title: {
@@ -87,7 +84,10 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	marginRight: '1rem',
 	letterSpacing: '1px',
 	[configs.breakpoints.sm]: {
+	  display: 'block',
 	  fontSize: '0.8rem',
+	  marginBottom: '2px',
+	  width: '100%',
 	},
       },
       singer: {
@@ -106,6 +106,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	borderRadius: "30px",
 	display: "inline-block",
 	fontSize: "0.85rem",
+	fontWeight: 'lighter',
 	marginTop: "20px",
 	marginRight: "auto",
 	marginLeft: "auto",

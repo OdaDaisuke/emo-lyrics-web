@@ -7,7 +7,7 @@ export default class Thanks extends React.Component<any, any> {
   render(): JSX.Element {
     return (
       <div className={css(this.style.wrapper)}>
-	<Sentence center={true} label="最後まで見てくれてありがとうございました！" />
+	<Sentence center={true} label="Fin." />
 	<div className={css(this.style.widthMax)}>
 	  <a href={`${configs.env.tweetBaseUri}?url=${configs.env.siteUrl}&text=「歌詞から曲を好きになる、EmoLyrics」&hashtags=エモ詩&via=hinodeya_pon`} target="_blank">
 	    <Button type="tweet" label="Twitterでシェア" />

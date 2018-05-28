@@ -26,7 +26,7 @@ class Home extends React.Component<any, any> {
 			      <a href={`${configs.env.tweetBaseUri}?url=${configs.env.siteUrl}&text=【エモリリック】歌詞から曲を好きになる&hashtags=エモ詩`}
 				target="_blank"
 			      >
-				<Button type="tweet" label="つぶやく" />
+				<Button type="tweet" fill={true} label="tweet" />
 			      </a>
 			    </div>
 			    {this.loginButton}
@@ -82,7 +82,9 @@ class Home extends React.Component<any, any> {
 	      marginLeft: 'auto',
 	      maxWidth: '450px',
 	      minWidth: '250px',
+	      paddingTop: '10px',
 	      paddingRight: '20px',
+	      paddingBottom: '10px',
 	      paddingLeft: '20px',
 	      width: '65%',
 	    },

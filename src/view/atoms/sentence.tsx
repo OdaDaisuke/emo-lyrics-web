@@ -26,6 +26,7 @@ export class Sentence extends React.Component<ISentenceProps, any> {
 	const centering = this.props.center
         return StyleSheet.create({
             p: Object.assign({}, configs.styles.p, {
+	      fontWeight: '100',
 	      textAlign: (centering) ? 'center': 'left',
 	    })
         })

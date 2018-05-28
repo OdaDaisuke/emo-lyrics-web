@@ -8,6 +8,7 @@ import * as configs from '../../configs'
 export interface IButtonProps {
   onClick?: (event: React.FormEvent<any>) => void,
   type?: string
+  fill?: boolean
   label: string
 }
 
@@ -25,7 +26,11 @@ export class Button extends React.Component<IButtonProps, any> {
 
     get buttonClass() {
       if(this.props.type == "tweet") {
-	return css(this.style.tweetButton)
+	if(this.props.fill) {
+	  return css(this.style.tweetFilledButton)
+	} else {
+	  return css(this.style.tweetButton)
+	}
       }
       return css(this.style.button)
     }
@@ -42,7 +47,10 @@ export class Button extends React.Component<IButtonProps, any> {
     get style() {
         return StyleSheet.create({
             button: configs.styles.button,
-	    tweetButton: configs.styles.tweetButton,
+	    tweetButton: Object.assign({}, configs.styles.tweetButton, {
+	      fontWeight: 'lighter',
+	    }),
+	    tweetFilledButton: configs.styles.tweetFilledButton,
         })
     }
 
