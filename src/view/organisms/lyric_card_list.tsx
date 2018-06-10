@@ -82,7 +82,7 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
   get prevButton() {
     if(!this.props.vm.isAtFirst) {
       return (
-	<Button onClick={this.handlePrev} label="<" />
+	<Button onClick={this.handlePrev}>{"<"}</Button>
       )
     }
   }
@@ -90,7 +90,7 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
   get nextButton() {
     if(!this.props.vm.isAtLast) {
       return (
-	<Button onClick={this.handleNext} label="次の歌詞へ" />
+	<Button onClick={this.handleNext}>次の歌詞へ</Button>
       )
     }
   }

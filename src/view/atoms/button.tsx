@@ -9,7 +9,6 @@ export interface IButtonProps {
   onClick?: (event: React.FormEvent<any>) => void,
   type?: string
   fill?: boolean
-  label: string
 }
 
 export class Button extends React.Component<IButtonProps, any> {
@@ -41,7 +40,7 @@ export class Button extends React.Component<IButtonProps, any> {
     }
 
     get label() {
-        return this.props.label ? this.props.label : 'ボタンラベル'
+        return this.props.children ? this.props.children : 'ボタンラベル'
     }
 
     get style() {

@@ -20,7 +20,7 @@ export class LoginButton extends React.Component<LoginButtonProps, any> {
   render(): JSX.Element {
     return (
       <a href={this.props.vm.authUrl} target="_blank">
-	<Button onClick={this.handleClick} label="Twitterログイン" />
+	<Button onClick={this.handleClick}>Twitterログイン</Button>
       </a>
     )
   }

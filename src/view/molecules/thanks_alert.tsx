@@ -15,7 +15,7 @@ export class ThanksAlert extends React.Component<IThanksAlert, any> {
 	<div className={css(this.style.inner)}>
 	  よかったらシェアしてね
 	  <a href={`${configs.env.tweetBaseUri}?url=https://aa.com&text=aa&hashtags=エモ詩&via=hinodeya_pon`} target="_blank">
-	    <Button type="tweet" onClick={this.props.onClick} label="リンクをシェア" />
+	    <Button type="tweet" onClick={this.props.onClick}>リンクをシェア</Button>
 	  </a>
 	</div>
       </div>

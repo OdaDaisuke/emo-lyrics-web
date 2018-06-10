@@ -26,7 +26,7 @@ export class TwitterVerifyForm extends React.Component<TwitterVerifyFormProps, a
 	  vm={this.inputVm}
 	  type="text"
 	/>
-	<Button label="送信" onClick={this.onSubmit} />
+	<Button onClick={this.onSubmit}>送信</Button>
       </div>
     )
   }

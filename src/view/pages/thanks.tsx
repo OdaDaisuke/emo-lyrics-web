@@ -13,7 +13,7 @@ export class Thanks extends React.Component<IThanksPageProps, any> {
 	<Sentence center={true} label="Fin." />
 	<div className={css(this.style.widthMax)}>
 	  <a href={`${configs.env.tweetBaseUri}?url=${configs.env.siteUrl}&text=「歌詞から曲を好きになる、EmoLyrics」&hashtags=エモ詩&via=hinodeya_pon`} target="_blank">
-	    <Button type="tweet" label="Twitterでシェア" />
+	    <Button type="tweet">Twitterでシェア</Button>
 	  </a>
 	</div>
       </div>

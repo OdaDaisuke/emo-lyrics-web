@@ -32,7 +32,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 		      > この曲を聴いてみる
 		    </a>
 		    <a href={this.tweetLink} target="_blank">
-	  	      <Button type="tweet" label="tweet" />
+	  	      <Button type="tweet">tweet</Button>
 	  	    </a>
 		  </div>
 	      </div>
