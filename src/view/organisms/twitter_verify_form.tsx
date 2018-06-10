@@ -16,7 +16,6 @@ export class TwitterVerifyForm extends React.Component<TwitterVerifyFormProps, a
   private inputVm: InputVm = new InputVm()
   constructor(props: TwitterVerifyFormProps) {
     super(props)
-    this.props.vm.initialize()
   }
 
   render(): JSX.Element {
@@ -50,8 +49,8 @@ export class TwitterVerifyFormVM {
 
   @observable verifyResult: boolean = false
 
-  initialize() {
-    this.accountService = new AccountService()
+  constructor(accountService: AccountService) {
+    this.accountService = accountService
   }
 
   sendVerificationCode(s: string) {

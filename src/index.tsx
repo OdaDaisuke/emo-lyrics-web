@@ -5,7 +5,7 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import { hot } from 'react-hot-loader'
 import { css, StyleSheet } from 'aphrodite'
 import * as configs from './configs'
-import { AppRoute } from './route'
+import AppRoute from './route'
 
 export class AppContainer {
   initialize(): void {
@@ -14,7 +14,9 @@ export class AppContainer {
 
     ReactDOM.render(
       <div className={css(this.styles.body)}>
-        <AppRoute history={history} />
+        <AppRoute
+	  history={history}
+	/>
       </div>,
       document.querySelector('#app-container'),
     )

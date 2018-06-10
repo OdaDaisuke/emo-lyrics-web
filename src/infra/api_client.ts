@@ -10,7 +10,7 @@ interface reqOpProps {
   headers?: any
 }
 
-interface IAPIClient {
+interface IAPIClientProps {
 }
 
 interface reqOption {
@@ -19,8 +19,8 @@ interface reqOption {
   params?: any, // parameter
 }
 
-export class APIClient<IAPIClient> {
-  private static getReqOption(option: reqOpProps) {
+export class APIClient {
+  private getReqOption(option: reqOpProps) {
     return {
       method: option.method,
       url: configs.env.apiBaseUri + option.endpoint,
@@ -29,7 +29,7 @@ export class APIClient<IAPIClient> {
     }
   }
 
-  private static async _reqData(method: string, endpoint: string, postParams: any, callback: any) {
+  private async _reqData(method: string, endpoint: string, postParams: any, callback: any) {
     method = (method === 'POST') ? method : 'GET';
 
     let reqOption
@@ -62,15 +62,15 @@ export class APIClient<IAPIClient> {
       })
   }
 
-  private static postData(option: reqOption) {
+  private postData(option: reqOption) {
     this._reqData('POST', option.endpoint, option.params, option.callback)
   }
 
-  private static getData(option: reqOption) {
+  private getData(option: reqOption) {
     this._reqData('GET', option.endpoint, option.params, option.callback)
   }
 
-  static getLyric(callback: any) {
+  getLyric(callback: any) {
     const option = {
       endpoint: '/lyric',
       callback: callback,
@@ -78,7 +78,7 @@ export class APIClient<IAPIClient> {
     this.getData(option)
   }
 
-  static getLyrics(callback: any) {
+  getLyrics(callback: any) {
     const option = {
       endpoint: '/lyric',
       callback: callback,
@@ -86,7 +86,7 @@ export class APIClient<IAPIClient> {
     this.getData(option)
   }
 
-  static create(params: any, callback: any) {
+  create(params: any, callback: any) {
     const options = {
       callback: callback,
       endpoint: '/lyric',
@@ -95,7 +95,7 @@ export class APIClient<IAPIClient> {
     this.postData(options)
   }
 
-  static getTwitterAuthUrl(callback: any) {
+  getTwitterAuthUrl(callback: any) {
     const options = {
       callback: callback,
       endpoint: '/auth/get_twitter_auth_url',
@@ -103,7 +103,7 @@ export class APIClient<IAPIClient> {
     this.getData(options)
   }
 
-  static sendTwitterVerificationCode(s: string, callback: any) {
+  sendTwitterVerificationCode(s: string, callback: any) {
     const options = {
       callback: callback,
       endpoint: '/auth/twitter_verification_code',
@@ -112,7 +112,7 @@ export class APIClient<IAPIClient> {
     this.postData(options)
   }
 
-  static getNotFoundLyric(callback: any) {
+  getNotFoundLyric(callback: any) {
     const options = {
       callback: callback,
       endpoint: "/404_lyric",

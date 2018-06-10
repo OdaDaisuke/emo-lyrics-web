@@ -2,22 +2,33 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { css, StyleSheet } from 'aphrodite'
 import { bind } from 'bind-decorator'
-import { withRouter } from 'react-router-dom'
 import * as configs from '../../configs'
 import { Button, Sentence } from '../atoms'
 import { LyricService } from '../../domain'
 import { ThanksAlert } from '../molecules'
 import { LyricCardList, LyricCardListVM } from '../organisms'
 
-export interface ILyric {
+export interface ILyricProps {
   history: any
+  lyricService: LyricService
 }
 
-class Lyric extends React.Component<any, any> {
+export class Lyric extends React.Component<ILyricProps, any> {
+  private lyricService: LyricService
+
+  constructor(props: ILyricProps) {
+    super(props)
+    this.lyricService = props.lyricService
+  }
+
   render(): JSX.Element {
     return (
       <div className={css(this.style.wrapper)}>
-        <LyricCardList onLast={this.onLast} vm={this.lyricCardListVM} />
+        <LyricCardList
+	  onLast={this.onLast}
+	  vm={this.lyricCardListVM}
+	  lyricService={this.lyricService}
+	/>
       </div>
     )
   }
@@ -40,5 +51,3 @@ class Lyric extends React.Component<any, any> {
   }
 
 }
-
-export default withRouter(Lyric)

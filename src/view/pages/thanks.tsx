@@ -3,7 +3,10 @@ import { css, StyleSheet } from 'aphrodite'
 import * as configs from '../../configs'
 import { Button, Sentence } from '../atoms'
 
-export default class Thanks extends React.Component<any, any> {
+export interface IThanksPageProps {
+}
+
+export class Thanks extends React.Component<IThanksPageProps, any> {
   render(): JSX.Element {
     return (
       <div className={css(this.style.wrapper)}>

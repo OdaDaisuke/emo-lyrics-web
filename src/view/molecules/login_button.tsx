@@ -15,7 +15,6 @@ export interface LoginButtonProps {
 export class LoginButton extends React.Component<LoginButtonProps, any> {
   constructor(props: LoginButtonProps) {
     super(props)
-    this.props.vm.initialize()
   }
 
   render(): JSX.Element {
@@ -38,8 +37,8 @@ export class LoginButtonVM {
   
   @observable authUrl: string = ""
 
-  initialize() {
-    this.accountService = new AccountService()
+  constructor(accountService: AccountService) {
+    this.accountService = accountService
     this.accountService.getTwitterAuthUrl(this.setAuthUrl)
   }
 

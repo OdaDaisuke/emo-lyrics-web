@@ -12,13 +12,14 @@ import { Button } from '../atoms'
 export interface ILyricCardList {
   vm: LyricCardListVM
   onLast: any
+  lyricService: LyricService
 }
 
 @observer
 export class LyricCardList extends React.Component<ILyricCardList, any> {
   constructor(props: ILyricCardList) {
     super(props)
-    this.props.vm.initialize()
+    this.props.vm.initialize(props.lyricService)
     this.props.vm.getLyrics()
   }
 
@@ -97,7 +98,7 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
 }
 
 export class LyricCardListVM {
-  lyricService: LyricService | null = null
+  private lyricService: LyricService | null = null
 
   @observable
   lyricIdx: number = 0
@@ -111,8 +112,8 @@ export class LyricCardListVM {
   @observable
   isAtFirst: boolean = true
 
-  initialize() {
-    this.lyricService = new LyricService()
+  initialize(lyricService: LyricService) {
+    this.lyricService = lyricService
   }
 
   getLyrics() {

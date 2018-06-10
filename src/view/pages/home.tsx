@@ -2,15 +2,22 @@ import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
 import * as configs from '../../configs'
 import { LoginButton, LoginButtonVM } from '../molecules'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Sentence, Button } from '../atoms'
 import { AccountService } from '../../domain'
 
-export interface HomeProps {
+interface IHomeProps {
+  accountService: AccountService
+  history: any
 }
 
-class Home extends React.Component<any, any> {
-    private accountService: AccountService = new AccountService()
+export class Home extends React.Component<any, any> {
+    private accountService: AccountService
+
+    constructor(props: any) {
+      super(props)
+      this.accountService = props.accountService
+    }
 
     render(): JSX.Element {
         return (
@@ -44,7 +51,10 @@ class Home extends React.Component<any, any> {
 	return null
       }
       return (
-	<LoginButton history={this.props.history} vm={new LoginButtonVM()} />
+	<LoginButton
+	  history={this.props.history}
+	  vm={new LoginButtonVM(this.accountService)}
+	/>
       )
     }
 
@@ -119,5 +129,3 @@ class Home extends React.Component<any, any> {
     }
 
 }
-
-export default withRouter(Home)

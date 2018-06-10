@@ -1,15 +1,15 @@
 export class AccountStorage {
-  private static storage = localStorage
+  private storage = localStorage
 
-  static save() {
+  save() {
     this.storage.setItem("emoL.user", "true")
   }
 
-  static destroy() {
+  destroy() {
     this.storage.removeItem("emoL.user")
   }
 
-  static load(): string | null {
+  load(): string | null {
     try {
       const user = this.storage.getItem("emoL.user")
       if(user) {

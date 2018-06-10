@@ -10,13 +10,14 @@ import * as configs from '../../configs'
 
 export interface INotFoundCard {
   vm: NotFoundCardVM
+  lyricService: LyricService
 }
 
 @observer
 export class NotFoundCard extends React.Component<INotFoundCard, any> {
   constructor(props: INotFoundCard) {
     super(props)
-    this.props.vm.initialize()
+    this.props.vm.initialize(props.lyricService)
     this.props.vm.getNotFoundLyric()
   }
 
@@ -85,8 +86,8 @@ export class NotFoundCardVM {
   @observable
   notFoundLyric: any = null
 
-  initialize() {
-    this.lyricService = new LyricService()
+  initialize(lyricService: LyricService) {
+    this.lyricService = lyricService
   }
 
   getNotFoundLyric() {

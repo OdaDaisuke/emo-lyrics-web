@@ -2,19 +2,26 @@ import * as React from 'react'
 import *  as ReactDOM from 'react-dom'
 import { Route, Switch } from 'react-router'
 import { Router } from 'react-router-dom'
+import { DomainFactory } from '../domain/factory'
+import { AccountService, LyricService } from '../domain'
+
 import { Header } from '../view/molecules/header'
+import { PageFactory } from '../view/pages'
 
-import { NotFound } from '../view/pages'
-import Lyric from '../view/pages/lyric'
-import Home from '../view/pages/home'
-import TwitterVerification from '../view/pages/twitter_verification'
-import Thanks from '../view/pages/thanks'
-
-export interface AppRouteProps {
+export interface IAppRouteProps {
   history: any
 }
 
-export class AppRoute extends React.Component<AppRouteProps, any> {
+export default class AppRoute extends React.Component<IAppRouteProps, any> {
+  domainFactory: DomainFactory
+  pf: PageFactory
+
+  constructor(props: IAppRouteProps) {
+    super(props)
+    this.domainFactory = new DomainFactory()
+    this.pf = new PageFactory(this.domainFactory, this.props.history)
+  }
+
   render(): JSX.Element {
     return (
       <React.Fragment>
@@ -22,11 +29,10 @@ export class AppRoute extends React.Component<AppRouteProps, any> {
           <div>
             <Header />
             <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/lyric" component={Lyric} />
-	      <Route path="/thanks" component={Thanks} />
-	      <Route path="/twitter_code_verification" component={TwitterVerification} />
-	      <Route path="*" component={NotFound} />
+              <Route path="/" exact component={this.pf.HomePage} />
+              <Route path="/lyric" component={this.pf.LyricPage} />
+	      <Route path="/thanks" component={this.pf.ThanksPage} />
+	      <Route path="*" component={this.pf.NotFoundPage} />
             </Switch>
           </div>
         </Router>

@@ -3,21 +3,26 @@ import { LyricProps } from '../data'
 import * as configs from '../configs'
 
 export class LyricService {
+  private apiClient: APIClient
+
+  constructor(apiClient: APIClient) {
+    this.apiClient = apiClient
+  }
 
   getSome(callback: any) {
-    APIClient.getLyrics(callback)
+    this.apiClient.getLyrics(callback)
   }
 
   get(callback: any) {
-    APIClient.getLyric(callback)
+    this.apiClient.getLyric(callback)
   }
 
   getNotFoundLyric(callback: any) {
-    APIClient.getNotFoundLyric(callback)
+    this.apiClient.getNotFoundLyric(callback)
   }
 
   create(options: any, callback: any) {
-    APIClient.create(options, callback)
+    this.apiClient.create(options, callback)
   }
 
   shuffle(lyrics: LyricProps[]) {
@@ -33,3 +38,5 @@ export class LyricService {
   }
 
 }
+
+// repoとentityは省略

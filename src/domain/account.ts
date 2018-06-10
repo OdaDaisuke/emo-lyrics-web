@@ -1,19 +1,39 @@
 import { APIClient, AccountStorage } from '../infra'
 
 export class AccountService {
+  private apiClient: APIClient
+  private accountStorage: AccountStorage
+
+  constructor(apiClient: APIClient, accountStorage: AccountStorage) {
+    this.apiClient = apiClient
+    this.accountStorage = accountStorage
+  }
+
   getTwitterAuthUrl(callback: any) {
-    APIClient.getTwitterAuthUrl(callback)
+    if(!this.apiClient) {
+      return
+    }
+    this.apiClient.getTwitterAuthUrl(callback)
   }
 
   sendVerificationCode(s: string, callback: any) {
-    APIClient.sendTwitterVerificationCode(s, callback)
+    if(!this.apiClient) {
+      return
+    }
+    this.apiClient.sendTwitterVerificationCode(s, callback)
   }
 
   saveAccount() {
-    AccountStorage.save()
+    if(!this.accountStorage) {
+      return
+    }
+    this.accountStorage.save()
   }
 
   loadAccount(): string | null {
-    return AccountStorage.load()
+    if(!this.accountStorage) {
+      return null
+    }
+    return this.accountStorage.load()
   }
 }
