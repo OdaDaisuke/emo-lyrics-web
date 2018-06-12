@@ -10,7 +10,7 @@ export class Thanks extends React.Component<IThanksPageProps, any> {
   render(): JSX.Element {
     return (
       <div className={css(this.style.wrapper)}>
-	<Sentence center={true} label="Fin." />
+	<Sentence center={true}>Fin.</Sentence>
 	<div className={css(this.style.widthMax)}>
 	  <a href={`${configs.env.tweetBaseUri}?url=${configs.env.siteUrl}&text=「歌詞から曲を好きになる、EmoLyrics」&hashtags=エモ詩&via=hinodeya_pon`} target="_blank">
 	    <Button type="tweet">Twitterでシェア</Button>

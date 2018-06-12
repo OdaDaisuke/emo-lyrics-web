@@ -27,7 +27,7 @@ export class Home extends React.Component<any, any> {
                         <div className={this.innerStyle}>
                             <h2 className={css(this.style.fvTitle)}>歌詞から曲を、好きになる</h2>
 			    <div className={css(this.style.sentenceWrap)}>
-			      <Sentence label="あなたが青春時代に口ずさんだ曲は何ですか？想い出のアーティストは、誰ですか？もしかしたら、いま世界は商業音楽で溢れているかもしれないけど、本当は違うかもしれない。一度、歌詞から曲を好きになってみませんか？" />
+			      <Sentence>あなたが青春時代に口ずさんだ曲は何ですか？想い出のアーティストは、誰ですか？もしかしたら、いま世界は商業音楽で溢れているかもしれないけど、本当は違うかもしれない。一度、歌詞から曲を好きになってみませんか？</Sentence>
 			    </div>
 			    <div>
 			      <a href={`${configs.env.tweetBaseUri}?url=${configs.env.siteUrl}&text=【エモリリック】歌詞から曲を好きになる&hashtags=エモ詩`}
