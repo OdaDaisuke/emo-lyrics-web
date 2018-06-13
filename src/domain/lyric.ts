@@ -21,10 +21,6 @@ export class LyricService {
     this.apiClient.getNotFoundLyric(callback)
   }
 
-  create(options: any, callback: any) {
-    this.apiClient.create(options, callback)
-  }
-
   shuffle(lyrics: LyricProps[]) {
     const len = lyrics.length
     for(let i = 0; i < parseInt(configs.env.lyricShuffleRound); ++i) {

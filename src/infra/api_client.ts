@@ -92,15 +92,6 @@ export class APIClient {
     this.getData(option)
   }
 
-  create(params: any, callback: any) {
-    const options = {
-      callback: callback,
-      endpoint: '/lyric',
-      params: params,
-    }
-    this.postData(options)
-  }
-
   getTwitterAuthUrl(callback: any) {
     const options = {
       callback: callback,
