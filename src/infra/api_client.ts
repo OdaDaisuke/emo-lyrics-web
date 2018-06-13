@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import * as configs from '../configs'
 
 // axiosのオプションを返す
@@ -20,6 +20,12 @@ interface reqOption {
 }
 
 export class APIClient {
+  private axios: AxiosInstance
+
+  constructor() {
+    this.axios = axios
+  }
+
   private getReqOption(option: reqOpProps) {
     return {
       method: option.method,
@@ -53,7 +59,7 @@ export class APIClient {
 	},
       }
     }
-    return await axios(this.getReqOption(reqOption))
+    return await this.axios(this.getReqOption(reqOption))
       .then(res => {
         callback(res.data)
       })
