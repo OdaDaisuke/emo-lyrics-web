@@ -10,9 +10,9 @@ const buttonBaseStyle = {
     letterSpacing: '2px',
     margin: '10px',
     outline: 'none',
-    paddingTop: '8px',
+    paddingTop: '6px',
     paddingRight: '22px',
-    paddingBottom: '8px',
+    paddingBottom: '6px',
     paddingLeft: '22px',
     textDecoration: 'none',
     transition: 'all 0.2s',
@@ -47,7 +47,7 @@ export const styles = {
 
     button: Object.assign({}, buttonBaseStyle, {
         backgroundImage: 'linear-gradient(90deg, #2196F3, #51b1fd)',
-        borderRadius: '2px',
+        borderRadius: '5px',
         color: '#fff',
 	fontSize: '1.05rem',
 	fontWeight: 'lighter',
@@ -68,9 +68,9 @@ export const styles = {
 	fontSize: '0.87rem',
 	fontWeight: 'lighter',
         letterSpacing: '1px',
-        paddingTop: '8px',
+        paddingTop: '6px',
         paddingRight: '22px',
-        paddingBottom: '8px',
+        paddingBottom: '6px',
         paddingLeft: '22px',
         ':hover': {
           backgroundColor: '#2196f3',
