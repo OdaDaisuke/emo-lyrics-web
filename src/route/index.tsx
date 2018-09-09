@@ -3,8 +3,7 @@ import *  as ReactDOM from 'react-dom'
 import { Route, Switch } from 'react-router'
 import { Router } from 'react-router-dom'
 import { DomainFactory } from '../domain/factory'
-import { AccountService, LyricService } from '../domain'
-
+import { Stores } from '../stores/factory'
 import { Header } from '../view/molecules/header'
 import { PageFactory } from '../view/pages'
 
@@ -14,12 +13,14 @@ export interface IAppRouteProps {
 
 export default class AppRoute extends React.Component<IAppRouteProps, any> {
   domainFactory: DomainFactory
+  stores: Stores
   pf: PageFactory
 
   constructor(props: IAppRouteProps) {
     super(props)
     this.domainFactory = new DomainFactory()
-    this.pf = new PageFactory(this.domainFactory, this.props.history)
+    this.stores = new Stores()
+    this.pf = new PageFactory(this.domainFactory, this.props.history, this.stores)
   }
 
   render(): JSX.Element {
@@ -31,8 +32,8 @@ export default class AppRoute extends React.Component<IAppRouteProps, any> {
             <Switch>
               <Route path="/" exact component={this.pf.HomePage} />
               <Route path="/lyric" component={this.pf.LyricPage} />
-	      <Route path="/thanks" component={this.pf.ThanksPage} />
-	      <Route path="*" component={this.pf.NotFoundPage} />
+              <Route path="/thanks" component={this.pf.ThanksPage} />
+      	      <Route path="*" component={this.pf.NotFoundPage} />
             </Switch>
           </div>
         </Router>

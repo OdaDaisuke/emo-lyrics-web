@@ -4,7 +4,7 @@ import { observable } from 'mobx'
 import { bind } from 'bind-decorator'
 import { css, StyleSheet } from 'aphrodite'
 import { LyricService } from '../../domain'
-import { LyricProps } from '../../data'
+import { LyricProps } from '../../interfaces'
 import { LyricCard } from '../molecules'
 import * as configs from '../../configs'
 

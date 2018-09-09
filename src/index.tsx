@@ -15,8 +15,8 @@ export class AppContainer {
     ReactDOM.render(
       <div className={css(this.styles.body)}>
         <AppRoute
-	  history={history}
-	/>
+          history={history}
+      	/>
       </div>,
       document.querySelector('#app-container'),
     )

@@ -2,32 +2,40 @@ import * as React from 'react'
 import { bind } from 'bind-decorator'
 import { DomainFactory } from '../../domain/factory'
 import { AccountService, LyricService } from '../../domain'
-import { Home, Lyric, NotFound, Thanks } from './'
+import {
+  Home,
+  Lyric, LyricPageVM,
+  NotFound, Thanks
+} from './'
+import { Stores } from '../../stores/factory'
 
 export class PageFactory {
   private domainFactory: DomainFactory
   private history: any
+  private stores: Stores
 
-  constructor(domainFactory: DomainFactory, history: any) {
+  constructor(domainFactory: DomainFactory, history: any, stores: Stores) {
     this.domainFactory = domainFactory
     this.history = history
+    this.stores = stores
   }
 
   @bind
   HomePage(): JSX.Element {
     return (
       <Home
-	accountService={this.domainFactory.accountService}
+      	accountService={this.domainFactory.accountService}
       />
     )
   }
 
   @bind
   LyricPage(): JSX.Element {
+    const vm = new LyricPageVM(this.domainFactory.lyricService)
     return (
       <Lyric
-	lyricService={this.domainFactory.lyricService}
-	history={this.history}
+        vm={vm}
+      	history={this.history}
       />
     )
   }

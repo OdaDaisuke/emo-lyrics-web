@@ -24,39 +24,31 @@ export class Home extends React.Component<any, any> {
             <div>
                 <div className={css(this.style.firstview)}>
                     <div className={css(this.style.container)}>
-                        <div className={this.innerStyle}>
-                            <h2 className={css(this.style.fvTitle)}>歌詞から曲を、好きになる</h2>
-			    <div className={css(this.style.sentenceWrap)}>
-			      <Sentence>あなたが青春時代に口ずさんだ曲は何ですか？想い出のアーティストは、誰ですか？もしかしたら、いま世界は商業音楽で溢れているかもしれないけど、本当は違うかもしれない。一度、歌詞から曲を好きになってみませんか？</Sentence>
-			    </div>
-			    <div>
-			      <a href={`${configs.env.tweetBaseUri}?url=${configs.env.siteUrl}&text=【エモリリック】歌詞から曲を好きになる&hashtags=エモ詩`}
-				target="_blank"
-			      >
-				<Button type="tweet" fill={true}>tweet</Button>
-			      </a>
-			    </div>
-			    <Link to="/lyric">
-			      <Button>歌詞をさがす</Button>
-			    </Link>
-                        </div>
-                    </div>
+						<a href={`${configs.env.tweetBaseUri}?url=${configs.env.siteUrl}&text=【エモリリック】歌詞から曲を好きになる&hashtags=エモ詩`}
+							target="_blank"
+						>
+							<Button type="tweet" fill={true}>tweet</Button>
+						</a>
+					</div>
+					<Link to="/lyric">
+						<Button>歌詞をさがす</Button>
+					</Link>
                 </div>
             </div>
         )
     }
 
     get loginButton() {
-      if(this.accountService.loadAccount()) {
-	return null
-      }
-      return (
-	<LoginButton
-	  history={this.props.history}
-	  vm={new LoginButtonVM(this.accountService)}
-	/>
-      )
-    }
+		if(this.accountService.loadAccount()) {
+			return null
+		}
+		return (
+			<LoginButton
+				history={this.props.history}
+				vm={new LoginButtonVM(this.accountService)}
+			/>
+		)
+	}
 
     get innerStyle() {
         return [css(this.style.textCenter), css(this.style.containerPaddingY)].join(' ')
@@ -70,49 +62,47 @@ export class Home extends React.Component<any, any> {
             textCenter: {
         	    textAlign: 'center',
             },
-	    sentenceWrap: {
-	      borderColor: '#fff',
-	      borderStyle: 'solid',
-	      borderTopWidth: '1px',
-	      borderRightWidth: '0',
-	      borderBottomWidth: '1px',
-	      borderLeftWidth: '0',
-	      marginRight: 'auto',
-	      marginBottom: '25px',
-	      marginLeft: 'auto',
-	      maxWidth: '450px',
-	      minWidth: '250px',
-	      paddingTop: '10px',
-	      paddingRight: '20px',
-	      paddingBottom: '10px',
-	      paddingLeft: '20px',
-	      width: '65%',
-	    },
+			sentenceWrap: {
+				borderColor: '#fff',
+				borderStyle: 'solid',
+				borderTopWidth: '1px',
+				borderRightWidth: '0',
+				borderBottomWidth: '1px',
+				borderLeftWidth: '0',
+				marginRight: 'auto',
+				marginBottom: '25px',
+				marginLeft: 'auto',
+				maxWidth: '450px',
+				minWidth: '250px',
+				paddingTop: '10px',
+				paddingRight: '20px',
+				paddingBottom: '10px',
+				paddingLeft: '20px',
+				width: '65%',
+			},
             firstview: {
-            	backgroundImage: "url('./assets/images/guitar.jpg')",
             	backgroundSize: 'cover',
-            	backgroundColor: 'rgba(0, 0, 0, 0.78)',
-            	backgroundBlendMode: 'overlay',
+            	backgroundColor: '#fff',
             	backgroundPosition: 'center',
             	color: '#ffffff',
                 position: 'relative',
                 height: '100vh',
             },
             fvTitle: {
-		color: '#fff',
+				color: '#fff',
             	display: 'inline-block',
             	fontWeight: 600,
             	letterSpacing: '3px',
             	fontSize: '2rem',
                 marginBottom: '5px',
-		paddingTop: '0.75rem',
-		paddingRight: '1.5rem',
+				paddingTop: '0.75rem',
+				paddingRight: '1.5rem',
             	paddingBottom: '0.75rem',
-		paddingLeft: '1.5rem',
-		[configs.breakpoints.sm]: {
-		  fontSize: '1.1rem',
-		  marginTop: '0',
-		},
+				paddingLeft: '1.5rem',
+				[configs.breakpoints.sm]: {
+					fontSize: '1.1rem',
+					marginTop: '0',
+				},
             },
             sectionTitle: {
         	    fontWeight: 200,

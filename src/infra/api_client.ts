@@ -76,7 +76,7 @@ export class APIClient {
     this._reqData('GET', option.endpoint, option.params, option.callback)
   }
 
-  getLyric(callback: any) {
+  fetchLyric(callback: any) {
     const option = {
       endpoint: '/lyric',
       callback: callback,
@@ -84,7 +84,7 @@ export class APIClient {
     this.getData(option)
   }
 
-  getLyrics(callback: any) {
+  fetchLyrics(callback: any) {
     const option = {
       endpoint: '/lyric',
       callback: callback,
@@ -92,7 +92,7 @@ export class APIClient {
     this.getData(option)
   }
 
-  getTwitterAuthUrl(callback: any) {
+  fetchTwitterAuthUrl(callback: any) {
     const options = {
       callback: callback,
       endpoint: '/auth/get_twitter_auth_url',
@@ -109,7 +109,7 @@ export class APIClient {
     this.postData(options)
   }
 
-  getNotFoundLyric(callback: any) {
+  fetchNotFoundLyric(callback: any) {
     const options = {
       callback: callback,
       endpoint: "/404_lyric",

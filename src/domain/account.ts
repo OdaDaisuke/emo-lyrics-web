@@ -13,7 +13,7 @@ export class AccountService {
     if(!this.apiClient) {
       return
     }
-    this.apiClient.getTwitterAuthUrl(callback)
+    this.apiClient.fetchTwitterAuthUrl(callback)
   }
 
   sendVerificationCode(s: string, callback: (result: boolean) => void) {

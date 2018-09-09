@@ -1,5 +1,5 @@
 import { APIClient } from '../infra'
-import { LyricProps } from '../data'
+import { LyricProps } from '../interfaces'
 import * as configs from '../configs'
 
 export class LyricService {
@@ -10,15 +10,15 @@ export class LyricService {
   }
 
   getSome(callback: any) {
-    this.apiClient.getLyrics(callback)
+    this.apiClient.fetchLyrics(callback)
   }
 
   get(callback: any) {
-    this.apiClient.getLyric(callback)
+    this.apiClient.fetchLyric(callback)
   }
 
   getNotFoundLyric(callback: any) {
-    this.apiClient.getNotFoundLyric(callback)
+    this.apiClient.fetchNotFoundLyric(callback)
   }
 
   shuffle(lyrics: LyricProps[]) {

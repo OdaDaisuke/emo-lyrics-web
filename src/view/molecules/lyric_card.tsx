@@ -6,7 +6,7 @@ import { bind } from 'bind-decorator'
 import { css, StyleSheet } from 'aphrodite'
 import * as configs from '../../configs'
 import { LyricService } from '../../domain/lyric'
-import { LyricProps } from '../../data'
+import { LyricProps } from '../../interfaces'
 import { Button } from '../atoms'
 
 export interface LyricCardProps {
