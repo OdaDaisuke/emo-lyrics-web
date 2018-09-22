@@ -10,9 +10,6 @@ interface reqOpProps {
   headers?: any
 }
 
-interface IAPIClientProps {
-}
-
 interface reqOption {
   endpoint: string, // endpoint url
   callback: any // callback func
@@ -48,15 +45,15 @@ export class APIClient {
     } else {
       let params = new URLSearchParams()
       for(let k in postParams) {
-	params.append(k, postParams[k])
+      	params.append(k, postParams[k])
       }
       reqOption = {
         method: method,
         endpoint: endpoint,
-	data: params,
-	headers: {
-	  'Content-Type': 'application/x-www-form-urlencoded',
-	},
+        data: params,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       }
     }
     return await this.axios(this.getReqOption(reqOption))

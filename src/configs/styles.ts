@@ -1,6 +1,4 @@
-export enum breakpoints {
-  sm = '@media (max-width: 576px)',
-}
+import { MediaBreakPointUp } from '../view/styles'
 
 const buttonBaseStyle = {
     backgroundColor: '#fff',
@@ -18,9 +16,9 @@ const buttonBaseStyle = {
     transition: 'all 0.2s',
     willChange: 'transform',
     ':hover': {
-        transform: 'scale(1.03)',
+      opacity: 0.8,
     },
-    [breakpoints.sm]: {
+    [MediaBreakPointUp.SM]: {
       fontSize: '0.9rem',
     },
 }
@@ -40,51 +38,52 @@ export const styles = {
     fontSize: '1rem',
     letterSpacing: '2px',
     lineHeight: '1.85',
-    [breakpoints.sm]: {
+    [MediaBreakPointUp.SM]: {
       fontSize: '0.9rem',
     },
   },
 
-    button: Object.assign({}, buttonBaseStyle, {
-        backgroundImage: 'linear-gradient(90deg, #2196F3, #51b1fd)',
-        borderRadius: '5px',
-        color: '#fff',
-	fontSize: '1.05rem',
-	fontWeight: 'lighter',
-        margin: '10px',
-        paddingTop: '12px',
-        paddingRight: '40px',
-        paddingBottom: '16px',
-        paddingLeft: '40px',
-    }),
+  button: Object.assign({}, buttonBaseStyle, {
+    boxShadow: '0 1px 15px -5px #51b1fd',
+    borderRadius: '5px',
+    color: '#51b1fd',
+    fontSize: '0.972em',
+    fontWeight: 'bold',
+    letterSpacing: '2px',
+    margin: '10px',
+    paddingTop: '12px',
+    paddingRight: '40px',
+    paddingBottom: '16px',
+    paddingLeft: '40px',
+  }),
 
-    tweetButton: Object.assign({}, buttonBaseStyle, {
-        backgroundColor: '#fff',
-        borderColor: '#2196f3',
-        borderStyle: 'solid',
-        borderWidth: '1px',
-        borderRadius: '100px',
-        color: '#2196f3',
-	fontSize: '0.87rem',
-	fontWeight: 'lighter',
-        letterSpacing: '1px',
-        paddingTop: '6px',
-        paddingRight: '22px',
-        paddingBottom: '6px',
-        paddingLeft: '22px',
-        ':hover': {
-          backgroundColor: '#2196f3',
-          color: '#ffffff',
-	},
-    }),
+  tweetButton: Object.assign({}, buttonBaseStyle, {
+    backgroundColor: '#fff',
+    borderColor: '#2196f3',
+    borderStyle: 'solid',
+    borderWidth: '1px',
+    borderRadius: '100px',
+    color: '#2196f3',
+    fontSize: '0.87rem',
+    fontWeight: 'lighter',
+    letterSpacing: '1px',
+    paddingTop: '6px',
+    paddingRight: '22px',
+    paddingBottom: '6px',
+    paddingLeft: '22px',
+    ':hover': {
+      backgroundColor: '#2196f3',
+      color: '#ffffff',
+    },
+  }),
 
-    tweetFilledButton: Object.assign({}, buttonBaseStyle, {
-        backgroundColor: '#2196f3',
-        borderRadius: '100px',
-	color: '#fff',
-	fontSize: '0.87rem',
-	fontWeight: 'lighter',
-    }),
+  tweetFilledButton: Object.assign({}, buttonBaseStyle, {
+    backgroundColor: '#2196f3',
+    borderRadius: '100px',
+    color: '#fff',
+    fontSize: '0.87rem',
+    fontWeight: 'lighter',
+  }),
 
   pageCaptionStyle: {
     fontSize: '28px',
@@ -105,28 +104,29 @@ export const styles = {
     }
   },
 
-    containerStyle: {
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        maxWidth: '1200px',
-        width: '90%'
-    },
+  containerStyle: {
+      marginRight: 'auto',
+      marginLeft: 'auto',
+      maxWidth: '1200px',
+      width: '90%'
+  },
 
-    /*------ spacing ------ */
-    containerPaddingY: {
-        paddingTop: '100px',
-	paddingBottom: '100px',
-	[breakpoints.sm]: {
-	  paddingTop: '50px',
-	  paddingBottom: '50px',
-	},
+  /*------ spacing ------ */
+  containerPaddingY: {
+    paddingTop: '100px',
+    paddingBottom: '100px',
+    [MediaBreakPointUp.SM]: {
+      paddingTop: '50px',
+      paddingBottom: '50px',
     },
-    containerPaddingYs: {
-        paddingTop: '50px',
-	paddingBottom: '50px',
-	[breakpoints.sm]: {
-	  paddingTop: '25px',
-	  paddingBottom: '25px',
-	},
+  },
+
+  containerPaddingYs: {
+    paddingTop: '50px',
+    paddingBottom: '50px',
+    [MediaBreakPointUp.SM]: {
+      paddingTop: '25px',
+      paddingBottom: '25px',
     },
+  },
 }

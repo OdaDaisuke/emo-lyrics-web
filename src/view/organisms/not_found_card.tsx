@@ -4,9 +4,8 @@ import { observable } from 'mobx'
 import { bind } from 'bind-decorator'
 import { css, StyleSheet } from 'aphrodite'
 import { LyricService } from '../../domain'
-import { LyricProps } from '../../interfaces'
 import { LyricCard } from '../molecules'
-import * as configs from '../../configs'
+import { MediaBreakPointUp } from '../styles'
 
 export interface INotFoundCard {
   vm: NotFoundCardVM
@@ -38,20 +37,20 @@ export class NotFoundCard extends React.Component<INotFoundCard, any> {
   get style() {
     return StyleSheet.create({
       wrapper: {
-	height: '90vh',
-	textAlign: 'center',
+        height: '90vh',
+        textAlign: 'center',
       },
       caption: {
-	color: '#4f4f5f',
-	fontSize: '2.2rem',
-	fontStyle: 'italic',
-	fontWeight: 'lighter',
-	letterSpacing: '5px',
-	marginTop: '80px',
-	marginBottom: '-80px',
-	[configs.breakpoints.sm]: {
-	  fontSize: '1.2rem',
-	},
+        color: '#4f4f5f',
+        fontSize: '2.2rem',
+        fontStyle: 'italic',
+        fontWeight: 'lighter',
+        letterSpacing: '5px',
+        marginTop: '80px',
+        marginBottom: '-80px',
+        [MediaBreakPointUp.SM]: {
+          fontSize: '1.2rem',
+        },
       },
     })
   }

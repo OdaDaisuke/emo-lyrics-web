@@ -1,31 +1,26 @@
 import * as React from 'react'
 import { bind } from 'bind-decorator'
 import { DomainFactory } from '../../domain/factory'
-import { AccountService, LyricService } from '../../domain'
 import {
-  Home,
+  Home, HomeVM,
   Lyric, LyricPageVM,
   NotFound, Thanks
 } from './'
-import { Stores } from '../../stores/factory'
 
 export class PageFactory {
   private domainFactory: DomainFactory
   private history: any
-  private stores: Stores
 
-  constructor(domainFactory: DomainFactory, history: any, stores: Stores) {
+  constructor(domainFactory: DomainFactory, history: any) {
     this.domainFactory = domainFactory
     this.history = history
-    this.stores = stores
   }
 
   @bind
   HomePage(): JSX.Element {
+    const vm = new HomeVM(this.domainFactory.accountService)
     return (
-      <Home
-      	accountService={this.domainFactory.accountService}
-      />
+      <Home vm={vm} history={this.history} />
     )
   }
 
@@ -51,7 +46,7 @@ export class PageFactory {
   NotFoundPage(): JSX.Element {
     return (
       <NotFound
-	lyricService={this.domainFactory.lyricService}
+      	lyricService={this.domainFactory.lyricService}
       />
     )
   }

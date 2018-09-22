@@ -4,111 +4,80 @@ import * as configs from '../../configs'
 import { LoginButton, LoginButtonVM } from '../molecules'
 import { Link } from 'react-router-dom'
 import { Sentence, Button } from '../atoms'
+import { FullWidthLayout } from '../layouts'
 import { AccountService } from '../../domain'
+import { MediaBreakPointUp } from '../styles'
 
 interface IHomeProps {
-  accountService: AccountService
-  history: any
+	vm: HomeVM
+	history: any
 }
 
-export class Home extends React.Component<any, any> {
-    private accountService: AccountService
-
-    constructor(props: any) {
-      super(props)
-      this.accountService = props.accountService
-    }
-
+export class Home extends React.Component<IHomeProps, any> {
     render(): JSX.Element {
         return (
-            <div>
-                <div className={css(this.style.firstview)}>
-                    <div className={css(this.style.container)}>
-						<a href={`${configs.env.tweetBaseUri}?url=${configs.env.siteUrl}&text=【エモリリック】歌詞から曲を好きになる&hashtags=エモ詩`}
-							target="_blank"
-						>
-							<Button type="tweet" fill={true}>tweet</Button>
-						</a>
-					</div>
+			<FullWidthLayout className={css(this.styles.container)}>
+				<div className={css(this.styles.innerContainer)}>
+					<h2 className={css(this.styles.pageTitle)}>歌詞から曲を好きになる</h2>
+					<p className={css(this.styles.subTitle)}>邦楽・洋楽・ヒット曲から歌謡曲まで、1000曲以上の心揺さぶる歌詞揃えてます</p>
 					<Link to="/lyric">
 						<Button>歌詞をさがす</Button>
 					</Link>
-                </div>
-            </div>
+				</div>
+			</FullWidthLayout>
         )
     }
 
     get loginButton() {
-		if(this.accountService.loadAccount()) {
+		if(this.props.vm.accountService.loadAccount()) {
 			return null
 		}
 		return (
 			<LoginButton
 				history={this.props.history}
-				vm={new LoginButtonVM(this.accountService)}
+				vm={new LoginButtonVM(this.props.vm.accountService)}
 			/>
 		)
 	}
 
-    get innerStyle() {
-        return [css(this.style.textCenter), css(this.style.containerPaddingY)].join(' ')
-    }
-
-    get style() {
+    get styles() {
         return StyleSheet.create({
-            container: configs.styles.container,
-            containerPaddingY: configs.styles.containerPaddingY,
-            containerPaddingYs: configs.styles.containerPaddingYs,
-            textCenter: {
-        	    textAlign: 'center',
-            },
-			sentenceWrap: {
-				borderColor: '#fff',
-				borderStyle: 'solid',
-				borderTopWidth: '1px',
-				borderRightWidth: '0',
-				borderBottomWidth: '1px',
-				borderLeftWidth: '0',
-				marginRight: 'auto',
-				marginBottom: '25px',
-				marginLeft: 'auto',
-				maxWidth: '450px',
-				minWidth: '250px',
-				paddingTop: '10px',
-				paddingRight: '20px',
-				paddingBottom: '10px',
-				paddingLeft: '20px',
-				width: '65%',
+            container: {
+				backgroundColor: '#fafafa',
+				height: '92.5vh',
+				overflow: 'hidden',
 			},
-            firstview: {
-            	backgroundSize: 'cover',
-            	backgroundColor: '#fff',
-            	backgroundPosition: 'center',
-            	color: '#ffffff',
-                position: 'relative',
-                height: '100vh',
-            },
-            fvTitle: {
-				color: '#fff',
-            	display: 'inline-block',
-            	fontWeight: 600,
-            	letterSpacing: '3px',
-            	fontSize: '2rem',
-                marginBottom: '5px',
-				paddingTop: '0.75rem',
-				paddingRight: '1.5rem',
-            	paddingBottom: '0.75rem',
-				paddingLeft: '1.5rem',
-				[configs.breakpoints.sm]: {
-					fontSize: '1.1rem',
-					marginTop: '0',
+			innerContainer: Object.assign({}, configs.styles.container, {
+				height: '100%',
+				textAlign: 'center',
+			}),
+			pageTitle: {
+				color: '#474747',
+				fontSize: '1.25rem',
+				marginTop: '18vh',
+				marginBottom: '1rem',
+				textAlign: 'center',
+				width: '100%',
+				[MediaBreakPointUp.SM]: {
+					fontSize: '2rem',
 				},
-            },
-            sectionTitle: {
-        	    fontWeight: 200,
-        	    letterSpacing: '2px',
-            },
+			},
+			subTitle: {
+				color: '#5f5f5f',
+				fontSize: '0.85em',
+				letterSpacing: '2px',
+				lineHeight: '1.78',
+				marginBottom: '5vh',
+			},
         })
     }
 
+}
+
+export class HomeVM {
+	accountService: AccountService
+
+	constructor(accountService: AccountService) {
+		this.accountService = accountService
+	}
 }
