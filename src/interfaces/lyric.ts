@@ -1,4 +1,4 @@
-export interface LyricProps {
+export interface Lyric {
     Id: number
     CreatedAt: string
     DeletedAt: string

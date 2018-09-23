@@ -45,7 +45,7 @@ export const utils = {
 
   button: Object.assign({}, buttonBaseStyle, {
     boxShadow: '0 1px 15px -5px #027350',
-    borderRadius: '30px',
+    borderRadius: '3px',
     color: '#00ae78',
     fontSize: '1.08em',
     fontWeight: 'bold',

@@ -6,12 +6,12 @@ import { bind } from 'bind-decorator'
 import { css, StyleSheet } from 'aphrodite'
 import { LyricService } from '../../domain/lyric'
 import { LyricCard } from '../molecules'
-import { LyricProps } from '../../interfaces'
+import { Lyric } from '../../interfaces'
 import { Button } from '../atoms'
 
 export interface ILyricCardList {
   onLast: any
-  lyrics: LyricProps[] | null
+  lyrics: Lyric[] | null
   lyricIdx: number
   isAtFirst: boolean
   isAtLast: boolean

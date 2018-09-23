@@ -3,7 +3,7 @@ import { css, StyleSheet } from 'aphrodite'
 import { observable } from 'mobx'
 import { bind } from 'bind-decorator'
 import { LyricService } from '../../domain'
-import { LyricProps } from '../../interfaces'
+import * as interfaces from '../../interfaces'
 import { LyricCardList } from '../organisms'
 
 export interface ILyricProps {
@@ -80,7 +80,7 @@ export class LyricPageVM {
   lyricIdx: number = 0
 
   @observable.ref
-  lyrics: LyricProps[] | null = null
+  lyrics: interfaces.Lyric[] | null = null
 
   @observable
   isAtLast: boolean = false
@@ -97,7 +97,7 @@ export class LyricPageVM {
     if(!this.lyricService) {
       return null
     }
-    const lyrics = await this.lyricService.get()
+    const lyrics = await this.lyricService.getSome()
     this.lyrics = this.lyricService.shuffle(lyrics)
   }
 

@@ -50,7 +50,7 @@ export class Home extends React.Component<IHomeProps, any> {
     get styles() {
         return StyleSheet.create({
             container: {
-				backgroundImage: 'linear-gradient(#0cad79, #0cad79, #0cad79)',
+				backgroundImage: 'linear-gradient(rgb(12, 173, 121) 10%, rgb(13, 152, 107), rgb(12, 119, 85))',
 				overflow: 'hidden',
 			},
 			innerContainer: Object.assign({}, utils.container, {

@@ -27,12 +27,13 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
 
         return (
             <React.Fragment>
+                <span className={css(this.styles.artist)}>歌手名</span>
                 <p className={css(this.styles.lyric)}>歌詞データがここに入ります。歌詞データがここに入ります。</p>
                 <a
                     className={css(this.styles.link)}
                     href="https://youtube.com/watch?v=2Kajce92A"
                     target="_blank"
-                >この曲を聴く</a>
+                >Watch on Youtube</a>
             </React.Fragment>
         )
     }
@@ -49,11 +50,12 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             container: {
                 backgroundColor: '#fff',
                 borderRadius: '3px',
+                boxShadow: '0 2px 15px -5px #3f3f3f',
                 boxSizing: 'border-box',
                 flex: '1 0 90%',
                 margin: '0 auto 1em',
                 minWidth: '200px',
-                padding: '0.75em 1em',
+                padding: '0.75em 1.5em 1em',
                 textAlign: 'left',
                 width: '90%',
             },
@@ -71,15 +73,21 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             },
             lyric: {
                 color: '#333',
-                fontSize: '1em',
-                fontWeight: 'bold',
-                letterSpacing: '0',
-                lineHeight: '1.7',
+                fontSize: '0.9em',
+                fontWeight: 'normal',
+                letterSpacing: '1px',
+                lineHeight: '1.78',
                 marginTop: 0,
+                marginBottom: '5px',
             },
             restrictLabel: {
                 color: '#5f5f5f',
                 fontSize: '0.8em',
+                letterSpacing: '1px',
+            },
+            artist: {
+                color: '#a0a0a0',
+                fontSize: '0.68em',
                 letterSpacing: '1px',
             },
         })

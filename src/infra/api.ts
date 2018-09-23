@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 import * as configs from '../configs'
+import * as interfaces from '../interfaces'
 
 export class APIClient {
   private axios: AxiosInstance
@@ -10,14 +11,13 @@ export class APIClient {
     })
   }
 
-  async fetchLyric(): Promise<any> {
-    const params = {}
-    const res = await this.axios.get<any>('/lyric', params)
+  async fetchLyric(): Promise<interfaces.Lyric> {
+    const res = await this.axios.get<interfaces.Lyric>('/lyric')
     return res.data
   }
 
-  async fetchLyrics(): Promise<any> {
-    const res = await this.axios.get<any>('/lyrics')
+  async fetchLyrics(): Promise<interfaces.Lyric[]> {
+    const res = await this.axios.get<interfaces.Lyric[]>('/lyrics')
     return res.data
   }
 
@@ -34,8 +34,8 @@ export class APIClient {
     return res.data
   }
 
-  async fetchNotFoundLyric(): Promise<any> {
-    const res = await this.axios.get<any>('/404_lyric')
+  async fetchNotFoundLyric(): Promise<interfaces.Lyric> {
+    const res = await this.axios.get<interfaces.Lyric>('/404_lyric')
     return res.data
   }
 

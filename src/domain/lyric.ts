@@ -1,5 +1,5 @@
 import { APIClient } from '../infra'
-import { LyricProps } from '../interfaces'
+import { Lyric } from '../interfaces'
 import * as configs from '../configs'
 
 export class LyricService {
@@ -21,7 +21,7 @@ export class LyricService {
     return this.apiClient.fetchNotFoundLyric()
   }
 
-  shuffle(lyrics: LyricProps[]) {
+  shuffle(lyrics: Lyric[]) {
     const len = lyrics.length
     for(let i = 0; i < parseInt(configs.env.lyricShuffleRound); ++i) {
       const r1 = parseInt(String(Math.random() * len))
