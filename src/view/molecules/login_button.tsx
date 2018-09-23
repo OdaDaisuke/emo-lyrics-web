@@ -39,7 +39,7 @@ export class LoginButtonVM {
 
   constructor(accountService: AccountService) {
     this.accountService = accountService
-    this.accountService.getTwitterAuthUrl(this.setAuthUrl)
+    this.setAuthUrl()
   }
 
   get userData(): string | null {
@@ -49,9 +49,11 @@ export class LoginButtonVM {
     return this.accountService.loadAccount()
   }
 
-  @bind
-  private setAuthUrl(url: string) {
-    this.authUrl = url
+  async setAuthUrl() {
+    if(!this.accountService) {
+      return
+    }
+    this.authUrl = await this.accountService.getTwitterAuthUrl()
   }
 
 }

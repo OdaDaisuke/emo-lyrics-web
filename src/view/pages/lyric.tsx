@@ -1,13 +1,9 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 import { css, StyleSheet } from 'aphrodite'
 import { observable } from 'mobx'
 import { bind } from 'bind-decorator'
-import * as configs from '../../configs'
-import { Button, Sentence } from '../atoms'
 import { LyricService } from '../../domain'
 import { LyricProps } from '../../interfaces'
-import { ThanksAlert } from '../molecules'
 import { LyricCardList } from '../organisms'
 
 export interface ILyricProps {
@@ -18,20 +14,28 @@ export interface ILyricProps {
 export class Lyric extends React.Component<ILyricProps, any> {
   render(): JSX.Element {
     return (
-      <div className={css(this.style.wrapper)}>
+      <div className={this.containerClass}>
         {this.mainContent}
       </div>
     )
+  }
+
+  get containerClass() {
+    return [
+      css(this.styles.container),
+      !this.props.vm.lyrics && css(this.styles.emptyStatusContainer),
+    ].join(' ')
   }
 
   get mainContent() {
     if(!this.props.vm.lyrics) {
       return (
         <div>
-          <p>歌詞がありません。</p>
+          <p className={css(this.styles.emptyStatusLabel)}>歌詞が取得できませんでした。</p>
         </div>
       )
     }
+
     return (
       <LyricCardList
         onLast={this.onLast}
@@ -50,10 +54,19 @@ export class Lyric extends React.Component<ILyricProps, any> {
     this.props.history.push('/thanks')
   }
 
-  get style() {
+  get styles() {
     return StyleSheet.create({
-      wrapper: {
+      container: {
       	position: 'relative',
+      },
+      emptyStatusContainer: {
+        textAlign: 'center',
+      },
+      emptyStatusLabel: {
+        color: '#5f5f5f',
+        fontSize: '0.9em',
+        letterSpacing: '1px',
+        marginTop: '3em',
       },
     })
   }
@@ -80,18 +93,11 @@ export class LyricPageVM {
     this.fetchLyrics()
   }
 
-  fetchLyrics() {
+  async fetchLyrics() {
     if(!this.lyricService) {
       return null
     }
-    this.lyricService.get(this.fetchLyricsCallback)
-  }
-
-  @bind
-  fetchLyricsCallback(lyrics: LyricProps[]) {
-    if(!this.lyricService) {
-      return null
-    }
+    const lyrics = await this.lyricService.get()
     this.lyrics = this.lyricService.shuffle(lyrics)
   }
 

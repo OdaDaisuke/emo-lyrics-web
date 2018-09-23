@@ -14,19 +14,16 @@ export interface TwitterVerifyFormProps {
 @observer
 export class TwitterVerifyForm extends React.Component<TwitterVerifyFormProps, any> {
   private inputVm: InputVm = new InputVm()
-  constructor(props: TwitterVerifyFormProps) {
-    super(props)
-  }
 
   render(): JSX.Element {
     return (
       <div>
-	<p>認証コードを入力</p>
-	<Input
-	  vm={this.inputVm}
-	  type="text"
-	/>
-	<Button onClick={this.onSubmit}>送信</Button>
+        <p>認証コードを入力</p>
+        <Input
+          vm={this.inputVm}
+          type="text"
+        />
+        <Button onClick={this.onSubmit}>送信</Button>
       </div>
     )
   }
@@ -53,22 +50,17 @@ export class TwitterVerifyFormVM {
     this.accountService = accountService
   }
 
-  sendVerificationCode(s: string) {
+  async sendVerificationCode(code: string) {
     if(!this.accountService) {
       return null
     }
-    this.accountService.sendVerificationCode(s, this.verifyCodeCallback)
+    this.verifyResult = await this.accountService.sendVerificationCode(code)
   }
 
   saveUser() {
     if(this.accountService) {
       this.accountService.saveAccount()
     }
-  }
-
-  @bind
-  verifyCodeCallback(result: boolean) {
-    this.verifyResult = result
   }
 
 }

@@ -9,18 +9,18 @@ export class AccountService {
     this.accountStorage = accountStorage
   }
 
-  getTwitterAuthUrl(callback: (url: string) => void) {
+  getTwitterAuthUrl() {
     if(!this.apiClient) {
       return
     }
-    this.apiClient.fetchTwitterAuthUrl(callback)
+    return this.apiClient.fetchTwitterAuthUrl()
   }
 
-  sendVerificationCode(s: string, callback: (result: boolean) => void) {
+  sendVerificationCode(s: string) {
     if(!this.apiClient) {
       return
     }
-    this.apiClient.sendTwitterVerificationCode(s, callback)
+    return this.apiClient.sendTwitterVerificationCode(s)
   }
 
   saveAccount() {

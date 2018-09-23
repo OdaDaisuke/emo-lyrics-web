@@ -9,16 +9,16 @@ export class LyricService {
     this.apiClient = apiClient
   }
 
-  getSome(callback: any) {
-    this.apiClient.fetchLyrics(callback)
+  getSome() {
+    return this.apiClient.fetchLyrics()
   }
 
-  get(callback: any) {
-    this.apiClient.fetchLyric(callback)
+  get() {
+    return this.apiClient.fetchLyric()
   }
 
-  getNotFoundLyric(callback: any) {
-    this.apiClient.fetchNotFoundLyric(callback)
+  getNotFoundLyric() {
+    return this.apiClient.fetchNotFoundLyric()
   }
 
   shuffle(lyrics: LyricProps[]) {

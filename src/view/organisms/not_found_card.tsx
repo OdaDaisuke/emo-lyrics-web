@@ -17,7 +17,7 @@ export class NotFoundCard extends React.Component<INotFoundCard, any> {
   constructor(props: INotFoundCard) {
     super(props)
     this.props.vm.initialize(props.lyricService)
-    this.props.vm.getNotFoundLyric()
+    this.props.vm.fetchNotFoundLyric()
   }
 
   render(): JSX.Element {
@@ -89,16 +89,11 @@ export class NotFoundCardVM {
     this.lyricService = lyricService
   }
 
-  getNotFoundLyric() {
+  async fetchNotFoundLyric() {
     if(!this.lyricService) {
       return null
     }
-    this.lyricService.getNotFoundLyric(this.callback)
-  }
-
-  @bind
-  callback(lyric: any) {
-    this.notFoundLyric = lyric
+    this.notFoundLyric = await this.lyricService.getNotFoundLyric()
   }
 
 }
