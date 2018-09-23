@@ -3,7 +3,7 @@ import *  as ReactDOM from 'react-dom'
 import { Route, Switch } from 'react-router'
 import { Router } from 'react-router-dom'
 import { DomainFactory } from '../domain/factory'
-import { Header } from '../view/molecules/header'
+import { Header } from '../view/organisms/header'
 import { PageFactory } from '../view/pages'
 
 export interface IAppRouteProps {

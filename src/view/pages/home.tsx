@@ -3,7 +3,8 @@ import { css, StyleSheet } from 'aphrodite'
 import * as configs from '../../configs'
 import { LoginButton, LoginButtonVM } from '../molecules'
 import { Link } from 'react-router-dom'
-import { Sentence, Button } from '../atoms'
+import { Button } from '../atoms'
+import { LyricPreviewList } from '../organisms'
 import { FullWidthLayout } from '../layouts'
 import { AccountService } from '../../domain'
 import { MediaBreakPointUp } from '../styles'
@@ -19,10 +20,16 @@ export class Home extends React.Component<IHomeProps, any> {
 			<FullWidthLayout className={css(this.styles.container)}>
 				<div className={css(this.styles.innerContainer)}>
 					<h2 className={css(this.styles.pageTitle)}>歌詞から曲を好きになる</h2>
-					<p className={css(this.styles.subTitle)}>邦楽・洋楽・ヒット曲から歌謡曲まで、1000曲以上の心揺さぶる歌詞揃えてます</p>
+					<p className={css(this.styles.subTitle)}>1000曲以上のエモい歌詞揃えてます。<br />邦楽・洋楽・POPから演歌まで。</p>
 					<Link to="/lyric">
 						<Button>歌詞をさがす</Button>
 					</Link>
+					<LyricPreviewList />
+					<a
+						href="https://twitter.com/hinodeya_pon"
+						target="_blank"
+						className={css(this.styles.link)}
+					>運営元</a>
 				</div>
 			</FullWidthLayout>
         )
@@ -43,7 +50,7 @@ export class Home extends React.Component<IHomeProps, any> {
     get styles() {
         return StyleSheet.create({
             container: {
-				backgroundColor: '#fafafa',
+				backgroundImage: 'linear-gradient(#0cad79, #0cad79, #0cad79)',
 				height: '92.5vh',
 				overflow: 'hidden',
 			},
@@ -52,22 +59,35 @@ export class Home extends React.Component<IHomeProps, any> {
 				textAlign: 'center',
 			}),
 			pageTitle: {
-				color: '#474747',
-				fontSize: '1.25rem',
-				marginTop: '18vh',
-				marginBottom: '1rem',
+				color: '#fff',
+				fontSize: '1.5rem',
+				fontWeight: 'bold',
+				letterSpacing: '1px',
+				marginTop: '17.5vh',
+				marginBottom: '0.5rem',
 				textAlign: 'center',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
 					fontSize: '2rem',
+					marginTop: '18vh',
 				},
 			},
 			subTitle: {
-				color: '#5f5f5f',
+				color: '#fff',
 				fontSize: '0.85em',
-				letterSpacing: '2px',
+				letterSpacing: '1px',
 				lineHeight: '1.78',
-				marginBottom: '5vh',
+				marginTop: '0',
+				marginBottom: '5px',
+			},
+			link: {
+				bottom: '20px',
+				color: '#fff',
+				display: 'block',
+				fontSize: '0.7em',
+				letterSpacing: '1px',
+				position: 'absolute',
+				right: '5%',
 			},
         })
     }

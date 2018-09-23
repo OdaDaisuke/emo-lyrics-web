@@ -25,13 +25,13 @@ const buttonBaseStyle = {
 
 export const styles = {
   bg_default: '#ffffff',
-  baseColor: '#b19f00',
+  baseColor: '#00ae78',
 
   container: {
     marginRight: 'auto',
     marginLeft: 'auto',
     maxWidth: '1150px',
-    width: '80%',
+    width: '85%',
   },
 
   p: {
@@ -44,17 +44,14 @@ export const styles = {
   },
 
   button: Object.assign({}, buttonBaseStyle, {
-    boxShadow: '0 1px 15px -5px #51b1fd',
-    borderRadius: '5px',
-    color: '#51b1fd',
-    fontSize: '0.972em',
+    boxShadow: '0 1px 15px -5px #027350',
+    borderRadius: '30px',
+    color: '#00ae78',
+    fontSize: '1.08em',
     fontWeight: 'bold',
     letterSpacing: '2px',
     margin: '10px',
-    paddingTop: '12px',
-    paddingRight: '40px',
-    paddingBottom: '16px',
-    paddingLeft: '40px',
+    padding: '10px 40px 12px',
   }),
 
   tweetButton: Object.assign({}, buttonBaseStyle, {
