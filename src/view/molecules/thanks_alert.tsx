@@ -25,22 +25,22 @@ export class ThanksAlert extends React.Component<IThanksAlert, any> {
   get style() {
     const isLast = this.props.isLast
     return StyleSheet.create({
-      wrapper: {
-	alignContent: 'center',
-	alignItems: 'center',
-	backgroundColor: 'rgba(0,0,0,0.8)',
-	display: 'none',
-	flexWrap: 'wrap',
-	height: '100vh',
-	justifyContent: 'center',
-	left: 0,
-	position: 'absolute',
-	top: 0,
-	width: '100vw',
-      },
-      inner: {
-	color: '#fff'
-      },
+			wrapper: {
+				alignContent: 'center',
+				alignItems: 'center',
+				backgroundColor: 'rgba(0,0,0,0.8)',
+				display: 'none',
+				flexWrap: 'wrap',
+				height: '100vh',
+				justifyContent: 'center',
+				left: 0,
+				position: 'absolute',
+				top: 0,
+				width: '100vw',
+			},
+			inner: {
+				color: '#fff'
+			},
     })
   }
 

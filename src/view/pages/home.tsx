@@ -1,7 +1,9 @@
 import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
-import { LoginButton, LoginButtonVM } from '../molecules'
+import { LoginButton } from '../molecules'
 import { Link } from 'react-router-dom'
+import { observable } from 'mobx'
+import { observer } from 'mobx-react'
 import { Button } from '../atoms'
 import { LyricPreviewList } from '../organisms'
 import { FullWidthLayout } from '../layouts'
@@ -14,6 +16,7 @@ interface IHomeProps {
 	history: any
 }
 
+@observer
 export class Home extends React.Component<IHomeProps, any> {
     render(): JSX.Element {
         return (
@@ -42,7 +45,7 @@ export class Home extends React.Component<IHomeProps, any> {
 		return (
 			<LoginButton
 				history={this.props.history}
-				vm={new LoginButtonVM(this.props.vm.accountService)}
+				twitterOAuthUrl={this.props.vm.twitterOAuthUrl}
 			/>
 		)
 	}
@@ -95,7 +98,15 @@ export class Home extends React.Component<IHomeProps, any> {
 export class HomeVM {
 	accountService: AccountService
 
+	@observable
+	twitterOAuthUrl: string = ""
+
 	constructor(accountService: AccountService) {
 		this.accountService = accountService
+		this.init()
+	}
+
+	async init() {
+		this.twitterOAuthUrl = await this.accountService.getTwitterAuthUrl()
 	}
 }

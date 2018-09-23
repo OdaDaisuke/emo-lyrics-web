@@ -28,7 +28,7 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
   render(): JSX.Element {
     return (
       <div className={css(this.style.wrapper)}>
-        {this.mainDom}
+        {this.innerContainer}
         <div className={css(this.style.operation)}>
           {this.prevButton}
           {this.nextButton}
@@ -64,8 +64,7 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
     this.props.decrementIdx()
   }
 
-  /*------ dom ------*/
-  get mainDom() {
+  get innerContainer() {
     if(!this.props.lyrics) {
       return null
     }

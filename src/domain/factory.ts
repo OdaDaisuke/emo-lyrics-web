@@ -12,4 +12,5 @@ export class DomainFactory {
     this.accountService = new AccountService(apiClient, this.accountStorage)
     this.lyricService = new LyricService(apiClient)
   }
+
 }
