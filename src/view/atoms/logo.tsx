@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
 import { Link } from 'react-router-dom'
-import * as configs from '../../configs'
+import { utils } from '../styles'
 
 export class Logo extends React.Component<any, any> {
     render(): JSX.Element {
@@ -17,7 +17,7 @@ export class Logo extends React.Component<any, any> {
   get style() {
     return StyleSheet.create({
         logo: {
-            color: configs.styles.baseColor,
+            color: utils.baseColor,
             display: 'flex',
             flex: '0 0 150px',
             fontSize: '0.92em',

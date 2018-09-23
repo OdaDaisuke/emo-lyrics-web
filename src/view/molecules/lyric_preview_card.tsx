@@ -49,12 +49,13 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             container: {
                 backgroundColor: '#fff',
                 borderRadius: '3px',
-                flex: '1 0 60%',
-                marginRight: '1em',
-                minWidth: '180px',
+                boxSizing: 'border-box',
+                flex: '1 0 90%',
+                margin: '0 auto 1em',
+                minWidth: '200px',
                 padding: '0.75em 1em',
                 textAlign: 'left',
-                width: '70vw',
+                width: '90%',
             },
             restrictedContainer: {
                 alignContent: 'center',
@@ -62,6 +63,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
+                paddingTop: '1.5em',
             },
             link: {
                 color: '#539ad2',

@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
-import * as configs from '../../configs'
 import { LoginButton, LoginButtonVM } from '../molecules'
 import { Link } from 'react-router-dom'
 import { Button } from '../atoms'
@@ -8,6 +7,7 @@ import { LyricPreviewList } from '../organisms'
 import { FullWidthLayout } from '../layouts'
 import { AccountService } from '../../domain'
 import { MediaBreakPointUp } from '../styles'
+import { utils } from '../styles'
 
 interface IHomeProps {
 	vm: HomeVM
@@ -51,10 +51,9 @@ export class Home extends React.Component<IHomeProps, any> {
         return StyleSheet.create({
             container: {
 				backgroundImage: 'linear-gradient(#0cad79, #0cad79, #0cad79)',
-				height: '92.5vh',
 				overflow: 'hidden',
 			},
-			innerContainer: Object.assign({}, configs.styles.container, {
+			innerContainer: Object.assign({}, utils.container, {
 				height: '100%',
 				textAlign: 'center',
 			}),
@@ -63,7 +62,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				fontSize: '1.5rem',
 				fontWeight: 'bold',
 				letterSpacing: '1px',
-				marginTop: '17.5vh',
+				marginTop: '10vh',
 				marginBottom: '0.5rem',
 				textAlign: 'center',
 				width: '100%',
@@ -86,8 +85,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				display: 'block',
 				fontSize: '0.7em',
 				letterSpacing: '1px',
-				position: 'absolute',
-				right: '5%',
+				marginBottom: '1em',
 			},
         })
     }

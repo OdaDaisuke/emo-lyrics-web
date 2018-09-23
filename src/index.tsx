@@ -4,8 +4,8 @@ import 'react-hot-loader/patch'
 import createBrowserHistory from 'history/createBrowserHistory'
 import { hot } from 'react-hot-loader'
 import { css, StyleSheet } from 'aphrodite'
-import * as configs from './configs'
 import AppRoute from './route'
+import { utils } from './view/styles'
 
 export class AppContainer {
   initialize(): void {
@@ -25,7 +25,7 @@ export class AppContainer {
   get styles() {
     return StyleSheet.create({
         body: {
-            backgroundColor: configs.styles.bg_default,
+            backgroundColor: utils.bg_default,
             fontFamily: 'Noto Sans Japanese',
             margin: 0,
             minHeight: '100vh',

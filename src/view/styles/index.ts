@@ -1,2 +1,2 @@
-export * from './consts'
+export * from './breakpoints'
 export * from './utils'

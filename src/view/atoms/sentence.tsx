@@ -1,7 +1,6 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 import { css, StyleSheet } from 'aphrodite'
-import * as configs from '../../configs'
+import { utils } from '../styles'
 
 export interface ISentenceProps {
   center?: boolean
@@ -20,10 +19,10 @@ export class Sentence extends React.Component<ISentenceProps, any> {
     get style() {
 	const centering = this.props.center
         return StyleSheet.create({
-            p: Object.assign({}, configs.styles.p, {
-	      fontWeight: '100',
-	      textAlign: (centering) ? 'center': 'left',
-	    })
+            p: Object.assign({}, utils.p, {
+                fontWeight: '100',
+                textAlign: (centering) ? 'center': 'left',
+            })
         })
     }
 

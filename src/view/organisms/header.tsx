@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { StyleSheet, css } from 'aphrodite'
-import * as configs from '../../configs'
 import { MediaBreakPointUp } from '../styles'
 import { Logo } from '../atoms'
 import { Menu } from '../molecules'
+import { utils } from '../styles'
 
 export interface HeaderProps {
 }
@@ -33,7 +33,7 @@ export class Header extends React.Component<HeaderProps, any> {
                     paddingBottom: '5px',    
                 },
             },
-            container: Object.assign({}, configs.styles.container, {
+            container: Object.assign({}, utils.container, {
                 display: 'flex',
             }),
         })

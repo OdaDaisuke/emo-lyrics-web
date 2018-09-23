@@ -16,7 +16,6 @@ export class LyricPreviewList extends React.Component {
     get styles() {
         return StyleSheet.create({
             container: {
-                display: 'flex',
                 marginTop: '2em',
                 marginBottom: '1em',
                 overflowX: 'scroll',
