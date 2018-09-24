@@ -8,7 +8,7 @@ export class Logo extends React.Component<any, any> {
         return (
 	    <Link className={css(this.style.link)} to="/">
             <span className={css(this.style.logo)}>
-                歌詞酔喫茶
+                星酔喫茶
             </span>
 	    </Link>
         )

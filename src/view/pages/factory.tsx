@@ -11,6 +11,8 @@ export class PageFactory {
   private domainFactory: DomainFactory
   private history: any
 
+  private lyricPageVM: LyricPageVM | null = null
+
   constructor(domainFactory: DomainFactory, history: any) {
     this.domainFactory = domainFactory
     this.history = history
@@ -26,7 +28,8 @@ export class PageFactory {
 
   @bind
   LyricPage(): JSX.Element {
-    const vm = new LyricPageVM(this.domainFactory.lyricService)
+    const tmpVM = new LyricPageVM(this.domainFactory.lyricService)
+    const vm = this.cachedLyricVM(tmpVM)
     return (
       <Lyric
         vm={vm}
@@ -51,4 +54,11 @@ export class PageFactory {
     )
   }
 
+  private cachedLyricVM(vm: LyricPageVM) {
+    if(this.lyricPageVM) {
+      return this.lyricPageVM
+    }
+    this.lyricPageVM = vm
+    return this.lyricPageVM
+  }
 }

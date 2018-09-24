@@ -19,9 +19,9 @@ export class NotFound extends React.Component<INotFoundProps, any> {
     return (
       <div>
         <NotFoundCard
-	  lyricService={this.lyricService}
-	  vm={new NotFoundCardVM()}
-	/>
+          lyricService={this.lyricService}
+          vm={new NotFoundCardVM()}
+        />
       </div>
     )
   }

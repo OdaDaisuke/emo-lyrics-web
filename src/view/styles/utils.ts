@@ -30,8 +30,11 @@ export const utils = {
   container: {
     marginRight: 'auto',
     marginLeft: 'auto',
-    maxWidth: '1150px',
+    maxWidth: '1060px',
     width: '85%',
+    [MediaBreakPointUp.SM]: {
+      width: '80%',
+    },
   },
 
   p: {

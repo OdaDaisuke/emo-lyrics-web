@@ -103,6 +103,7 @@ export class LyricPageVM {
     this.lyrics = this.lyricService.shuffle(lyrics)
   }
 
+  @bind
   incrementIdx() {
     if(!this.lyrics) {
       return
@@ -122,6 +123,7 @@ export class LyricPageVM {
     this.judgePosition()
   }
 
+  @bind
   decrementIdx() {
     const prevIdx = this.lyricIdx - 1
     if(prevIdx >= 0) {

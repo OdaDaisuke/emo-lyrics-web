@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
-import { bind } from 'bind-decorator'
 import { css, StyleSheet } from 'aphrodite'
 import { LyricService } from '../../domain'
 import { LyricCard } from '../molecules'
+import { Lyric } from '../../interfaces/lyric'
 import { MediaBreakPointUp } from '../styles'
 
 export interface INotFoundCard {
@@ -23,13 +23,8 @@ export class NotFoundCard extends React.Component<INotFoundCard, any> {
   render(): JSX.Element {
     return (
       <div className={css(this.style.wrapper)}>
-	<h2 className={css(this.style.caption)}>404 Page not found</h2>
-	<LyricCard
-	  title={this.lyricTitle}
-	  content={this.lyricContent}
-	  singer={this.lyricSinger}
-	  url={this.lyricUrl}
-	/>
+        <h2 className={css(this.style.caption)}>404 Page not found</h2>
+        {this.lyricCard}
       </div>
     )
   }
@@ -50,40 +45,34 @@ export class NotFoundCard extends React.Component<INotFoundCard, any> {
         marginBottom: '-80px',
         [MediaBreakPointUp.SM]: {
           fontSize: '1.2rem',
+          marginTop: '120px',
+          marginBottom: '-120px',
         },
       },
     })
   }
 
-  get lyricTitle() {
-    return this.lyric("Title")
-  }
-
-  get lyricContent() {
-    return this.lyric("Content")
-  }
-
-  get lyricSinger() {
-    return this.lyric("Singer")
-  }
-
-  get lyricUrl() {
-    return this.lyric("Url")
-  }
-
-  private lyric(key: string) {
+  get lyricCard() {
     if(!this.props.vm.notFoundLyric) {
-      return ""
+      return null
     }
-    return this.props.vm.notFoundLyric.$mobx.values[0][key]
+    return (
+      <LyricCard
+        title={this.props.vm.notFoundLyric.Title}
+        lyric={this.props.vm.notFoundLyric.Lyric}
+        singer={this.props.vm.notFoundLyric.Singer}
+        url={this.props.vm.notFoundLyric.Url}
+      />
+    )
   }
+
 }
 
 export class NotFoundCardVM {
   private lyricService: LyricService | null = null
 
-  @observable
-  notFoundLyric: any = null
+  @observable.ref
+  notFoundLyric: Lyric | null = null
 
   initialize(lyricService: LyricService) {
     this.lyricService = lyricService

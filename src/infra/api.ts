@@ -13,6 +13,7 @@ export class APIClient {
 
   async fetchLyric(): Promise<interfaces.Lyric[]> {
     const res = await this.axios.get<interfaces.Lyric[]>('/lyric')
+    console.log(res)
     return res.data
   }
 

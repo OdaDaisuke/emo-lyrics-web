@@ -1,13 +1,11 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { bind } from 'bind-decorator'
 import { css, StyleSheet } from 'aphrodite'
-import { LyricService } from '../../domain/lyric'
 import { LyricCard } from '../molecules'
 import { Lyric } from '../../interfaces'
 import { Button } from '../atoms'
+import { MediaBreakPointUp } from '../styles'
 
 export interface ILyricCardList {
   onLast: any
@@ -43,6 +41,8 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
       operation: {
         display: 'flex',
         justifyContent: 'center',
+        [MediaBreakPointUp.SM]: {
+        },
       },
     })
   }
@@ -68,10 +68,10 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
     return (
       <LyricCard
         title={curLyric.Title}
-        content={curLyric.Content}
+        lyric={curLyric.Lyric}
         singer={curLyric.Singer}
         url={curLyric.Url}
-        key={curLyric.Content}
+        key={curLyric.Lyric}
       />
     )
   }

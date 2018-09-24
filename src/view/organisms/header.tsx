@@ -31,6 +31,7 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
                     <Menu
                         isAuthed={this.props.isAuthed}
                         isDrawerOpen={this.state.isDrawerOpen}
+                        toggleMenu={this.onClickToggleMenu}
                     />
                 </div>
             </header>
@@ -39,7 +40,7 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
 
     get iconInnerContent() {
         if(this.state.isDrawerOpen) {
-            return <FaTimes color="#3f3f3f" />
+            return <FaTimes color="#fff" />
         } else {
             return <FaBars color="#3f3f3f" />
         }
@@ -67,6 +68,9 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
                 top: '50%',
                 transform: 'translate(0, -50%)',
                 zIndex: 200,
+                [MediaBreakPointUp.MD]: {
+                    display: 'none',
+                },
             },
         })
     }

@@ -7,7 +7,7 @@ import { MediaBreakPointUp } from '../styles'
 
 export interface LyricCardProps {
   title: string
-  content: string
+  lyric: string
   singer: string
   url: string
 }
@@ -19,7 +19,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 			<div className={css(this.style.wrapper)}>
 				<div className={css(this.style.inner)}>
 					<p className={css(this.style.content)}>
-						{this.props.content}
+						{this.props.lyric}
 					</p>
 					<span className={css(this.style.title)}>「{this.props.title}」</span>
 					<span className={css(this.style.singer)}>{this.props.singer}</span>
@@ -37,44 +37,48 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	}
 
 	get tweetLink() {
-		let content = this.props.content.substr(0, 80)
-		if(this.props.content.length > 80) {
-			content += "..."
+		if(!this.props.lyric) {
+			return
 		}
-		return `https://twitter.com/intent/tweet?url=${configs.env.siteUrl}&text=「${content}」&hashtags=エモ詩&via=hinodeya_pon`
+		let lyric = this.props.lyric.substr(0, 80)
+		if(this.props.lyric.length > 80) {
+			lyric += "..."
+		}
+		return `https://twitter.com/intent/tweet?url=${configs.env.siteUrl}&text=「${lyric}」&hashtags=エモ詩&via=hinodeya_pon`
 	}
 
-  get style() {
-    return StyleSheet.create({
-		wrapper: {
-			alignItems: 'center',
-			display: 'flex',
-			height: '100%',
-			width: '100%',
-		},
-		inner: {
-			marginRight: 'auto',
-			marginLeft: 'auto',
-			maxWidth: '800px',
-			textAlign: "left",
-			width: '80%',
-			[MediaBreakPointUp.SM]: {
-			width: '85%',
+	get style() {
+		return StyleSheet.create({
+			wrapper: {
+				alignItems: 'center',
+				display: 'flex',
+				height: '100%',
+				width: '100%',
 			},
-		},
-		content: {
-			color: '#3f3456',
-			fontFamily: 'YuGothic',
-			fontSize: '1.5rem',
-			fontWeight: 'normal',
-			letterSpacing: '2px',
-			lineHeight: '1.82',
-			marginTop: '0',
-			[MediaBreakPointUp.SM]: {
-				fontSize: '1.12rem',
+			inner: {
+				marginRight: 'auto',
+				marginLeft: 'auto',
+				maxWidth: '800px',
+				textAlign: "left",
+				width: '80%',
+				[MediaBreakPointUp.SM]: {
+					textAlign: 'center',
+					width: '85%',
+				},
 			},
-		},
-      title: {
+			content: {
+				color: '#3f3456',
+				fontFamily: 'YuGothic',
+				fontSize: '1.5rem',
+				fontWeight: 'normal',
+				letterSpacing: '2px',
+				lineHeight: '1.82',
+				marginTop: '0',
+				[MediaBreakPointUp.SM]: {
+					fontSize: '1.58rem',
+				},
+			},
+			title: {
 				color: '#70707f',
 				fontStyle: 'italic',
 				marginRight: '1rem',
@@ -85,16 +89,16 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 					marginBottom: '2px',
 					width: '100%',
 				},
-      },
-      singer: {
+			},
+			singer: {
 				color: '#70707f',
 				fontSize: '0.95rem',
 				letterSpacing: '1px',
 				[MediaBreakPointUp.SM]: {
 					fontSize: '0.8rem',
 				},
-      },
-      url: {
+			},
+			url: {
 				alignItems: "center",
 				border: '1px solid #24a8b9',
 				color: "#24a8b9",

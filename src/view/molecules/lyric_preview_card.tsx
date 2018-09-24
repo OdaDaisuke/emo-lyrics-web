@@ -23,30 +23,37 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
         if(this.props.isRistrict) {
             if(this.props.isAuthed) {
                 return (
-                    <React.Fragment>
+                    <div className={css(this.styles.restrictedContainer)}>
                         <span className={css(this.styles.restrictLabel)}>もっと見るには</span>
                         <Button onClick={this.props.onClickToTL}>タイムラインへ</Button>
-                    </React.Fragment>
+                    </div>
                 )
             } else {
                 return (
-                    <React.Fragment>
+                    <div className={css(this.styles.restrictedContainer)}>
                         <span className={css(this.styles.restrictLabel)}>続きを見るには</span>
                         <Button onClick={this.props.onClickSignin}>ログイン</Button>
-                    </React.Fragment>
+                    </div>
                 )
             }
         }
 
         return (
             <React.Fragment>
-                <span className={css(this.styles.artist)}>歌手名</span>
-                <p className={css(this.styles.lyric)}>歌詞データがここに入ります。歌詞データがここに入ります。</p>
-                <a
-                    className={css(this.styles.link)}
-                    href="https://youtube.com/watch?v=2Kajce92A"
-                    target="_blank"
-                >Watch on Youtube</a>
+                <div className={css(this.styles.innerContainer)}>
+                    <span className={css(this.styles.artist)}>歌手名</span>
+                    <p className={css(this.styles.lyric)}>歌詞データがここに入ります。歌詞データがここに入ります。</p>
+                </div>
+                <footer className={css(this.styles.footer)}>
+                    <a
+                        className={css(this.styles.link)}
+                        href="https://youtube.com/watch?v=2Kajce92A"
+                        target="_blank"
+                    >この曲を聴く</a>
+                    <div className={css(this.styles.fav)}>
+                        <span>♡</span>
+                    </div>
+                </footer>
             </React.Fragment>
         )
     }
@@ -68,7 +75,6 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 flex: '1 0 90%',
                 margin: '0 auto 1em',
                 minWidth: '200px',
-                padding: '0.75em 1.5em 1em',
                 textAlign: 'left',
                 width: '90%',
                 [MediaBreakPointUp.SM]: {
@@ -93,11 +99,30 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                paddingTop: '1.5em',
+                padding: '0.75em 1em 0.75em',
+                textAlign: 'center',
+                width: '90%',
+            },
+            innerContainer: {
+                padding: '0.75em 1.45em 1em',
+            },
+            footer: {
+                borderTop: '1px solid #efefef',
+                display: 'flex',
             },
             link: {
+                borderRight: '1px solid #efefef',
                 color: '#539ad2',
+                flex: '1 0 150px',
                 fontSize: '0.8em',
+                padding: '10px 1.5em',
+                textDecoration: 'none',
+            },
+            fav: {
+                color: '6f6f6f',
+                flex: '1 0 auto',
+                padding: '10px 1.5em',
+                textAlign: 'center',
             },
             lyric: {
                 color: '#3f3456',
