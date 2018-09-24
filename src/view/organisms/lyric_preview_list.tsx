@@ -3,13 +3,24 @@ import { css, StyleSheet } from 'aphrodite'
 import { LyricPreviewCard } from '../molecules'
 import { MediaBreakPointUp } from '../styles'
 
-export class LyricPreviewList extends React.Component {
+interface ILyricPreviewListProps {
+    onClickSignin: () => void
+    isAuthed: boolean
+    onClickToTL: () => void
+}
+
+export class LyricPreviewList extends React.Component<ILyricPreviewListProps, any> {
     render() {
         return (
             <ul className={css(this.styles.container)}>
                 <LyricPreviewCard />
                 <LyricPreviewCard />
-                <LyricPreviewCard isRistrict={true} />
+                <LyricPreviewCard
+                    onClickSignin={this.props.onClickSignin}
+                    isRistrict={true}
+                    isAuthed={this.props.isAuthed}
+                    onClickToTL={this.props.onClickToTL}
+                />
             </ul>
         )
     }

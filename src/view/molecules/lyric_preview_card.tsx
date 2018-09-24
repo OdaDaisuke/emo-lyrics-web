@@ -5,6 +5,9 @@ import { MediaBreakPointUp } from '../styles'
 
 interface ILyricPreviewCardProps {
     isRistrict?: boolean
+    onClickSignin?: () => void
+    isAuthed?: boolean
+    onClickToTL?: () => void
 }
 
 export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, any> {
@@ -18,12 +21,21 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
 
     get innerContent() {
         if(this.props.isRistrict) {
-            return (
-                <React.Fragment>
-                    <span className={css(this.styles.restrictLabel)}>続きを見るには</span>
-                    <Button>ログイン</Button>
-                </React.Fragment>
-            )
+            if(this.props.isAuthed) {
+                return (
+                    <React.Fragment>
+                        <span className={css(this.styles.restrictLabel)}>もっと見るには</span>
+                        <Button onClick={this.props.onClickToTL}>タイムラインへ</Button>
+                    </React.Fragment>
+                )
+            } else {
+                return (
+                    <React.Fragment>
+                        <span className={css(this.styles.restrictLabel)}>続きを見るには</span>
+                        <Button onClick={this.props.onClickSignin}>ログイン</Button>
+                    </React.Fragment>
+                )
+            }
         }
 
         return (

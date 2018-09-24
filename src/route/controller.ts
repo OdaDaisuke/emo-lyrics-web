@@ -16,6 +16,10 @@ export class RouteController {
         this.handleRedirect()
     }
 
+    push(loc: string) {
+        this.history.push(loc)
+    }
+
     onLocationChanged(location: any) {
         this.curLocation = location
         this.handleRedirect()

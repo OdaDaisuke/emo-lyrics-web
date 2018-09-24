@@ -18,7 +18,7 @@ export class PageFactory {
 
   @bind
   HomePage(): JSX.Element {
-    const vm = new HomeVM(this.domainFactory.accountService)
+    const vm = new HomeVM(this.domainFactory.accountService, this.domainFactory.router)
     return (
       <Home vm={vm} history={this.history} />
     )

@@ -10,6 +10,7 @@ import { FullWidthLayout } from '../layouts'
 import { AccountService } from '../../domain'
 import { MediaBreakPointUp } from '../styles'
 import { utils } from '../styles'
+import { RouteController } from '../../route/controller'
 
 interface IHomeProps {
 	vm: HomeVM
@@ -26,7 +27,11 @@ export class Home extends React.Component<IHomeProps, any> {
 					<h2 className={css(this.styles.pageTitle)}>歌詞から曲を好きになる</h2>
 					<p className={css(this.styles.subTitle)}>1000曲以上のエモい歌詞揃えてます。<br />邦楽・洋楽・POPから演歌まで。</p>
 					<Button onClick={this.props.vm.signin}>歌詞をさがす</Button>
-					<LyricPreviewList />
+					<LyricPreviewList
+						onClickSignin={this.props.vm.signin}
+						isAuthed={this.props.vm.isAuthed}
+						onClickToTL={this.props.vm.onClickToTL}
+					/>
 					<a
 						href="https://twitter.com/hinodeya_pon"
 						target="_blank"
@@ -44,7 +49,6 @@ export class Home extends React.Component<IHomeProps, any> {
 		return (
 			<LoginButton
 				history={this.props.history}
-				twitterOAuthUrl={this.props.vm.twitterOAuthUrl}
 			/>
 		)
 	}
@@ -98,21 +102,37 @@ export class Home extends React.Component<IHomeProps, any> {
 
 export class HomeVM {
 	accountService: AccountService
+	router: RouteController
 
 	@observable
-	twitterOAuthUrl: string = ""
+	isAuthed: boolean = false
 
-	constructor(accountService: AccountService) {
+	constructor(accountService: AccountService, router: RouteController) {
 		this.accountService = accountService
+		this.router = router
 		this.init()
 	}
 
 	async init() {
-		this.twitterOAuthUrl = await this.accountService.getTwitterAuthUrl()
+		this.isAuthed = this.accountService.isAuthed
 	}
 
 	@bind
 	async signin() {
-		await this.accountService.signinWithTwitter()
+		if(this.isAuthed) {
+			this.router.push('/lyric')
+			return
+		}
+
+		const callback = () => {
+			this.router.push('/lyric')
+		}
+		await this.accountService.signinWithTwitter(callback)
 	}
+
+	@bind
+	onClickToTL() {
+		this.router.push('/lyric')
+	}
+
 }

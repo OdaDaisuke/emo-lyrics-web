@@ -10,20 +10,6 @@ export class AccountService {
     this.storage = storage
   }
 
-  getTwitterAuthUrl() {
-    if(!this.apiClient) {
-      return
-    }
-    return this.apiClient.fetchTwitterAuthUrl()
-  }
-
-  sendVerificationCode(s: string) {
-    if(!this.apiClient) {
-      return
-    }
-    return this.apiClient.sendTwitterVerificationCode(s)
-  }
-
   saveAccount() {
   }
 
@@ -31,7 +17,7 @@ export class AccountService {
     return ""
   }
 
-  async signinWithTwitter() {
+  async signinWithTwitter(callback: () => void) {
     const provider = new firebase.auth.TwitterAuthProvider()
     firebase.auth().signInWithPopup(provider)
       .then((result: any) => {
@@ -39,6 +25,7 @@ export class AccountService {
         this.storage.save(Object.assign({}, storage, {
           account: result.additionalUserInfo.profile,
         }))
+        callback()
  
       }).catch((error) => {
         console.error(error)
