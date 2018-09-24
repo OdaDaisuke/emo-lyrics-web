@@ -64,7 +64,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			pageTitle: {
 				color: '#fff',
 				fontSize: '1.5rem',
-				fontWeight: 'bold',
+				fontWeight: 200,
 				letterSpacing: '1px',
 				marginTop: '10vh',
 				marginBottom: '0.5rem',
@@ -78,6 +78,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			subTitle: {
 				color: '#fff',
 				fontSize: '0.85em',
+				fontWeight: 200,
 				letterSpacing: '1px',
 				lineHeight: '1.78',
 				marginTop: '0',

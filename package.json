@@ -15,6 +15,7 @@
     "build:prod": "npm run configure && npm run clean:assets && npm run copy:assets && NODE_ENV=production webpack"
   },
   "dependencies": {
+    "@types/firebase": "^3.2.1",
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
     "@types/react-router": "^4.0.23",
@@ -24,6 +25,7 @@
     "axios": "^0.18.0",
     "browser-sync": "^2.24.4",
     "browser-sync-webpack-plugin": "^2.2.2",
+    "firebase": "^5.5.1",
     "mobx": "^4.1.0",
     "puppeteer": "^1.2.0",
     "react": "^16.2.0",

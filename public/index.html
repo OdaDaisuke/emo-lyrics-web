@@ -26,5 +26,18 @@
   <body>
     <div id="app-container"></div>
     <script src="/assets/app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDS9zcP7HWFMuENqqnrskwq_7dFOLaeRZU",
+        authDomain: "kashiyoi-32c2a.firebaseapp.com",
+        databaseURL: "https://kashiyoi-32c2a.firebaseio.com",
+        projectId: "kashiyoi-32c2a",
+        storageBucket: "kashiyoi-32c2a.appspot.com",
+        messagingSenderId: "396117550715"
+      };
+      firebase.initializeApp(config);
+    </script>
   </body>
 </html>

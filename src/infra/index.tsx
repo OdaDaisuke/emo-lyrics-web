@@ -1,3 +1,5 @@
 export * from './api'
 export * from './account'
 export * from './cloud_functions'
+export * from './storage'
+export * from './firebase'
