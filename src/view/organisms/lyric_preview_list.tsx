@@ -29,7 +29,7 @@ export class LyricPreviewList extends React.Component<ILyricPreviewListProps, an
         return StyleSheet.create({
             container: {
                 marginTop: '2em',
-                marginBottom: '1em',
+                marginBottom: '50px',
                 overflowX: 'scroll',
                 padding: 0,
                 [MediaBreakPointUp.SM]: {

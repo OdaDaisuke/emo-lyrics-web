@@ -13,15 +13,15 @@ export interface ILyricCardList {
   lyricIdx: number
   isAtFirst: boolean
   isAtLast: boolean
-  incrementIdx: () => void
-  decrementIdx: () => void
+  onClickNext: () => void
+  onClickPrev: () => void
 }
 
 @observer
 export class LyricCardList extends React.Component<ILyricCardList, any> {
   render(): JSX.Element {
     return (
-      <div className={css(this.style.wrapper)}>
+      <div className={css(this.style.container)}>
         {this.innerContainer}
         <div className={css(this.style.operation)}>
           {this.prevButton}
@@ -31,25 +31,9 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
     )
   }
 
-  get style() {
-    return StyleSheet.create({
-      wrapper: {
-        height: '75vh',
-        position: 'relative',
-        width: '100vw',
-      },
-      operation: {
-        display: 'flex',
-        justifyContent: 'center',
-        [MediaBreakPointUp.SM]: {
-        },
-      },
-    })
-  }
-
   @bind
   handleNext() {
-    this.props.incrementIdx()
+    this.props.onClickNext()
     if(this.props.isAtLast) {
        this.props.onLast()
     }
@@ -57,7 +41,7 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
 
   @bind
   handlePrev() {
-    this.props.decrementIdx()
+    this.props.onClickPrev()
   }
 
   get innerContainer() {
@@ -90,6 +74,23 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
       	<Button onClick={this.handleNext}>次の歌詞へ</Button>
       )
     }
+  }
+
+  get style() {
+    return StyleSheet.create({
+      container: {
+        height: '75vh',
+        paddingTop: '20px',
+        position: 'relative',
+        width: '100vw',
+      },
+      operation: {
+        display: 'flex',
+        justifyContent: 'center',
+        [MediaBreakPointUp.SM]: {
+        },
+      },
+    })
   }
 
 }

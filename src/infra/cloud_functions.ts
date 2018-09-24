@@ -69,7 +69,29 @@ export class CloudFunctionsClient {
         const params = Object.assign({}, this.commonParameters, {
             userID: userId,
         })
-        return await this.sendBqEvent('views', params)
+        return await this.sendBqEvent('page_views', params)
+    }
+
+    async trackLyricView(lyricID: number) {
+        const params = Object.assign({}, this.commonParameters, {
+            userID: this.userId,
+            lyricID: lyricID,
+        })
+        return await this.sendBqEvent('lyric_viwes', params)
+    }
+
+    async trackLeaveLyric(lyricID: number) {
+        const params = Object.assign({}, this.commonParameters, {
+            userID: this.userId,
+            lyricID: lyricID,
+        })
+        return await this.sendBqEvent('lyric_clicks', params)
+    }
+
+    async trackSignup(account: any) {
+        const params = Object.assign({}, this.commonParameters, {
+        })
+        return await this.sendBqEvent('users', params)
     }
 
     /*------ Private utilities ------*/

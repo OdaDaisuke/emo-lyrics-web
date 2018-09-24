@@ -7,7 +7,7 @@ import { observer } from 'mobx-react'
 import { Button } from '../atoms'
 import { LyricPreviewList } from '../organisms'
 import { FullWidthLayout } from '../layouts'
-import { AccountService } from '../../domain'
+import { AccountService, Tracker } from '../../domain'
 import { MediaBreakPointUp } from '../styles'
 import { utils } from '../styles'
 import { RouteController } from '../../route/controller'
@@ -93,7 +93,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				display: 'block',
 				fontSize: '0.7em',
 				letterSpacing: '1px',
-				marginBottom: '1em',
+				marginBottom: '20px',
 			},
         })
     }
@@ -103,13 +103,16 @@ export class Home extends React.Component<IHomeProps, any> {
 export class HomeVM {
 	accountService: AccountService
 	router: RouteController
+	tracker: Tracker
 
 	@observable
 	isAuthed: boolean = false
 
-	constructor(accountService: AccountService, router: RouteController) {
+	constructor(accountService: AccountService, router: RouteController, tracker: Tracker) {
 		this.accountService = accountService
 		this.router = router
+		this.tracker = tracker
+
 		this.init()
 	}
 
@@ -124,8 +127,9 @@ export class HomeVM {
 			return
 		}
 
-		const callback = () => {
+		const callback = (result: any) => {
 			this.router.push('/lyric')
+			this.tracker.trackSignup(result)
 		}
 		await this.accountService.signinWithTwitter(callback)
 	}

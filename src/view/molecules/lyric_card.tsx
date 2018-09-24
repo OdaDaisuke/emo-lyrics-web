@@ -2,33 +2,33 @@ import * as React from 'react'
 import { observer } from 'mobx-react'
 import { css, StyleSheet } from 'aphrodite'
 import * as configs from '../../configs'
-import { Button } from '../atoms'
+import { BadgeButton } from '../atoms'
 import { MediaBreakPointUp } from '../styles'
 
 export interface LyricCardProps {
-  title: string
-  lyric: string
-  singer: string
-  url: string
+	title: string
+	lyric: string
+	singer: string
+	url: string
 }
 
 @observer
 export class LyricCard extends React.Component<LyricCardProps, any> {
 	render(): JSX.Element {
 		return (
-			<div className={css(this.style.wrapper)}>
-				<div className={css(this.style.inner)}>
-					<p className={css(this.style.content)}>
+			<div className={css(this.styles.wrapper)}>
+				<div className={css(this.styles.inner)}>
+					<p className={css(this.styles.content)}>
 						{this.props.lyric}
 					</p>
-					<span className={css(this.style.title)}>「{this.props.title}」</span>
-					<span className={css(this.style.singer)}>{this.props.singer}</span>
+					<span className={css(this.styles.title)}>「{this.props.title}」</span>
+					<span className={css(this.styles.singer)}>{this.props.singer}</span>
 					<div>
-						<a className={css(this.style.url)} href={this.props.url} target="_blank">
-							> この曲を聴いてみる
+						<a href={this.props.url} target="_blank">
+							<BadgeButton className={css(this.styles.url)}>この曲を聴く</BadgeButton>
 						</a>
 						<a href={this.tweetLink} target="_blank">
-							<Button type="tweet">tweet</Button>
+							<BadgeButton type="tweet">tweet</BadgeButton>
 						</a>
 					</div>
 				</div>
@@ -47,7 +47,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 		return `https://twitter.com/intent/tweet?url=${configs.env.siteUrl}&text=「${lyric}」&hashtags=エモ詩&via=hinodeya_pon`
 	}
 
-	get style() {
+	get styles() {
 		return StyleSheet.create({
 			wrapper: {
 				alignItems: 'center',
@@ -79,8 +79,9 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				},
 			},
 			title: {
-				color: '#70707f',
+				color: '#8f8f8f',
 				fontStyle: 'italic',
+				fontWeight: 200,
 				marginRight: '1rem',
 				letterSpacing: '1px',
 				[MediaBreakPointUp.SM]: {
@@ -91,8 +92,9 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				},
 			},
 			singer: {
-				color: '#70707f',
+				color: '#8f8f8f',
 				fontSize: '0.95rem',
+				fontWeight: 200,
 				letterSpacing: '1px',
 				[MediaBreakPointUp.SM]: {
 					fontSize: '0.8rem',
@@ -102,15 +104,15 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				alignItems: "center",
 				border: '1px solid #24a8b9',
 				color: "#24a8b9",
-				borderRadius: "30px",
+				borderRadius: "4px",
 				display: "inline-block",
 				fontSize: "0.8rem",
 				fontStyle: "italic",
-				fontWeight: 'lighter',
+				fontWeight: 200,
 				justifyContent: "center",
 				letterSpacing: "1px",
 				margin: '20px auto',
-				padding: '6px 16px',
+				padding: '5px 16px 6px',
 				textDecoration: "none",
 				transition: 'all 0.2s',
 				':hover': {

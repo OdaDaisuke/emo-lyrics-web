@@ -17,7 +17,14 @@ export class AccountService {
     return ""
   }
 
-  async signinWithTwitter(callback: () => void) {
+  signout() {
+    const storage = this.storage.load()
+    this.storage.save(Object.assign({}, storage, {
+      account: null,
+    }))
+  }
+
+  async signinWithTwitter(callback: (result: any) => void) {
     const provider = new firebase.auth.TwitterAuthProvider()
     firebase.auth().signInWithPopup(provider)
       .then((result: any) => {
@@ -25,10 +32,11 @@ export class AccountService {
         this.storage.save(Object.assign({}, storage, {
           account: result.additionalUserInfo.profile,
         }))
-        callback()
+        callback(result)
  
       }).catch((error) => {
         console.error(error)
+        alert("ログイン中にエラーが発生しました。")
       })
   }
 
@@ -38,7 +46,7 @@ export class AccountService {
       return false
     }
 
-    if(typeof s.account != "undefined") {
+    if(typeof s.account != "undefined" && s.account != null) {
       return true
     }
 

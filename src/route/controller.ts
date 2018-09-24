@@ -1,23 +1,26 @@
 import * as history from 'history/'
 import { restrictedLocations } from './route_group'
-import { AccountService } from '../domain'
+import { AccountService, Tracker } from '../domain'
 
 export class RouteController {
     history: history.History
     curLocation: history.Location
     accountService: AccountService | null = null
+    tracker: Tracker | null = null
 
-    constructor(history: any, accountService: AccountService) {
+    constructor(history: any, accountService: AccountService, tracker: Tracker) {
         this.history = history
         this.accountService = accountService
         this.curLocation = history.location
+        this.tracker = tracker
 
         this.bindLocationEvents()
         this.handleRedirect()
     }
 
-    push(loc: string) {
-        this.history.push(loc)
+    push(location: string) {
+        this.history.push(location)
+        this.tracker!.trackPageView()
     }
 
     onLocationChanged(location: any) {

@@ -3,8 +3,10 @@ import { bind } from 'bind-decorator'
 import { DomainFactory } from '../../domain/factory'
 import {
   Home, HomeVM,
-  Lyric, LyricPageVM,
-  NotFound, Thanks
+  LyricPage, LyricPageVM,
+  NotFoundPage, NotFoundPageVM,
+  SignoutPage, SignoutPageVM,
+  MePage, MePageVM,
 } from './'
 
 export class PageFactory {
@@ -20,7 +22,11 @@ export class PageFactory {
 
   @bind
   HomePage(): JSX.Element {
-    const vm = new HomeVM(this.domainFactory.accountService, this.domainFactory.router)
+    const vm = new HomeVM(
+      this.domainFactory.accountService,
+      this.domainFactory.router,
+      this.domainFactory.tracker
+    )
     return (
       <Home vm={vm} history={this.history} />
     )
@@ -28,10 +34,10 @@ export class PageFactory {
 
   @bind
   LyricPage(): JSX.Element {
-    const tmpVM = new LyricPageVM(this.domainFactory.lyricService)
+    const tmpVM = new LyricPageVM(this.domainFactory.lyricService, this.domainFactory.tracker)
     const vm = this.cachedLyricVM(tmpVM)
     return (
-      <Lyric
+      <LyricPage
         vm={vm}
       	history={this.history}
       />
@@ -39,18 +45,26 @@ export class PageFactory {
   }
 
   @bind
-  ThanksPage(): JSX.Element {
+  MePage(): JSX.Element {
+    const vm = new MePageVM(this.domainFactory.lyricService)
     return (
-      <Thanks />
+      <MePage vm={vm} />
+    )
+  }
+
+  @bind
+  SignoutPage(): JSX.Element {
+    const vm = new SignoutPageVM(this.domainFactory.accountService, this.domainFactory.router)
+    return (
+      <SignoutPage vm={vm} />
     )
   }
 
   @bind
   NotFoundPage(): JSX.Element {
+    const vm = new NotFoundPageVM(this.domainFactory.lyricService)
     return (
-      <NotFound
-      	lyricService={this.domainFactory.lyricService}
-      />
+      <NotFoundPage vm={vm} />
     )
   }
 

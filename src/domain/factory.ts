@@ -18,7 +18,7 @@ export class DomainFactory {
     this.accountService = new AccountService(apiClient, stoarge)
     this.lyricService = new LyricService(apiClient)
     this.tracker = new Tracker(cloudFunctionsClient)
-    this.router = new RouteController(history, this.accountService)
+    this.router = new RouteController(history, this.accountService, this.tracker)
   }
 
 }

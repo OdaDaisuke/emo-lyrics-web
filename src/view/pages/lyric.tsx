@@ -3,17 +3,17 @@ import { css, StyleSheet } from 'aphrodite'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { bind } from 'bind-decorator'
-import { LyricService } from '../../domain'
+import { LyricService, Tracker } from '../../domain'
 import * as interfaces from '../../interfaces'
 import { LyricCardList } from '../organisms'
 
-export interface ILyricProps {
+export interface ILyricPageProps {
   history: any
   vm: LyricPageVM
 }
 
 @observer
-export class Lyric extends React.Component<ILyricProps, any> {
+export class LyricPage extends React.Component<ILyricPageProps, any> {
   render(): JSX.Element {
     return (
       <div className={this.containerClass}>
@@ -32,9 +32,7 @@ export class Lyric extends React.Component<ILyricProps, any> {
   get mainContent() {
     if(!this.props.vm.lyrics) {
       return (
-        <div>
-          <p className={css(this.styles.emptyStatusLabel)}>歌詞が取得できませんでした。</p>
-        </div>
+        <p className={css(this.styles.emptyStatusLabel)}>歌詞が取得できませんでした。</p>
       )
     }
 
@@ -45,8 +43,8 @@ export class Lyric extends React.Component<ILyricProps, any> {
         lyricIdx={this.props.vm.lyricIdx}
         isAtLast={this.props.vm.isAtLast}
         isAtFirst={this.props.vm.isAtFirst}
-        incrementIdx={this.props.vm.incrementIdx}
-        decrementIdx={this.props.vm.decrementIdx}
+        onClickNext={this.props.vm.onClickNext}
+        onClickPrev={this.props.vm.onClickPrev}
       />
     )
   }
@@ -77,6 +75,7 @@ export class Lyric extends React.Component<ILyricProps, any> {
 
 export class LyricPageVM {
   private lyricService: LyricService | null = null
+  private tracker: Tracker | null = null
 
   @observable
   lyricIdx: number = 0
@@ -90,8 +89,9 @@ export class LyricPageVM {
   @observable
   isAtFirst: boolean = true
 
-  constructor(lyricService: LyricService) {
+  constructor(lyricService: LyricService, tracker: Tracker) {
     this.lyricService = lyricService
+    this.tracker = tracker
     this.fetchLyrics()
   }
 
@@ -104,10 +104,13 @@ export class LyricPageVM {
   }
 
   @bind
-  incrementIdx() {
+  onClickNext() {
     if(!this.lyrics) {
       return
     }
+
+    this.beforeChangeLyric()
+    this.tracker!.trackLeaveLyric(this.lyrics[this.lyricIdx].Id)
 
     const nextIdx = this.lyricIdx + 1
     if(nextIdx < this.lyrics.length) {
@@ -120,22 +123,32 @@ export class LyricPageVM {
       this.isAtLast = false
     }
 
-    this.judgePosition()
+    this.onChangeLyric()
   }
 
   @bind
-  decrementIdx() {
+  onClickPrev() {
+    this.beforeChangeLyric()
+    if(this.lyrics) {
+      this.tracker!.trackLeaveLyric(this.lyrics[this.lyricIdx].Id)
+    }
+
     const prevIdx = this.lyricIdx - 1
     if(prevIdx >= 0) {
       this.lyricIdx = prevIdx
     }
-    this.judgePosition()
+    this.onChangeLyric()
   }
 
-  private judgePosition() {
+  private beforeChangeLyric() {
+    this.tracker!.trackLyricView(this.lyricIdx)
+  }
+
+  private onChangeLyric() {
     if(!this.lyrics) {
       return
     }
+
     // At last?
     if(this.lyricIdx + 1 == this.lyrics.length || this.lyrics.length == 1) {
       this.isAtLast = true

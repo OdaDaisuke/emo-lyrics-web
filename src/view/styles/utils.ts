@@ -24,9 +24,6 @@ const buttonBaseStyle = {
 }
 
 export const utils = {
-  bg_default: '#ffffff',
-  baseColor: '#00ae78',
-
   container: {
     marginRight: 'auto',
     marginLeft: 'auto',
@@ -51,7 +48,7 @@ export const utils = {
     borderRadius: '3px',
     color: '#00ae78',
     fontSize: '0.92em',
-    fontWeight: 'bold',
+    fontWeight: 400,
     letterSpacing: '2px',
     margin: '10px',
     padding: '10px 40px 12px',
@@ -66,12 +63,12 @@ export const utils = {
     borderColor: '#2196f3',
     borderStyle: 'solid',
     borderWidth: '1px',
-    borderRadius: '100px',
+    borderRadius: '4px',
     color: '#2196f3',
     fontSize: '0.87rem',
-    fontWeight: 'lighter',
+    fontWeight: 200,
     letterSpacing: '1px',
-    paddingTop: '6px',
+    paddingTop: '5px',
     paddingRight: '22px',
     paddingBottom: '6px',
     paddingLeft: '22px',

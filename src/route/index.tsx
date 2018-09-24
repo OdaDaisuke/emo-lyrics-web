@@ -13,23 +13,22 @@ export interface IAppRouteProps {
 export default class AppRoute extends React.Component<IAppRouteProps, any> {
   domainFactory: DomainFactory
   pf: PageFactory
-  routeController: RouteController
 
   constructor(props: IAppRouteProps) {
     super(props)
     this.domainFactory = new DomainFactory(this.props.history)
     this.pf = new PageFactory(this.domainFactory, this.props.history)
-    this.routeController = new RouteController(this.props.history, this.domainFactory.accountService)
   }
 
   render(): JSX.Element {
     return (
       <Router history={this.props.history}>
         <div>
-          <Header isAuthed={this.routeController.isAuthed} />
+          <Header isAuthed={this.domainFactory.router.isAuthed} />
           <Switch>
             <Route path="/lyric" component={this.pf.LyricPage} />
-            <Route path="/thanks" component={this.pf.ThanksPage} />
+            <Route path="/signout" exact component={this.pf.SignoutPage} />
+            <Route path="/me" exact component={this.pf.MePage} />
             <Route path="/" exact component={this.pf.HomePage} />
             <Route path="*" component={this.pf.NotFoundPage} />
           </Switch>

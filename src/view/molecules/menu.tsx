@@ -92,9 +92,6 @@ export class Menu extends React.Component<MenuProps, any> {
                 },
             },
             innerContainer: {
-                display: 'flex',
-                flex: '1 0 100%',
-                flexWrap: 'wrap',
             },
             activeContainer: {
                 display: 'flex',
@@ -106,15 +103,14 @@ export class Menu extends React.Component<MenuProps, any> {
                 boxSizing: 'border-box',
                 color: '#fff',
                 display: 'block',
-                flex: '0 0 50%',
                 fontSize: '1.25em',
                 letterSpacing: '2px',
                 marginBottom: '10px',
                 padding: '1em 1.25em',
                 textAlign: 'center',
                 textDecoration: 'none',
-                ':nth-child(odd)': {
-                    borderRight: '1px solid #fff',
+                ':not(:last-child)': {
+                    borderBottom: '1px solid #fff',
                 },
                 [MediaBreakPointUp.MD]: {
                     color: '#3f3f3f',
