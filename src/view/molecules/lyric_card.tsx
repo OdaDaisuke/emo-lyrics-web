@@ -46,34 +46,34 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 
   get style() {
     return StyleSheet.create({
-			wrapper: {
-				alignItems: 'center',
-				display: 'flex',
-				height: '100%',
-				width: '100%',
+		wrapper: {
+			alignItems: 'center',
+			display: 'flex',
+			height: '100%',
+			width: '100%',
+		},
+		inner: {
+			marginRight: 'auto',
+			marginLeft: 'auto',
+			maxWidth: '800px',
+			textAlign: "left",
+			width: '80%',
+			[MediaBreakPointUp.SM]: {
+			width: '85%',
 			},
-      inner: {
-				marginRight: 'auto',
-				marginLeft: 'auto',
-				maxWidth: '800px',
-				textAlign: "center",
-				width: '80%',
-				[MediaBreakPointUp.SM]: {
-					width: '85%',
-				},
-      },
-      content: {
-				color: '#3f3456',
-				fontFamily: 'YuGothic',
-				fontSize: '2rem',
-				fontWeight: 'normal',
-				letterSpacing: '2px',
-				lineHeight: '1.82',
-				marginTop: '0',
-				[MediaBreakPointUp.SM]: {
-					fontSize: '1.12rem',
-				},
-      },
+		},
+		content: {
+			color: '#3f3456',
+			fontFamily: 'YuGothic',
+			fontSize: '1.5rem',
+			fontWeight: 'normal',
+			letterSpacing: '2px',
+			lineHeight: '1.82',
+			marginTop: '0',
+			[MediaBreakPointUp.SM]: {
+				fontSize: '1.12rem',
+			},
+		},
       title: {
 				color: '#70707f',
 				fontStyle: 'italic',

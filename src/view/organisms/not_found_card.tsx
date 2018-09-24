@@ -93,7 +93,7 @@ export class NotFoundCardVM {
     if(!this.lyricService) {
       return null
     }
-    this.notFoundLyric = await this.lyricService.getNotFoundLyric()
+    this.notFoundLyric = await this.lyricService.fetchNotFoundLyric()
   }
 
 }

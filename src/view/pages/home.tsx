@@ -54,6 +54,7 @@ export class Home extends React.Component<IHomeProps, any> {
         return StyleSheet.create({
             container: {
 				backgroundImage: 'linear-gradient(rgb(12, 173, 121) 10%, rgb(13, 152, 107), rgb(12, 119, 85))',
+				minHeight: '95vh',
 				overflow: 'hidden',
 			},
 			innerContainer: Object.assign({}, utils.container, {
@@ -70,8 +71,8 @@ export class Home extends React.Component<IHomeProps, any> {
 				textAlign: 'center',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
-					fontSize: '2rem',
-					marginTop: '18vh',
+					fontSize: '2.5rem',
+					marginTop: '10vh',
 				},
 			},
 			subTitle: {

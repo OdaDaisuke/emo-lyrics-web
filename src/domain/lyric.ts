@@ -9,15 +9,11 @@ export class LyricService {
     this.apiClient = apiClient
   }
 
-  getSome() {
-    return this.apiClient.fetchLyrics()
-  }
-
-  get() {
+  fetchLyric() {
     return this.apiClient.fetchLyric()
   }
 
-  getNotFoundLyric() {
+  fetchNotFoundLyric() {
     return this.apiClient.fetchNotFoundLyric()
   }
 

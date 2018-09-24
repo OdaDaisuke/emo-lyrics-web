@@ -11,13 +11,8 @@ export class APIClient {
     })
   }
 
-  async fetchLyric(): Promise<interfaces.Lyric> {
-    const res = await this.axios.get<interfaces.Lyric>('/lyric')
-    return res.data
-  }
-
-  async fetchLyrics(): Promise<interfaces.Lyric[]> {
-    const res = await this.axios.get<interfaces.Lyric[]>('/lyrics')
+  async fetchLyric(): Promise<interfaces.Lyric[]> {
+    const res = await this.axios.get<interfaces.Lyric[]>('/lyric')
     return res.data
   }
 

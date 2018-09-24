@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { LyricPreviewCard } from '../molecules'
 import { css, StyleSheet } from 'aphrodite'
+import { LyricPreviewCard } from '../molecules'
+import { MediaBreakPointUp } from '../styles'
 
 export class LyricPreviewList extends React.Component {
     render() {
@@ -20,6 +21,9 @@ export class LyricPreviewList extends React.Component {
                 marginBottom: '1em',
                 overflowX: 'scroll',
                 padding: 0,
+                [MediaBreakPointUp.SM]: {
+                    display: 'flex',
+                },
             },
         })
     }

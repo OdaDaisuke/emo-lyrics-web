@@ -21,10 +21,6 @@ export interface ILyricCardList {
 
 @observer
 export class LyricCardList extends React.Component<ILyricCardList, any> {
-  constructor(props: ILyricCardList) {
-    super(props)
-  }
-
   render(): JSX.Element {
     return (
       <div className={css(this.style.wrapper)}>

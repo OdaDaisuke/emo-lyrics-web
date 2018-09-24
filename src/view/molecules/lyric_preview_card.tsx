@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
 import { Button } from '../atoms'
+import { MediaBreakPointUp } from '../styles'
 
 interface ILyricPreviewCardProps {
     isRistrict?: boolean
@@ -58,6 +59,21 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 padding: '0.75em 1.5em 1em',
                 textAlign: 'left',
                 width: '90%',
+                [MediaBreakPointUp.SM]: {
+                    flex: '1 0 48%',
+                    margin: '0 1% 0 0',
+                    width: '48%',
+                },
+                [MediaBreakPointUp.MD]: {
+                    flex: '1 0 40%',
+                    margin: '0 1% 0 0',
+                    width: '40%',
+                },
+                [MediaBreakPointUp.LG]: {
+                    flex: '1 0 30%',
+                    margin: '0 1% 0 0',
+                    width: '30%',
+                },
             },
             restrictedContainer: {
                 alignContent: 'center',
@@ -72,18 +88,23 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 fontSize: '0.8em',
             },
             lyric: {
-                color: '#333',
-                fontSize: '0.9em',
+                color: '#3f3456',
+                fontSize: '1.1em',
                 fontWeight: 'normal',
                 letterSpacing: '1px',
                 lineHeight: '1.78',
                 marginTop: 0,
                 marginBottom: '5px',
+                [MediaBreakPointUp.SM]: {
+                    fontSize: '1.25em',
+                },
             },
             restrictLabel: {
                 color: '#5f5f5f',
                 fontSize: '0.8em',
                 letterSpacing: '1px',
+                textAlign: 'center',
+                width: '100%',
             },
             artist: {
                 color: '#a0a0a0',

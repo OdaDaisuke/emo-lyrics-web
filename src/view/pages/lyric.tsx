@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
 import { observable } from 'mobx'
+import { observer } from 'mobx-react'
 import { bind } from 'bind-decorator'
 import { LyricService } from '../../domain'
 import * as interfaces from '../../interfaces'
@@ -11,6 +12,7 @@ export interface ILyricProps {
   vm: LyricPageVM
 }
 
+@observer
 export class Lyric extends React.Component<ILyricProps, any> {
   render(): JSX.Element {
     return (
@@ -97,7 +99,7 @@ export class LyricPageVM {
     if(!this.lyricService) {
       return null
     }
-    const lyrics = await this.lyricService.getSome()
+    const lyrics = await this.lyricService.fetchLyric()
     this.lyrics = this.lyricService.shuffle(lyrics)
   }
 
@@ -105,15 +107,18 @@ export class LyricPageVM {
     if(!this.lyrics) {
       return
     }
+
     const nextIdx = this.lyricIdx + 1
     if(nextIdx < this.lyrics.length) {
       this.lyricIdx = nextIdx
     }
+
     if(nextIdx + 1 == this.lyrics.length) {
       this.isAtLast = true
     } else {
       this.isAtLast = false
     }
+
     this.judgePosition()
   }
 
