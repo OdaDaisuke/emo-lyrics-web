@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
+import { FaPlay } from 'react-icons/fa'
 import { Button } from '../atoms'
 import { MediaBreakPointUp } from '../styles'
 
@@ -49,7 +50,9 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                         className={css(this.styles.link)}
                         href="https://youtube.com/watch?v=2Kajce92A"
                         target="_blank"
-                    >この曲を聴く</a>
+                    >
+                        <FaPlay />
+                    </a>
                     <div className={css(this.styles.fav)}>
                         <span>♡</span>
                     </div>
@@ -113,15 +116,16 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             link: {
                 borderRight: '1px solid #efefef',
                 color: '#539ad2',
-                flex: '1 0 150px',
+                flex: '0 1 50%',
                 fontSize: '0.8em',
-                padding: '10px 1.5em',
+                padding: '12px 0 8px',
+                textAlign: 'center',
                 textDecoration: 'none',
             },
             fav: {
                 color: '6f6f6f',
-                flex: '1 0 auto',
-                padding: '10px 1.5em',
+                flex: '0 1 50%',
+                padding: '10px 0',
                 textAlign: 'center',
             },
             lyric: {
