@@ -1,5 +1,5 @@
 import { AccountService, LyricService, Tracker } from './'
-import { APIClient, AccountStorage, CloudFunctionsClient } from '../infra'
+import { APIClient, Storage, CloudFunctionsClient, FirebaseClient } from '../infra'
 import * as configs from '../configs'
 
 export class DomainFactory {
@@ -9,10 +9,11 @@ export class DomainFactory {
 
   constructor() {
     const apiClient = new APIClient()
-    const accountStorage = new AccountStorage()
+    const stoarge = new Storage()
     const cloudFunctionsClient = new CloudFunctionsClient(configs.env.cloudFunctoinsEndpoint, configs.env.cloudFunctionsAuthToken)
+    const firebaseClient = new FirebaseClient()
 
-    this.accountService = new AccountService(apiClient, accountStorage)
+    this.accountService = new AccountService(apiClient, stoarge)
     this.lyricService = new LyricService(apiClient)
     this.tracker = new Tracker(cloudFunctionsClient)
   }

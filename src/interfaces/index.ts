@@ -1,1 +1,2 @@
-export  * from './lyric'
+export * from './lyric'
+export * from './storage'

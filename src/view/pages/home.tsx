@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
 import { LoginButton } from '../molecules'
-import { Link } from 'react-router-dom'
+import { bind } from 'bind-decorator'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { Button } from '../atoms'
@@ -19,14 +19,13 @@ interface IHomeProps {
 @observer
 export class Home extends React.Component<IHomeProps, any> {
     render(): JSX.Element {
+	
         return (
 			<FullWidthLayout className={css(this.styles.container)}>
 				<div className={css(this.styles.innerContainer)}>
 					<h2 className={css(this.styles.pageTitle)}>歌詞から曲を好きになる</h2>
 					<p className={css(this.styles.subTitle)}>1000曲以上のエモい歌詞揃えてます。<br />邦楽・洋楽・POPから演歌まで。</p>
-					<Link to="/lyric">
-						<Button>歌詞をさがす</Button>
-					</Link>
+					<Button onClick={this.props.vm.signin}>歌詞をさがす</Button>
 					<LyricPreviewList />
 					<a
 						href="https://twitter.com/hinodeya_pon"
@@ -110,5 +109,10 @@ export class HomeVM {
 
 	async init() {
 		this.twitterOAuthUrl = await this.accountService.getTwitterAuthUrl()
+	}
+
+	@bind
+	async signin() {
+		await this.accountService.signinWithTwitter()
 	}
 }

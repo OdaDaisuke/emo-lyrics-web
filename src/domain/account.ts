@@ -1,12 +1,13 @@
-import { APIClient, AccountStorage } from '../infra'
+import * as firebase from 'firebase'
+import { APIClient, Storage } from '../infra'
 
 export class AccountService {
   private apiClient: APIClient
-  private accountStorage: AccountStorage
+  private storage: Storage
 
-  constructor(apiClient: APIClient, accountStorage: AccountStorage) {
+  constructor(apiClient: APIClient, storage: Storage) {
     this.apiClient = apiClient
-    this.accountStorage = accountStorage
+    this.storage = storage
   }
 
   getTwitterAuthUrl() {
@@ -24,16 +25,37 @@ export class AccountService {
   }
 
   saveAccount() {
-    if(!this.accountStorage) {
-      return
-    }
-    this.accountStorage.save()
   }
 
   loadAccount(): string | null {
-    if(!this.accountStorage) {
-      return null
-    }
-    return this.accountStorage.load()
+    return ""
   }
+
+  async signinWithTwitter() {
+    const provider = new firebase.auth.TwitterAuthProvider()
+    firebase.auth().signInWithPopup(provider)
+      .then((result: any) => {
+        const storage = this.storage.load()
+        this.storage.save(Object.assign({}, storage, {
+          account: result.additionalUserInfo.profile,
+        }))
+ 
+      }).catch((error) => {
+        console.error(error)
+      })
+  }
+
+  get isAuthed(): boolean {
+    const s = this.storage.load()
+    if(!s) {
+      return false
+    }
+
+    if(typeof s.account != "undefined") {
+      return true
+    }
+
+    return false
+  }
+
 }

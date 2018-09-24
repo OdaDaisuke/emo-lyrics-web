@@ -19,7 +19,7 @@ export default class AppRoute extends React.Component<IAppRouteProps, any> {
     super(props)
     this.domainFactory = new DomainFactory()
     this.pf = new PageFactory(this.domainFactory, this.props.history)
-    this.routeController = new RouteController(this.props.history)
+    this.routeController = new RouteController(this.props.history, this.domainFactory.accountService)
   }
 
   render(): JSX.Element {
