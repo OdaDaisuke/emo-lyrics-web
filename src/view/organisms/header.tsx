@@ -1,26 +1,51 @@
 import * as React from 'react'
 import { StyleSheet, css } from 'aphrodite'
+import { FaBars, FaTimes } from 'react-icons/fa'
+import { bind } from 'bind-decorator'
 import { MediaBreakPointUp } from '../styles'
 import { Logo } from '../atoms'
 import { Menu } from '../molecules'
 import { utils } from '../styles'
 
 export interface HeaderProps {
+    isAuthed: boolean
 }
 
-export class Header extends React.Component<HeaderProps, any> {
+export interface HeaderState {
+    isDrawerOpen: boolean
+}
+
+export class Header extends React.Component<HeaderProps, HeaderState> {
+    state = {
+        isDrawerOpen: false,
+    }
+
     render(): JSX.Element {
         return (
-            <header className={css(this.style.header)}>
-                <div className={css(this.style.container)}>
+            <header className={css(this.styles.header)}>
+                <div className={css(this.styles.container)}>
                     <Logo />
-                    <Menu />
+                    <div className={css(this.styles.toggleIcon)} onClick={this.onClickToggleMenu}>
+                        {this.iconInnerContent}
+                    </div>
+                    <Menu
+                        isAuthed={this.props.isAuthed}
+                        isDrawerOpen={this.state.isDrawerOpen}
+                    />
                 </div>
             </header>
         )
     }
 
-    get style() {
+    get iconInnerContent() {
+        if(this.state.isDrawerOpen) {
+            return <FaTimes color="#3f3f3f" />
+        } else {
+            return <FaBars color="#3f3f3f" />
+        }
+    }
+
+    get styles() {
         return StyleSheet.create({
             header: {
                 backgroundColor: '#ffffff',
@@ -36,6 +61,20 @@ export class Header extends React.Component<HeaderProps, any> {
             container: Object.assign({}, utils.container, {
                 display: 'flex',
             }),
+            toggleIcon: {
+                position: 'absolute',
+                right: '5%',
+                top: '50%',
+                transform: 'translate(0, -50%)',
+                zIndex: 200,
+            },
+        })
+    }
+
+    @bind
+    onClickToggleMenu() {
+        this.setState({
+            isDrawerOpen: !this.state.isDrawerOpen,
         })
     }
 

@@ -26,7 +26,7 @@ export default class AppRoute extends React.Component<IAppRouteProps, any> {
     return (
       <Router history={this.props.history}>
         <div>
-          <Header />
+          <Header isAuthed={this.routeController.isAuthed} />
           <Switch>
             <Route path="/lyric" component={this.pf.LyricPage} />
             <Route path="/thanks" component={this.pf.ThanksPage} />
