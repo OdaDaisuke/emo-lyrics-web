@@ -1,7 +1,7 @@
 import { MediaBreakPointUp } from './breakpoints'
 
 const buttonBaseStyle = {
-    backgroundColor: '#fff',
+    backgroundImage: 'linear-gradient(135deg, #ef5489, #f7417f, #c11c54) !important',
     borderWidth: 0,
     color: '#2196f3',
     cursor: 'pointer',
@@ -44,14 +44,14 @@ export const utils = {
   },
 
   button: Object.assign({}, buttonBaseStyle, {
-    boxShadow: '0 1px 15px -5px #027350',
+    boxShadow: '0 2px 15px -3px #3f3f3f',
+    color: '#fff',
+    fontSize: '1em',
     borderRadius: '3px',
-    color: '#00ae78',
-    fontSize: '0.92em',
-    fontWeight: 400,
+    fontWeight: 600,
     letterSpacing: '2px',
     margin: '10px',
-    padding: '10px 40px 12px',
+    padding: '10px 27px 12px',
     [MediaBreakPointUp.SM]: {
       fontSize: '1.08em',
       padding: '16px 48px 18px',

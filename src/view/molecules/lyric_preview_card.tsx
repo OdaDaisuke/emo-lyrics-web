@@ -42,8 +42,8 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
         return (
             <React.Fragment>
                 <div className={css(this.styles.innerContainer)}>
-                    <span className={css(this.styles.artist)}>歌手名</span>
                     <p className={css(this.styles.lyric)}>歌詞データがここに入ります。歌詞データがここに入ります。</p>
+                    <span className={css(this.styles.artist)}>歌手名</span>
                 </div>
                 <footer className={css(this.styles.footer)}>
                     <a
@@ -73,7 +73,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             container: {
                 backgroundColor: '#fff',
                 borderRadius: '3px',
-                boxShadow: '0 2px 15px -5px #3f3f3f',
+                boxShadow: '0 2px 15px -8px #3f3f3f',
                 boxSizing: 'border-box',
                 flex: '1 0 90%',
                 margin: '0 auto 1em',
@@ -115,7 +115,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             },
             link: {
                 borderRight: '1px solid #efefef',
-                color: '#539ad2',
+                color: '#5f5f5f',
                 flex: '0 1 50%',
                 fontSize: '0.8em',
                 padding: '12px 0 8px',
@@ -130,12 +130,13 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             },
             lyric: {
                 color: '#3f3456',
-                fontSize: '1.1em',
-                fontWeight: 'normal',
+                fontSize: '0.9em',
+                fontStyle: 'italic',
+                fontWeight: 500,
                 letterSpacing: '1px',
                 lineHeight: '1.78',
-                marginTop: 0,
-                marginBottom: '5px',
+                marginTop: 5,
+                marginBottom: 5,
                 [MediaBreakPointUp.SM]: {
                     fontSize: '1.25em',
                 },

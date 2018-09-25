@@ -17,11 +17,13 @@ export class Logo extends React.Component<any, any> {
   get style() {
     return StyleSheet.create({
         logo: {
-            color: styles.themeColor,
+            color: '#3f3f3f',
             display: 'flex',
             flex: '0 0 150px',
-            fontSize: '0.92em',
-            fontWeight: 'bold',
+            fontFamily: 'serif',
+            fontSize: '0.88em',
+            fontStyle: 'italic',
+            fontWeight: 300,
             letterSpacing: '1px',
             marginRight: 15,
             marginLeft: 15,
