@@ -47,11 +47,11 @@ export const utils = {
     boxShadow: '0 2px 15px -3px #3f3f3f',
     color: '#fff',
     fontSize: '1em',
-    borderRadius: '3px',
-    fontWeight: 600,
-    letterSpacing: '2px',
+    borderRadius: 2,
+    fontWeight: 500,
+    letterSpacing: 1.5,
     margin: '10px',
-    padding: '10px 27px 12px',
+    padding: '12px 29px 14px',
     [MediaBreakPointUp.SM]: {
       fontSize: '1.08em',
       padding: '16px 48px 18px',
@@ -60,6 +60,7 @@ export const utils = {
 
   tweetButton: Object.assign({}, buttonBaseStyle, {
     backgroundColor: '#fff',
+    backgroundImage: '#fff',
     borderColor: '#2196f3',
     borderStyle: 'solid',
     borderWidth: '1px',

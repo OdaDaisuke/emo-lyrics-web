@@ -2,15 +2,17 @@ import * as React from 'react'
 import { Route, Switch } from 'react-router'
 import { Router } from 'react-router-dom'
 import { DomainFactory } from '../domain/factory'
-import { Header } from '../view/organisms/header'
 import { PageFactory } from '../view/pages'
-import { RouteController } from './controller'
 
 export interface IAppRouteProps {
   history: any
 }
 
-export default class AppRoute extends React.Component<IAppRouteProps, any> {
+export interface IAppRouteState {
+  headerVisibility: boolean
+}
+
+export default class AppRoute extends React.Component<IAppRouteProps, IAppRouteState> {
   domainFactory: DomainFactory
   pf: PageFactory
 
@@ -24,7 +26,6 @@ export default class AppRoute extends React.Component<IAppRouteProps, any> {
     return (
       <Router history={this.props.history}>
         <div>
-          <Header isAuthed={this.domainFactory.router.isAuthed} />
           <Switch>
             <Route path="/lyric" component={this.pf.LyricPage} />
             <Route path="/signout" exact component={this.pf.SignoutPage} />

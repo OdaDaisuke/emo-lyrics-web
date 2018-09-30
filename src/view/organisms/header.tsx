@@ -9,6 +9,8 @@ import { utils } from '../styles'
 
 export interface HeaderProps {
     isAuthed: boolean
+    isTransparent?: boolean
+    className?: string
 }
 
 export interface HeaderState {
@@ -22,9 +24,11 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
 
     render(): JSX.Element {
         return (
-            <header className={css(this.styles.header)}>
+            <header className={this.containerClass}>
                 <div className={css(this.styles.container)}>
-                    <Logo />
+                    <Logo
+                        isWhite={this.props.isTransparent}
+                    />
                     <div className={css(this.styles.toggleIcon)} onClick={this.onClickToggleMenu}>
                         {this.iconInnerContent}
                     </div>
@@ -38,11 +42,20 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
         )
     }
 
+    get containerClass() {
+        
+        return [
+            css(this.styles.header),
+            this.props.isTransparent && css(this.styles.transparent),
+        ].join(" ")
+    }
+
     get iconInnerContent() {
         if(this.state.isDrawerOpen) {
-            return <FaTimes color="#fff" />
+            return <FaTimes size={20} color="#fff" />
         } else {
-            return <FaBars color="#3f3f3f" />
+            const clr = this.props.isTransparent ? "#fff" : "#3f3f3f"
+            return <FaBars size={20} color={clr} />
         }
     }
 
@@ -59,12 +72,16 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
                     paddingBottom: '5px',    
                 },
             },
+            transparent: {
+                backgroundColor: 'transparent',
+                paddingTop: 10,
+            },
             container: Object.assign({}, utils.container, {
                 display: 'flex',
             }),
             toggleIcon: {
                 position: 'absolute',
-                right: '5%',
+                right: '8%',
                 top: '50%',
                 transform: 'translate(0, -50%)',
                 zIndex: 200,

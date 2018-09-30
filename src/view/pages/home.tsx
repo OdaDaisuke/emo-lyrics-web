@@ -4,13 +4,14 @@ import { LoginButton } from '../molecules'
 import { bind } from 'bind-decorator'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
-import { Button } from '../atoms'
+import { Button, SectionCaption } from '../atoms'
 import { LyricPreviewList } from '../organisms'
 import { FullWidthLayout } from '../layouts'
 import { AccountService, Tracker } from '../../domain'
 import { MediaBreakPointUp } from '../styles'
 import { utils } from '../styles'
 import { RouteController } from '../../route/controller'
+import { FaTshirt } from 'react-icons/fa';
 
 interface IHomeProps {
 	vm: HomeVM
@@ -20,70 +21,97 @@ interface IHomeProps {
 @observer
 export class Home extends React.Component<IHomeProps, any> {
     render(): JSX.Element {
-	
+
         return (
-			<FullWidthLayout className={css(this.styles.container)}>
-				<header className={css(this.styles.header)}>
-					<h2 className={css(this.styles.pageTitle)}>歌詞から曲を好きになる</h2>
-					<p className={css(this.styles.subTitle)}>1000曲以上のエモい歌詞揃えてます。<br />邦楽・洋楽・POPから演歌まで。</p>
-					<Button onClick={this.props.vm.signin}>歌詞をさがす</Button>
-				</header>
-				<div className={css(this.styles.innerContainer)}>
+			<div>
+				<FullWidthLayout
+					className={css(this.styles.container)}
+					transparentHeader={true}
+					isAuthed={this.props.vm.isAuthed}
+				>
+					<div className={css(this.styles.innerContainer)}>
+						<h2 className={css(this.styles.pageTitle)}>5秒で曲を好きになる</h2>
+						<p className={css(this.styles.subTitle)}>サクッと読めるエモい歌詞、揃えてます。<br />歌詞から曲を好きになる。</p>
+					</div>
 					<LyricPreviewList
 						onClickSignin={this.props.vm.signin}
 						isAuthed={this.props.vm.isAuthed}
 						onClickToTL={this.props.vm.onClickToTL}
 					/>
-					<a
-						href="https://twitter.com/hinodeya_pon"
-						target="_blank"
-						className={css(this.styles.link)}
-					>運営元</a>
+					{this.onboardButtonBlock}
+				</FullWidthLayout>
+				<div className={css(this.styles.sectionWrap)}>
+					<div className={css(this.styles.textCenter)}>
+						<SectionCaption>詞はストーリーだ</SectionCaption>
+					</div>
+					<p className={css(this.styles.lyricSentence)}>{this.lyricSentence}</p>
+					<div className={css(this.styles.textCenter)}>
+						{this.onboardButton}
+					</div>
 				</div>
-				<div className={css(this.styles.innerContainer)}>
-				</div>
-			</FullWidthLayout>
+			</div>
         )
-    }
+	}
+	
+	get lyricSentence() {
+		return "「どうしようもないことで僕らは泣いたり笑ったりしている。同じ話さどいつもこいつも。俺だけがまともだって思ってる。」「愛想をつかれても諦めないよ。急に来ても良いように。掃除をしておこう  シャツも洗っておこう」「洗濯物を畳むのも面倒臭いな。闘い疲れたってほど闘っちゃないけど、あなたにもわかるでしょう？街が眠る前に。」「きったねえ世の中だけどきっかけになったもんなんて人それぞれ色々あるだろうから今この瞬間まだ何もやりてぇことが見つかってねえっつうティーンエージャー。あんたみたいな人間のために俺は生きてきたのさ。」「幾千もの星のような雲のような「どこまでも」が音を立てて崩れるさま」「あいつらが簡単にやっちまう30回のセックスよりも「グミ・チョコレート・パイン」を青春時代に1回読むってことの方が僕にとっては価値があるのさ」「この蒼くて広い世界に無数に散らばった中から、別々に二人選んだ糸をお互いたぐり寄せあったんだ。」"
+	}
 
-    get loginButton() {
-		if(this.props.vm.accountService.loadAccount()) {
-			return null
+    get onboardButtonBlock() {
+		if(this.props.vm.isAuthed) {
+			return (
+				<div className={css(this.styles.textCenter)}>
+					{this.onboardButton}
+				</div>
+			)
 		}
 		return (
-			<LoginButton
-				history={this.props.history}
-			/>
+			<div className={css(this.styles.textCenter)}>
+					<p className={css(this.styles.onbordCaption)}>ログインして歌詞に浸ろう</p>
+					{this.onboardButton}
+			</div>
+		)
+	}
+
+	get onboardButton() {
+		if(this.props.vm.isAuthed) {
+			return (
+				<Button
+						onClick={this.props.vm.signin}
+						isSignin={false}
+				>歌詞をさがす</Button>
+			)
+		}
+		return (
+			<Button
+					onClick={this.props.vm.signin}
+					isSignin={true}
+			>Twitterログイン</Button>
 		)
 	}
 
     get styles() {
         return StyleSheet.create({
             container: {
-				backgroundColor: '#da2866',
+				backgroundBlendMode: 'overlay',
+				backgroundColor: 'rgba(50, 34, 6, 0.76)',
+				backgroundImage: 'url("./assets/images/live.jpg")',
 				minHeight: '95vh',
 				overflow: 'hidden',
 			},
-			header: {
-				backgroundImage: 'url("../assets/images/live.jpg")',
-				backgroundPosition: 'center',
-				backgroundSize: 'cover',
-				backgroundBlendMode: 'overlay',
-				backgroundColor: 'rgb(90, 59, 13)',
-				paddingTop: '30px',
-				paddingBottom: '30px',
+			innerContainer: {
 				textAlign: 'center',
 			},
-			innerContainer: Object.assign({}, utils.container, {
-				height: '100%',
+			textCenter: {
 				textAlign: 'center',
-			}),
+			},
 			pageTitle: {
 				color: '#fff',
-				fontSize: '1.5rem',
-				fontWeight: 200,
-				letterSpacing: '1px',
-				marginBottom: '0.5rem',
+				fontSize: 26,
+				fontWeight: 500,
+				letterSpacing: 2,
+				marginTop: 70,
+				marginBottom: 20,
 				textAlign: 'center',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
@@ -92,8 +120,8 @@ export class Home extends React.Component<IHomeProps, any> {
 			},
 			subTitle: {
 				color: '#fff',
-				fontSize: '0.8em',
-				fontWeight: 200,
+				fontSize: 12,
+				fontWeight: 400,
 				letterSpacing: '1px',
 				lineHeight: '1.78',
 				marginTop: '0',
@@ -102,6 +130,15 @@ export class Home extends React.Component<IHomeProps, any> {
 					fontSize: '0.88em',
 				},
 			},
+			lyricSentence: {
+				color: '#4F3F3F',
+				fontSize: 12,
+				fontWeight: 500,
+				letterSpacing: 1,
+				lineHeight: 2,
+				marginRight: 20,
+				marginLeft: 25,
+			},
 			link: {
 				bottom: '20px',
 				color: '#fff',
@@ -109,6 +146,16 @@ export class Home extends React.Component<IHomeProps, any> {
 				fontSize: '0.7em',
 				letterSpacing: '1px',
 				marginBottom: '20px',
+			},
+			onbordCaption: {
+				color: '#fff',
+				fontSize: 12,
+				fontWeight: 500,
+				letterSpacing: 1,
+				marginBottom: 0,
+			},
+			sectionWrap: {
+				paddingBottom: 20,
 			},
         })
     }

@@ -28,10 +28,15 @@ export class LyricPreviewList extends React.Component<ILyricPreviewListProps, an
     get styles() {
         return StyleSheet.create({
             container: {
+                display: 'flex',
+                flexWrap: 'nowrap',
+                left: 45,
                 marginTop: '2em',
-                marginBottom: '50px',
+                marginRight: 60,
+                marginBottom: 50,
                 overflowX: 'scroll',
                 padding: 0,
+                position: 'relative',
                 [MediaBreakPointUp.SM]: {
                     display: 'flex',
                 },

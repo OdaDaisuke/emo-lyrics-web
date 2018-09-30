@@ -19,7 +19,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 			<div className={css(this.styles.wrapper)}>
 				<div className={css(this.styles.inner)}>
 					<p className={css(this.styles.content)}>
-						{this.props.lyric}
+						{this.lyric}
 					</p>
 					<span className={css(this.styles.title)}>「{this.props.title}」</span>
 					<span className={css(this.styles.singer)}>{this.props.singer}</span>
@@ -34,6 +34,17 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				</div>
 			</div>
 		)
+	}
+
+	get lyric() {
+		return this.props.lyric.split("。").map(line => {
+			return (
+				<React.Fragment>
+					{line}
+					<br />
+				</React.Fragment>
+			)
+		})
 	}
 
 	get tweetLink() {
@@ -69,10 +80,11 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 			content: {
 				color: '#3f3456',
 				fontFamily: 'YuGothic',
-				fontSize: '1.5rem',
-				fontWeight: 'normal',
+				fontSize: '1.08rem',
+				fontStyle: 'italic',
+				fontWeight: 600,
 				letterSpacing: '2px',
-				lineHeight: '1.82',
+				lineHeight: '2',
 				marginTop: '0',
 				[MediaBreakPointUp.SM]: {
 					fontSize: '1.58rem',
@@ -80,6 +92,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 			},
 			title: {
 				color: '#8f8f8f',
+				fontSize: '0.8rem',
 				fontStyle: 'italic',
 				fontWeight: 200,
 				marginRight: '1rem',
@@ -93,7 +106,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 			},
 			singer: {
 				color: '#8f8f8f',
-				fontSize: '0.95rem',
+				fontSize: '0.8rem',
 				fontWeight: 200,
 				letterSpacing: '1px',
 				[MediaBreakPointUp.SM]: {

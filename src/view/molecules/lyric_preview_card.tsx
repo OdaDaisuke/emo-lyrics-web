@@ -33,7 +33,10 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 return (
                     <div className={css(this.styles.restrictedContainer)}>
                         <span className={css(this.styles.restrictLabel)}>続きを見るには</span>
-                        <Button onClick={this.props.onClickSignin}>ログイン</Button>
+                        <Button
+                            isSignin={true}
+                            onClick={this.props.onClickSignin}
+                        >Twitterログイン</Button>
                     </div>
                 )
             }
@@ -41,10 +44,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
 
         return (
             <React.Fragment>
-                <div className={css(this.styles.innerContainer)}>
-                    <p className={css(this.styles.lyric)}>歌詞データがここに入ります。歌詞データがここに入ります。</p>
-                    <span className={css(this.styles.artist)}>歌手名</span>
-                </div>
+                <p className={css(this.styles.lyric)}>幸せとは星が降る夜と眩しい朝が繰り返すようなものじゃなく大切な人に降りかかった雨に傘を差せる事だ</p>
                 <footer className={css(this.styles.footer)}>
                     <a
                         className={css(this.styles.link)}
@@ -53,8 +53,9 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                     >
                         <FaPlay />
                     </a>
-                    <div className={css(this.styles.fav)}>
-                        <span>♡</span>
+                    <div className={css(this.styles.lyricDetail)}>
+                        <span className={css(this.styles.title)}>瞬き</span>
+                        <span className={css(this.styles.artist)}>back number</span>
                     </div>
                 </footer>
             </React.Fragment>
@@ -72,14 +73,15 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
         return StyleSheet.create({
             container: {
                 backgroundColor: '#fff',
+                backgroundImage: 'linear-gradient(-135deg, #F24E86 0%, #D42360 100%)',
                 borderRadius: '3px',
-                boxShadow: '0 2px 15px -8px #3f3f3f',
+                boxShadow: '0 2px 20px -10px rgba(0,0,0,0.50)',
                 boxSizing: 'border-box',
-                flex: '1 0 90%',
-                margin: '0 auto 1em',
-                minWidth: '200px',
+                flex: '1 0 265px',
+                marginRight: 10,
+                padding: '0.75em 1.32em 1.5em',
                 textAlign: 'left',
-                width: '90%',
+                width: '265px',
                 [MediaBreakPointUp.SM]: {
                     flex: '1 0 48%',
                     margin: '0 1% 0 0',
@@ -102,55 +104,58 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                padding: '0.75em 1em 0.75em',
+                padding: '0.75em 0.5em',
                 textAlign: 'center',
                 width: '90%',
             },
-            innerContainer: {
-                padding: '0.75em 1.45em 1em',
-            },
             footer: {
-                borderTop: '1px solid #efefef',
                 display: 'flex',
-            },
-            link: {
-                borderRight: '1px solid #efefef',
-                color: '#5f5f5f',
-                flex: '0 1 50%',
-                fontSize: '0.8em',
-                padding: '12px 0 8px',
-                textAlign: 'center',
-                textDecoration: 'none',
-            },
-            fav: {
-                color: '6f6f6f',
-                flex: '0 1 50%',
-                padding: '10px 0',
-                textAlign: 'center',
+                flexWrap: 'nowrap',
+                justifyContent: 'flex-start',
             },
             lyric: {
-                color: '#3f3456',
-                fontSize: '0.9em',
-                fontStyle: 'italic',
-                fontWeight: 500,
+                color: '#fff',
+                fontSize: 14,
+                fontWeight: 400,
                 letterSpacing: '1px',
-                lineHeight: '1.78',
-                marginTop: 5,
-                marginBottom: 5,
+                lineHeight: '2.05',
+                marginTop: 8,
+                marginBottom: 15,
                 [MediaBreakPointUp.SM]: {
-                    fontSize: '1.25em',
+                    fontSize: '14px',
                 },
             },
             restrictLabel: {
-                color: '#5f5f5f',
+                color: '#fff',
                 fontSize: '0.8em',
                 letterSpacing: '1px',
                 textAlign: 'center',
                 width: '100%',
             },
-            artist: {
-                color: '#a0a0a0',
+            link: {
+                color: '#fff',
+                flex: '0 1 auto',
+                fontSize: '1.62em',
+                marginRight: 15,
+                textAlign: 'center',
+                textDecoration: 'none',
+            },
+            lyricDetail: {
+                display: 'flex',
+                flexWrap: 'wrap',
+            },
+            title: {
+                color: '#fff',
+                flex: '1 0 100%',
                 fontSize: '0.68em',
+                fontWeight: 600,
+                letterSpacing: '1px',
+                marginBottom: 5,
+            },
+            artist: {
+                color: '#fff',
+                fontSize: '0.68em',
+                fontWeight: 200,
                 letterSpacing: '1px',
             },
         })

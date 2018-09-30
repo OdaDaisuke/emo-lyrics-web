@@ -24,7 +24,7 @@ export class AccountService {
     }))
   }
 
-  async signinWithTwitter(callback: (result: any) => void) {
+  signinWithTwitter(callback: (result: any) => void) {
     const provider = new firebase.auth.TwitterAuthProvider()
     firebase.auth().signInWithPopup(provider)
       .then((result: any) => {
