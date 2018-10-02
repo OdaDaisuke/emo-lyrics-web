@@ -29,20 +29,28 @@ export class Home extends React.Component<IHomeProps, any> {
 					transparentHeader={true}
 					isAuthed={this.props.vm.isAuthed}
 				>
-					<div className={css(this.styles.innerContainer)}>
-						<h2 className={css(this.styles.pageTitle)}>5秒で曲を好きになる</h2>
-						<p className={css(this.styles.subTitle)}>サクッと読めるエモい歌詞、揃えてます。<br />歌詞から曲を好きになる。</p>
+					<div className={css(this.styles.borderLeft)}>
+						<img src="./assets/images/border_left_bottom.png" alt=""/>
 					</div>
-					<LyricPreviewList
-						onClickSignin={this.props.vm.signin}
-						isAuthed={this.props.vm.isAuthed}
-						onClickToTL={this.props.vm.onClickToTL}
-					/>
-					{this.onboardButtonBlock}
+					<div className={css(this.styles.borderRight)}>
+						<img src="./assets/images/border_right_middle.png" alt=""/>
+					</div>
+					<div className={css(this.styles.innerFirstview)}>
+						<div className={css(this.styles.innerContainer)}>
+							<h2 className={css(this.styles.pageTitle)}>5秒で曲を好きになる</h2>
+							<p className={css(this.styles.subTitle)}>サクッと読めるエモい歌詞、揃えてます。<br />歌詞から曲を好きになる。</p>
+						</div>
+						<LyricPreviewList
+							onClickSignin={this.props.vm.signin}
+							isAuthed={this.props.vm.isAuthed}
+							onClickToTL={this.props.vm.onClickToTL}
+						/>
+						{this.onboardButtonBlock}
+					</div>
 				</FullWidthLayout>
 				<div className={css(this.styles.sectionWrap)}>
 					<div className={css(this.styles.textCenter)}>
-						<SectionCaption>詞はストーリーだ</SectionCaption>
+						<SectionCaption className={css(this.styles.pink)}>詞はストーリーだ</SectionCaption>
 					</div>
 					<p className={css(this.styles.lyricSentence)}>{this.lyricSentence}</p>
 					<div className={css(this.styles.textCenter)}>
@@ -96,11 +104,24 @@ export class Home extends React.Component<IHomeProps, any> {
 				backgroundBlendMode: 'overlay',
 				backgroundColor: 'rgba(50, 34, 6, 0.76)',
 				backgroundImage: 'url("./assets/images/live.jpg")',
+				backgroundSize: 'cover',
 				minHeight: '95vh',
 				overflow: 'hidden',
 			},
 			innerContainer: {
 				textAlign: 'center',
+			},
+			innerFirstview: {
+			},
+			borderLeft: {
+				bottom: 0,
+				left: 0,
+				position: 'absolute',
+			},
+			borderRight: {
+				bottom: 0,
+				right: 0,
+				position: 'absolute',
 			},
 			textCenter: {
 				textAlign: 'center',
@@ -108,10 +129,10 @@ export class Home extends React.Component<IHomeProps, any> {
 			pageTitle: {
 				color: '#fff',
 				fontSize: 26,
-				fontWeight: 500,
+				fontWeight: 600,
 				letterSpacing: 2,
 				marginTop: 70,
-				marginBottom: 20,
+				marginBottom: 10,
 				textAlign: 'center',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
@@ -133,7 +154,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			lyricSentence: {
 				color: '#4F3F3F',
 				fontSize: 12,
-				fontWeight: 500,
+				fontWeight: 300,
 				letterSpacing: 1,
 				lineHeight: 2,
 				marginRight: 20,
@@ -156,6 +177,9 @@ export class Home extends React.Component<IHomeProps, any> {
 			},
 			sectionWrap: {
 				paddingBottom: 20,
+			},
+			pink: {
+				color: '#e73774 !important',
 			},
         })
     }

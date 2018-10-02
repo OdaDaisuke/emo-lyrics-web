@@ -57,16 +57,19 @@ export class Menu extends React.Component<MenuProps, any> {
         ].join(" ")
     }
 
+    get activeContainerKeyframes() {
+        return {
+            '0%': {
+                right: '-100vw',
+            },
+            '100%': {
+                right: 0,
+            },
+        }
+    }
+
     get styles() {
         return StyleSheet.create({
-            '@keyframes activeContainer': {
-                '0%': {
-                    right: '-100vw',
-                },
-                '100%': {
-                    right: 0,
-                },
-            },
             container: {
                 alignContent: 'center',
                 alignItems: 'center',
@@ -80,7 +83,7 @@ export class Menu extends React.Component<MenuProps, any> {
                 right: '-100vw',
                 top: 0,
                 width: '100vw',
-                zIndex: 100,
+                zIndex: 10000,
                 [MediaBreakPointUp.MD]: {
                     backgroundColor: '#fff',
                     boxShadow: 'none',
@@ -98,6 +101,8 @@ export class Menu extends React.Component<MenuProps, any> {
                 right: 0,
                 animationName: 'activeContainer',
                 animationDuration: '1s',
+                animationTimingFunction: 'linear',
+                animationIterationCount: 1,
             },
             link: {
                 boxSizing: 'border-box',
@@ -120,6 +125,7 @@ export class Menu extends React.Component<MenuProps, any> {
                     padding: '0.8em 1.5em'
                 },
             },
+            '@keyframes activeContainer': this.activeContainerKeyframes,
         })
     }
 

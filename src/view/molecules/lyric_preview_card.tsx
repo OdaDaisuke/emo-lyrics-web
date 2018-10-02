@@ -14,9 +14,9 @@ interface ILyricPreviewCardProps {
 export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, any> {
     render() {
         return (
-            <div className={this.containerStyle}>
+            <li className={this.containerStyle}>
                 {this.innerContent}
-            </div>
+            </li>
         )
     }
 
@@ -24,7 +24,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
         if(this.props.isRistrict) {
             if(this.props.isAuthed) {
                 return (
-                    <div className={css(this.styles.restrictedContainer)}>
+                    <div>
                         <span className={css(this.styles.restrictLabel)}>もっと見るには</span>
                         <Button onClick={this.props.onClickToTL}>タイムラインへ</Button>
                     </div>
@@ -79,9 +79,15 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 boxSizing: 'border-box',
                 flex: '1 0 265px',
                 marginRight: 10,
-                padding: '0.75em 1.32em 1.5em',
+                padding: '0.75em 1.17em 1.5em 1.32em',
                 textAlign: 'left',
-                width: '265px',
+                width: '270px',
+                ':first-child': {
+                    marginLeft: 30,
+                },
+                ':last-child': {
+                    marginRight: 30,
+                },
                 [MediaBreakPointUp.SM]: {
                     flex: '1 0 48%',
                     margin: '0 1% 0 0',
@@ -101,6 +107,8 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             restrictedContainer: {
                 alignContent: 'center',
                 alignItems: 'center',
+                backgroundColor: '#fff',
+                backgroundImage: 'linear-gradient(#fff, #fff)',
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
@@ -126,9 +134,11 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 },
             },
             restrictLabel: {
-                color: '#fff',
-                fontSize: '0.8em',
+                color: '#f54782',
+                fontSize: '0.95em',
+                fontWeight: 400,
                 letterSpacing: '1px',
+                marginBottom: 22,
                 textAlign: 'center',
                 width: '100%',
             },

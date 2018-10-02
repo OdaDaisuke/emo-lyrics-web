@@ -34,7 +34,7 @@ export class PageFactory {
 
   @bind
   LyricPage(): JSX.Element {
-    const tmpVM = new LyricPageVM(this.domainFactory.lyricService, this.domainFactory.tracker)
+    const tmpVM = new LyricPageVM(this.domainFactory.lyricService, this.domainFactory.accountService, this.domainFactory.tracker)
     const vm = this.cachedLyricVM(tmpVM)
     return (
       <LyricPage

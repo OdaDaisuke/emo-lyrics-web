@@ -30,9 +30,7 @@ export class LyricPreviewList extends React.Component<ILyricPreviewListProps, an
             container: {
                 display: 'flex',
                 flexWrap: 'nowrap',
-                left: 45,
                 marginTop: '2em',
-                marginRight: 60,
                 marginBottom: 50,
                 overflowX: 'scroll',
                 padding: 0,

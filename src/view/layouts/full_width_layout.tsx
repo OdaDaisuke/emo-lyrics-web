@@ -24,11 +24,17 @@ export class FullWidthLayout extends React.Component<IFullWidthLayoutProps, any>
     }
 
     get containerClass() {
-        return [this.props.className || ""].join(" ")
+        return [
+            css(this.styles.container),
+            this.props.className || ""
+        ].join(" ")
     }
 
     get styles() {
         return StyleSheet.create({
+            container: {
+                position: 'relative',
+            },
             innerContainer: {},
         })
     }

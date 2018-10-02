@@ -3,9 +3,10 @@ import { css, StyleSheet } from 'aphrodite'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { bind } from 'bind-decorator'
-import { LyricService, Tracker } from '../../domain'
+import { LyricService, Tracker, AccountService } from '../../domain'
 import * as interfaces from '../../interfaces'
 import { LyricCardList } from '../organisms'
+import { FullWidthLayout } from '../layouts'
 
 export interface ILyricPageProps {
   history: any
@@ -16,9 +17,9 @@ export interface ILyricPageProps {
 export class LyricPage extends React.Component<ILyricPageProps, any> {
   render(): JSX.Element {
     return (
-      <div className={this.containerClass}>
+      <FullWidthLayout isAuthed={this.props.vm.isAuthed}>
         {this.mainContent}
-      </div>
+      </FullWidthLayout>
     )
   }
 
@@ -75,7 +76,11 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
 
 export class LyricPageVM {
   private lyricService: LyricService | null = null
+  private accountService: AccountService | null = null
   private tracker: Tracker | null = null
+
+  @observable
+  isAuthed: boolean = false
 
   @observable
   lyricIdx: number = 0
@@ -89,10 +94,12 @@ export class LyricPageVM {
   @observable
   isAtFirst: boolean = true
 
-  constructor(lyricService: LyricService, tracker: Tracker) {
+  constructor(lyricService: LyricService, accountService: AccountService, tracker: Tracker) {
     this.lyricService = lyricService
+    this.accountService = accountService
     this.tracker = tracker
     this.fetchLyrics()
+    this.isAuthed = this.accountService.isAuthed
   }
 
   async fetchLyrics() {

@@ -51,7 +51,7 @@ export const utils = {
     fontWeight: 500,
     letterSpacing: 1.5,
     margin: '10px',
-    padding: '12px 29px 14px',
+    padding: '12px 32px 14px',
     [MediaBreakPointUp.SM]: {
       fontSize: '1.08em',
       padding: '16px 48px 18px',

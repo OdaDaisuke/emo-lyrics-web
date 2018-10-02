@@ -84,7 +84,7 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
                 right: '8%',
                 top: '50%',
                 transform: 'translate(0, -50%)',
-                zIndex: 200,
+                zIndex: 100000,
                 [MediaBreakPointUp.MD]: {
                     display: 'none',
                 },
