@@ -29,15 +29,19 @@ export class AccountService {
     firebase.auth().signInWithPopup(provider)
       .then((result: any) => {
         const storage = this.storage.load()
-        this.storage.save(Object.assign({}, storage, {
-          account: result.additionalUserInfo.profile,
-        }))
+        // const account = result.additionalUserInfo
+        const account = this.dummyAccountData
+        this.storage.save({
+          ...storage,
+          account: account,
+        })
         callback(result)
  
       }).catch((error) => {
         console.error(error)
         alert("ログイン中にエラーが発生しました。")
       })
+
   }
 
   get isAuthed(): boolean {
@@ -51,6 +55,20 @@ export class AccountService {
     }
 
     return false
+  }
+
+  get dummyAccountData() {
+    return {
+      id: "1929242",
+      lang: "ja",
+      location: "",
+      name: "yamada",
+      profile_banner_url: "",
+      profile_image_url_https: "",
+      protected: false,
+      screen_name: "yamada_2019",
+      url: "",
+    }
   }
 
 }

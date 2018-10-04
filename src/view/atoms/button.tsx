@@ -41,7 +41,13 @@ export class Button extends React.Component<IButtonProps, any> {
             button: utils.button,
             signinButton: {
                 backgroundColor: '#4F9DF7',
-                backgroundImage: 'linear-gradient(#4F9DF7, #4F9DF7) !important'
+                backgroundImage: 'linear-gradient(35deg, rgb(43, 128, 224), rgb(61, 145, 241),  rgb(82, 163, 255)) !important',
+                fontSize: '1.15em',
+                marginRight: 'auto',
+                marginLeft: 'auto',
+                borderRadius: '40px',
+                padding: '18px 20px 20px',
+                width: '90%',
             },
         })
     }

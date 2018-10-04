@@ -37,7 +37,9 @@ export class Home extends React.Component<IHomeProps, any> {
 					</div>
 					<div className={css(this.styles.innerFirstview)}>
 						<div className={css(this.styles.innerContainer)}>
-							<h2 className={css(this.styles.pageTitle)}>5秒で曲を好きになる</h2>
+							<h2 className={css(this.styles.pageTitle)}>
+								<span className={css(this.styles.numberCaption)}>5秒</span>で曲を好きになる
+							</h2>
 							<p className={css(this.styles.subTitle)}>サクッと読めるエモい歌詞、揃えてます。<br />歌詞から曲を好きになる。</p>
 						</div>
 						<LyricPreviewList
@@ -94,7 +96,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			<Button
 					onClick={this.props.vm.signin}
 					isSignin={true}
-			>Twitterログイン</Button>
+			>Twitterで始める</Button>
 		)
 	}
 
@@ -102,7 +104,7 @@ export class Home extends React.Component<IHomeProps, any> {
         return StyleSheet.create({
             container: {
 				backgroundBlendMode: 'overlay',
-				backgroundColor: 'rgba(50, 34, 6, 0.76)',
+				backgroundColor: 'rgba(0, 0, 0, 0.86)',
 				backgroundImage: 'url("./assets/images/live.jpg")',
 				backgroundSize: 'cover',
 				minHeight: '95vh',
@@ -131,13 +133,19 @@ export class Home extends React.Component<IHomeProps, any> {
 				fontSize: 26,
 				fontWeight: 600,
 				letterSpacing: 2,
-				marginTop: 70,
+				marginTop: 50,
 				marginBottom: 10,
 				textAlign: 'center',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
 					fontSize: '2.5rem',
 				},
+			},
+			numberCaption: {
+				fontSize: '1.5em',
+				fontWeight: 600,
+				color: '#ffffff',
+				textShadow: '1px 1px 10px #301341',
 			},
 			subTitle: {
 				color: '#fff',
@@ -156,7 +164,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				fontSize: 12,
 				fontWeight: 300,
 				letterSpacing: 1,
-				lineHeight: 2,
+				lineHeight: 2.35,
 				marginRight: 20,
 				marginLeft: 25,
 			},
