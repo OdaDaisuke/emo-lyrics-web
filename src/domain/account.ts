@@ -24,23 +24,35 @@ export class AccountService {
     }))
   }
 
-  signinWithTwitter(callback: (result: any) => void) {
+  async signinWithTwitter() {
     const provider = new firebase.auth.TwitterAuthProvider()
-    firebase.auth().signInWithPopup(provider)
-      .then((result: any) => {
-        const storage = this.storage.load()
-        // const account = result.additionalUserInfo
-        const account = this.dummyAccountData
-        this.storage.save({
-          ...storage,
-          account: account,
-        })
-        callback(result)
+    const account = this.dummyAccountData
+    if(account.is_first) {
+      this.apiClient.signup(account)
+    } else {
+      this.apiClient.signin(account.id)
+    }
+    return account
+
+    // firebase.auth().signInWithPopup(provider)
+    //   .then((result: any) => {
+    //     const storage = this.storage.load()
+    //     const account = result.additionalUserInfo
+    //     this.storage.save({
+    //       ...storage,
+    //       account: account,
+    //     })
+    //     if(account.is_first) {
+    //       this.apiClient.signup(account)
+    //     } else {
+    //       this.apiClient.signin(account.id)
+    //     }
+    //     callback(result)
  
-      }).catch((error) => {
-        console.error(error)
-        alert("ログイン中にエラーが発生しました。")
-      })
+    //   }).catch((error) => {
+    //     console.error(error)
+    //     alert("ログイン中にエラーが発生しました。")
+    //   })
 
   }
 
@@ -59,6 +71,7 @@ export class AccountService {
 
   get dummyAccountData() {
     return {
+      is_first: true,
       id: "1929242",
       lang: "ja",
       location: "",

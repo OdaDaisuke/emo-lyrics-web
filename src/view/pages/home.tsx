@@ -221,11 +221,9 @@ export class HomeVM {
 			return
 		}
 
-		const callback = (result: any) => {
-			this.router.push('/lyric')
-			this.tracker.trackSignup(result)
-		}
-		await this.accountService.signinWithTwitter(callback)
+		const account = await this.accountService.signinWithTwitter()
+		this.router.push('/lyric')
+		this.tracker.trackSignup(account)
 	}
 
 	@bind

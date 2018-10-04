@@ -1,5 +1,6 @@
 export interface Account {
-    id: string
+    twitter_id: string
+    is_first: boolean
     lang: string
     location: string
     name: string
