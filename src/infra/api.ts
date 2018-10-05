@@ -36,7 +36,7 @@ export class APIClient {
   }
 
   async signin(id: string) {
-    const res = await this.axios.get<interfaces.Account>(`/account/me/${id}`)
+    const res = await this.axios.get<interfaces.Account>(`/account/me?twitterId=${id}`)
     return res.data
   }
 

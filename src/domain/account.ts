@@ -26,33 +26,40 @@ export class AccountService {
 
   async signinWithTwitter() {
     const provider = new firebase.auth.TwitterAuthProvider()
-    const account = this.dummyAccountData
-    if(account.is_first) {
-      this.apiClient.signup(account)
-    } else {
-      this.apiClient.signin(account.id)
-    }
-    return account
 
-    // firebase.auth().signInWithPopup(provider)
-    //   .then((result: any) => {
-    //     const storage = this.storage.load()
-    //     const account = result.additionalUserInfo
-    //     this.storage.save({
-    //       ...storage,
-    //       account: account,
-    //     })
-    //     if(account.is_first) {
-    //       this.apiClient.signup(account)
-    //     } else {
-    //       this.apiClient.signin(account.id)
-    //     }
-    //     callback(result)
+    const result = await firebase.auth().signInWithPopup(provider)
+      const storage = this.storage.load()
+      const userInfo = result.additionalUserInfo as any
+
+      const account = {
+        isNewUser: userInfo.isNewUser,
+        providerId: userInfo.providerId,
+        twitterId: userInfo.profile.id_str,
+        lang: userInfo.profile.lang,
+        location: userInfo.profile.location,
+        name: userInfo.profile.name,
+        profileBannerUrl: userInfo.profile.profile_banner_url,
+        profileImageUrlHttps: userInfo.profile.profile_image_url_https,
+        protected: userInfo.profile.protected,
+        screenName: userInfo.profile.screen_name,
+        url: userInfo.profile.url,
+      }
+
+      this.storage.save({
+        ...storage,
+        account: account,
+      })
+
+      if(account.isNewUser) {
+        this.apiClient.signup(account)
+      } else {
+        this.apiClient.signin(account.twitterId)
+      }
  
-    //   }).catch((error) => {
-    //     console.error(error)
-    //     alert("ログイン中にエラーが発生しました。")
-    //   })
+      // }).catch((error) => {
+      //   console.error(error)
+      //   alert("ログイン中にエラーが発生しました。")
+      // })
 
   }
 

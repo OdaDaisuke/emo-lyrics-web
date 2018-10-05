@@ -39,7 +39,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	get lyric() {
 		return this.props.lyric.split("。").map(line => {
 			return (
-				<React.Fragment>
+				<React.Fragment key={line}>
 					{line}
 					<br />
 				</React.Fragment>

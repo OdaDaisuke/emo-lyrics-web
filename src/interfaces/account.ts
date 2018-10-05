@@ -1,12 +1,15 @@
+import { Provider } from "mobx-react";
+
 export interface Account {
-    twitter_id: string
-    is_first: boolean
+    isNewUser: boolean
+    providerId: string
+    twitterId: string
     lang: string
     location: string
     name: string
-    profile_banner_url: string
-    profile_image_url_https: string
+    profileBannerUrl: string
+    profileImageUrlHttps: string
     protected: boolean
-    screen_name: string
+    screenName: string
     url: string
 }
