@@ -30,7 +30,7 @@ export class SectionCaption extends React.Component<ISectionCaptionProps, any> {
                 fontWeight: 500,
                 letterSpacing: 2,
                 lineHeight: 1.82,
-                marginTop: '1.5em',
+                marginTop: '1em',
                 marginBottom: '1em',
             },
             textWhite: {
