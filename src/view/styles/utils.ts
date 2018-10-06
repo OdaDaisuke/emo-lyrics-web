@@ -35,9 +35,9 @@ export const utils = {
   },
 
   p: {
-    fontSize: '1rem',
+    fontSize: 12,
     letterSpacing: '2px',
-    lineHeight: '1.85',
+    lineHeight: 2,
     [MediaBreakPointUp.SM]: {
       fontSize: '0.9rem',
     },

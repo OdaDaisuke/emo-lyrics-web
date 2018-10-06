@@ -5,6 +5,7 @@ import { utils } from '../styles'
 
 export interface ISectionCaptionProps {
   className?: string
+  isWhite?: boolean
 }
 
 export class SectionCaption extends React.Component<ISectionCaptionProps, any> {
@@ -17,6 +18,7 @@ export class SectionCaption extends React.Component<ISectionCaptionProps, any> {
     get textClass() {
         return [
             css(this.styles.caption),
+            this.props.isWhite && css(this.styles.textWhite),
             this.props.className || "",
         ].join(" ")
     }
@@ -27,8 +29,12 @@ export class SectionCaption extends React.Component<ISectionCaptionProps, any> {
                 color: '#3f3f3f',
                 fontWeight: 500,
                 letterSpacing: 2,
+                lineHeight: 1.82,
                 marginTop: '1.5em',
                 marginBottom: '1em',
+            },
+            textWhite: {
+                color: '#fff',
             },
         })
     }

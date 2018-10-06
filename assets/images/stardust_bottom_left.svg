@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="156px" height="156px" viewBox="0 0 156 156" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>StarDust</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Page/Top/Mobile" transform="translate(0.000000, -374.000000)" stroke="#FFFFFF">
+            <g id="StarDust" transform="translate(-2.000000, 374.000000)">
+                <path d="M2,16 L40.890873,54.890873" id="Line"></path>
+                <path d="M2,0 L156.856385,154.856385" id="Line"></path>
+                <path d="M18,71 L102.852814,155.852814" id="Line"></path>
+                <path d="M0,32 L122.329473,154.329473" id="Line"></path>
+            </g>
+        </g>
+    </g>
+</svg>

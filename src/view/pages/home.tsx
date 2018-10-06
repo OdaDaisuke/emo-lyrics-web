@@ -4,7 +4,7 @@ import { LoginButton } from '../molecules'
 import { bind } from 'bind-decorator'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
-import { Button, SectionCaption } from '../atoms'
+import { Button, SectionCaption, Sentence } from '../atoms'
 import { LyricPreviewList } from '../organisms'
 import { FullWidthLayout } from '../layouts'
 import { AccountService, Tracker } from '../../domain'
@@ -29,18 +29,15 @@ export class Home extends React.Component<IHomeProps, any> {
 					transparentHeader={true}
 					isAuthed={this.props.vm.isAuthed}
 				>
-					<div className={css(this.styles.borderLeft)}>
-						<img src="./assets/images/border_left_bottom.png" alt=""/>
-					</div>
-					<div className={css(this.styles.borderRight)}>
-						<img src="./assets/images/border_right_middle.png" alt=""/>
+					<div className={css(this.styles.stardustBottomLeft)}>
+						<img src="./assets/images/stardust_bottom_left.svg" className={css(this.styles.stardustBottomLeftImg)} />
 					</div>
 					<div className={css(this.styles.innerFirstview)}>
-						<div className={css(this.styles.innerContainer)}>
+						<div className={css(this.styles.textCenter)}>
 							<h2 className={css(this.styles.pageTitle)}>
 								<span className={css(this.styles.numberCaption)}>5秒</span>で曲を好きになる
 							</h2>
-							<p className={css(this.styles.subTitle)}>サクッと読めるエモい歌詞、揃えてます。<br />歌詞から曲を好きになる。</p>
+							<p className={css(this.styles.subTitle)}>歌詞が主役の音楽発見サービス<br />エモい歌詞、揃えてます</p>
 						</div>
 						<LyricPreviewList
 							onClickSignin={this.props.vm.signin}
@@ -51,16 +48,45 @@ export class Home extends React.Component<IHomeProps, any> {
 					</div>
 				</FullWidthLayout>
 				<div className={css(this.styles.sectionWrap)}>
-					<div className={css(this.styles.textCenter)}>
-						<SectionCaption className={css(this.styles.pink)}>詞はストーリーだ</SectionCaption>
+					<div className={css(this.styles.innerContainer)}>
+						<div className={css(this.styles.textCenter)}>
+							<SectionCaption className={css(this.styles.pink)}>詞はストーリーだ</SectionCaption>
+						</div>
+						<p className={css(this.styles.lyricSentence)}>{this.lyricSentence}</p>
+						<div className={css(this.styles.textCenter)}>
+							{this.onboardButton}
+						</div>
 					</div>
-					<p className={css(this.styles.lyricSentence)}>{this.lyricSentence}</p>
-					<div className={css(this.styles.textCenter)}>
-						{this.onboardButton}
+				</div>
+				<div className={this.aboutSectionClass}>
+					<div className={css(this.styles.stardustTopRight)}>
+						<img src="./assets/images/stardust_top_right.svg" className={css(this.styles.stardustTopRightImg)} />
+					</div>
+					<div className={css(this.styles.innerContainer)}>
+						<div>
+							<SectionCaption isWhite>歌詞から曲を好きになる<br />音楽発見サービス</SectionCaption>
+						</div>
+						<Sentence>歌詞にはストーリーが込められている。<br />湧きあがる想いを込めて書いた詩も<br />無機質だけどカッコいい詩も<br />なんだっていい。<br />歌詞の良さを今一度味わって見ませんか。</Sentence>
+						<AppealCard />
+					</div>
+				</div>
+				<div className={css(this.styles.sectionWrap)}>
+					<div className={css(this.styles.innerContainer)}>
+						<div className={css(this.styles.textCenter)}>
+							<Sentence center>エモい歌詞、揃えてます</Sentence>
+							{this.onboardButton}
+						</div>
 					</div>
 				</div>
 			</div>
         )
+	}
+
+	get aboutSectionClass() {
+		return [
+			css(this.styles.sectionWrap),
+			css(this.styles.aboutSection),
+		].join(" ")
 	}
 	
 	get lyricSentence() {
@@ -71,13 +97,14 @@ export class Home extends React.Component<IHomeProps, any> {
 		if(this.props.vm.isAuthed) {
 			return (
 				<div className={css(this.styles.textCenter)}>
+					<p className={css(this.styles.onbordCaption)}>エモい歌詞、揃えてます</p>
 					{this.onboardButton}
 				</div>
 			)
 		}
 		return (
 			<div className={css(this.styles.textCenter)}>
-					<p className={css(this.styles.onbordCaption)}>ログインして歌詞に浸ろう</p>
+					<p className={css(this.styles.onbordCaption)}>エモい歌詞、揃えてます</p>
 					{this.onboardButton}
 			</div>
 		)
@@ -111,19 +138,30 @@ export class Home extends React.Component<IHomeProps, any> {
 				overflow: 'hidden',
 			},
 			innerContainer: {
-				textAlign: 'center',
+				marginRight: 'auto',
+				marginLeft: 'auto',
+				minWidth: 250,
+				paddingTop: 20,
+				paddingBottom: 20,
+				position: 'relative',
+				width: '87.5%',
 			},
-			innerFirstview: {
-			},
-			borderLeft: {
-				bottom: 0,
+			innerFirstview: {},
+			stardustBottomLeft: {
+				bottom: -4,
 				left: 0,
 				position: 'absolute',
 			},
-			borderRight: {
-				bottom: 0,
-				right: 0,
+			stardustBottomLeftImg: {
+				width: 250,
+			},
+			stardustTopRight: {
 				position: 'absolute',
+				right: 0,
+				top: 0,
+			},
+			stardustTopRightImg: {
+				width: 125,
 			},
 			textCenter: {
 				textAlign: 'center',
@@ -165,8 +203,6 @@ export class Home extends React.Component<IHomeProps, any> {
 				fontWeight: 300,
 				letterSpacing: 1,
 				lineHeight: 2.35,
-				marginRight: 20,
-				marginLeft: 25,
 			},
 			link: {
 				bottom: '20px',
@@ -185,9 +221,17 @@ export class Home extends React.Component<IHomeProps, any> {
 			},
 			sectionWrap: {
 				paddingBottom: 20,
+				position: 'relative',
+			},
+			aboutSection: {
+				backgroundColor: '#3f3f5f',
+				color: '#fff',
 			},
 			pink: {
 				color: '#e73774 !important',
+			},
+			textWhite: {
+				color: '#fff !important',
 			},
         })
     }
@@ -229,6 +273,63 @@ export class HomeVM {
 	@bind
 	onClickToTL() {
 		this.router.push('/lyric')
+	}
+
+}
+
+class AppealCard extends React.Component<any, any> {
+	render() {
+		return (
+			<ul className={css(this.styles.container)}>
+				{this.items}
+			</ul>
+		)
+	}
+
+	get items() {
+		const keyVals = [
+			{ head: "5", text: "秒で読める" },
+			{ head: "800", text: "以上の歌詞" },
+			{ head: "10", text: "ジャンル" },
+		]
+		return keyVals.map((item, idx) => {
+			return (
+				<li className={css(this.styles.itemRow)} key={idx}>
+					<span className={css(this.styles.head)}>{item.head}</span>
+					<span className={css(this.styles.text)}>{item.text}</span>
+				</li>
+			)
+		})
+	}
+
+	get styles() {
+		return StyleSheet.create({
+			container: {
+				border: '1px solid #F576A1',
+				borderRadius: 4,
+				marginRight: 'auto',
+				marginLeft: 'auto',
+				padding: '16px 25px 18px',
+				width: '70%',
+			},
+			itemRow: {
+				color: '#F576A1',
+				display: 'flex',
+				justifyContent: 'center',
+				':not(:last-child)': {
+					marginBottom: 10,
+				},
+			},
+			head: {
+				fontSize: '1.97em',
+				marginRight: 8,
+			},
+			text: {
+				fontSize: '0.9em',
+				letterSpacing: 2,
+				marginTop: 15,
+			},
+		})
 	}
 
 }
