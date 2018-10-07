@@ -6,7 +6,7 @@ import {
   LyricPage, LyricPageVM,
   NotFoundPage, NotFoundPageVM,
   SignoutPage, SignoutPageVM,
-  MePage, MePageVM,
+  FavoritesPage, FavoritesPageVM,
 } from './'
 
 export class PageFactory {
@@ -45,10 +45,10 @@ export class PageFactory {
   }
 
   @bind
-  MePage(): JSX.Element {
-    const vm = new MePageVM(this.domainFactory.lyricService)
+  FavoritesPage(): JSX.Element {
+    const vm = new FavoritesPageVM(this.domainFactory.lyricService)
     return (
-      <MePage vm={vm} />
+      <FavoritesPage vm={vm} />
     )
   }
 

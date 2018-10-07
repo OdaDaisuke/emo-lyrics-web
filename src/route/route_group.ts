@@ -1,4 +1,4 @@
 export const restrictedLocations = [
     "/lyric",
-    "/me",
+    "/favorites",
 ]

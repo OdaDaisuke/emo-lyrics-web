@@ -6,6 +6,9 @@ import { utils } from '../styles'
 export interface IButtonProps {
   onClick?: (event: React.FormEvent<any>) => void,
   isSignin?: boolean
+  className?: string
+  enableNextArrow?: boolean
+  enablePrevArrow?: boolean
 }
 
 export class Button extends React.Component<IButtonProps, any> {
@@ -28,7 +31,9 @@ export class Button extends React.Component<IButtonProps, any> {
     get buttonClass() {
         return [
             css(this.styles.button),
+            this.props.enableNextArrow && css(this.styles.nextArrow),
             this.props.isSignin && css(this.styles.signinButton),
+            this.props.className || "",
         ].join(" ")
     }
 
@@ -47,7 +52,19 @@ export class Button extends React.Component<IButtonProps, any> {
                 marginLeft: 'auto',
                 borderRadius: '40px',
                 padding: '18px 20px 20px',
+                position: 'relative',
                 width: '90%',
+            },
+            nextArrow: {
+                ':before': {
+                    content: "'>'",
+                    fontSize: 14,
+                    fontWeight: 200,
+                    position: 'absolute',
+                    right: 10,
+                    top: '50%',
+                    transform: 'translate(0, -50%)',
+                },
             },
         })
     }

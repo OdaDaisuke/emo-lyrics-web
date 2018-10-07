@@ -9,17 +9,20 @@ export interface IBadgeButtonProps {
   type?: string
   fill?: boolean
   className?: string
+  link: string
 }
 
 export class BadgeButton extends React.Component<IBadgeButtonProps, any> {
     render(): JSX.Element {
         return (
-            <button
-                className={this.buttonClass}
+            <a
                 onClick={this.onClick}
+                href={this.props.link}
+                className={this.buttonClass}
+                target="_blank"
             >
                 {this.label}
-            </button>
+            </a>
         )
     }
 
@@ -41,9 +44,9 @@ export class BadgeButton extends React.Component<IBadgeButtonProps, any> {
 
     get styles() {
         return StyleSheet.create({
-            tweetButton: Object.assign({}, utils.tweetButton, {
-                fontWeight: 200,
-            }),
+            tweetButton: Object.assign({},utils.tweetButton, {
+                display: 'inline-block',
+            })
         })
     }
 

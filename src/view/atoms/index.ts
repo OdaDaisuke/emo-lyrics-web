@@ -1,5 +1,7 @@
 export * from './button'
 export * from './badge_button'
+export * from './play_button'
+export * from './favorite_button'
 export * from './sentence'
 export * from './input'
 export * from './logo'

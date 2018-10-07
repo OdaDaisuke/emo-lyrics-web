@@ -44,7 +44,7 @@ export class Menu extends React.Component<MenuProps, any> {
                 { to: "/signin", label: "ログイン", },
             ],
             authed: [
-                { to: "/me", label: "マイページ", },
+                { to: "/favorites", label: "お気に入り", },
                 { to: "/signout", label: "ログアウト", },
             ],
         }

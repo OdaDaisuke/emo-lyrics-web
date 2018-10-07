@@ -3,12 +3,12 @@ import { observer } from 'mobx-react'
 import { css, StyleSheet } from 'aphrodite'
 import { LyricService } from '../../domain'
 
-export interface IMePageProps {
-  vm: MePageVM
+export interface IFavoritesPageProps {
+  vm: FavoritesPageVM
 }
 
 @observer
-export class MePage extends React.Component<IMePageProps, any> {
+export class FavoritesPage extends React.Component<IFavoritesPageProps, any> {
   render():JSX.Element {
     return (
       <div className={css(this.styles.container)}>
@@ -28,7 +28,7 @@ export class MePage extends React.Component<IMePageProps, any> {
 
 }
 
-export class MePageVM {
+export class FavoritesPageVM {
   private lyricService: LyricService
 
   constructor(lyricService: LyricService) {

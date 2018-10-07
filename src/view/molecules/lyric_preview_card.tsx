@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
-import { FaPlay } from 'react-icons/fa'
-import { Button } from '../atoms'
+import { Button, PlayButton } from '../atoms'
 import { MediaBreakPointUp } from '../styles'
 
 interface ILyricPreviewCardProps {
@@ -46,13 +45,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             <React.Fragment>
                 <p className={css(this.styles.lyric)}>幸せとは星が降る夜と眩しい朝が繰り返すようなものじゃなく大切な人に降りかかった雨に傘を差せる事だ</p>
                 <footer className={css(this.styles.footer)}>
-                    <a
-                        className={css(this.styles.link)}
-                        href="https://youtube.com/watch?v=2Kajce92A"
-                        target="_blank"
-                    >
-                        <FaPlay />
-                    </a>
+                    <PlayButton link="https://youtube.com/watch?v=2Kajce92A" />
                     <div className={css(this.styles.lyricDetail)}>
                         <span className={css(this.styles.title)}>瞬き</span>
                         <span className={css(this.styles.artist)}>back number</span>
@@ -141,14 +134,6 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 marginBottom: 22,
                 textAlign: 'center',
                 width: '100%',
-            },
-            link: {
-                color: '#fff',
-                flex: '0 1 auto',
-                fontSize: '1.62em',
-                marginRight: 15,
-                textAlign: 'center',
-                textDecoration: 'none',
             },
             lyricDetail: {
                 display: 'flex',

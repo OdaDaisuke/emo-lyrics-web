@@ -4,6 +4,7 @@ import { observer } from 'mobx-react'
 import { css, StyleSheet } from 'aphrodite'
 import { MediaBreakPointUp } from '../styles'
 import { LyricCard } from '../molecules'
+import { FullWidthLayout } from '../layouts'
 import { LyricService } from '../../domain'
 import { Lyric } from '../../interfaces'
 
@@ -15,10 +16,12 @@ export interface INotFoundPageProps {
 export class NotFoundPage extends React.Component<INotFoundPageProps, any> {
   render():JSX.Element {
     return (
-      <div className={css(this.styles.container)}>
+      <FullWidthLayout className={css(this.styles.container)} isAuthed={this.props.vm.isAuthed}>
         <h2 className={css(this.styles.caption)}>404 Page not found</h2>
-        {this.lyricCard}
-      </div>
+        <div className={css(this.styles.innerContainer)}>
+          {this.lyricCard}
+        </div>
+      </FullWidthLayout>
     )
   }
 
@@ -43,18 +46,23 @@ export class NotFoundPage extends React.Component<INotFoundPageProps, any> {
         height: '90vh',
         textAlign: 'center',
       },
+      innerContainer: {
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        width: '90%',
+      },
       caption: {
         color: '#4f4f5f',
         fontSize: '1.27em',
         fontStyle: 'italic',
-        fontWeight: 'lighter',
-        letterSpacing: '5px',
-        marginTop: '50px',
-        marginBottom: '-50px',
+        fontWeight: 200,
+        letterSpacing: 5,
+        marginTop: 50,
+        marginBottom: 50,
         [MediaBreakPointUp.SM]: {
           fontSize: '1.2rem',
-          marginTop: '120px',
-          marginBottom: '-120px',
+          marginTop: 100,
+          marginBottom: 100,  
         },
       },
     })
@@ -67,6 +75,9 @@ export class NotFoundPageVM {
 
   @observable.ref
   notFoundLyric: Lyric | null = null
+
+  @observable
+  isAuthed: boolean = false
 
   constructor(lyricService: LyricService) {
     this.lyricService = lyricService

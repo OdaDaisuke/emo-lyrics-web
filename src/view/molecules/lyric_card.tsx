@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { observer } from 'mobx-react'
 import { css, StyleSheet } from 'aphrodite'
-import * as configs from '../../configs'
-import { BadgeButton } from '../atoms'
+import { bind } from 'bind-decorator'
+import { FavoriteButton, PlayButton } from '../atoms'
 import { MediaBreakPointUp } from '../styles'
 
 export interface LyricCardProps {
@@ -16,87 +16,78 @@ export interface LyricCardProps {
 export class LyricCard extends React.Component<LyricCardProps, any> {
 	render(): JSX.Element {
 		return (
-			<div className={css(this.styles.wrapper)}>
-				<div className={css(this.styles.inner)}>
-					<p className={css(this.styles.content)}>
-						{this.lyric}
-					</p>
-					<span className={css(this.styles.title)}>「{this.props.title}」</span>
-					<span className={css(this.styles.singer)}>{this.props.singer}</span>
-					<div>
-						<a href={this.props.url} target="_blank">
-							<BadgeButton className={css(this.styles.url)}>この曲を聴く</BadgeButton>
-						</a>
-						<a href={this.tweetLink} target="_blank">
-							<BadgeButton type="tweet">tweet</BadgeButton>
-						</a>
+			<div className={css(this.styles.container)}>
+				<p className={css(this.styles.lyric)}>
+					{this.props.lyric}
+				</p>
+				<div className={css(this.styles.flexRow)}>
+					<PlayButton
+						link={this.props.url}
+						className={css(this.styles.playButton)}
+					/>
+					<div className={css(this.styles.detailWrap)}>
+						<span className={css(this.styles.title)}>{this.props.title}</span>
+						<span className={css(this.styles.singer)}>{this.props.singer}</span>
 					</div>
+					<FavoriteButton
+						favorited={false}
+						onClick={this.onClickFav}
+					/>
 				</div>
 			</div>
 		)
 	}
 
-	get lyric() {
-		return this.props.lyric.split("。").map(line => {
-			return (
-				<React.Fragment key={line}>
-					{line}
-					<br />
-				</React.Fragment>
-			)
-		})
-	}
-
-	get tweetLink() {
-		if(!this.props.lyric) {
-			return
-		}
-		let lyric = this.props.lyric.substr(0, 80)
-		if(this.props.lyric.length > 80) {
-			lyric += "..."
-		}
-		return `https://twitter.com/intent/tweet?url=${configs.env.siteUrl}&text=「${lyric}」&hashtags=エモ詩&via=hinodeya_pon`
+	@bind
+	onClickFav() {
 	}
 
 	get styles() {
 		return StyleSheet.create({
-			wrapper: {
+			container: {
+				alignContent: 'center',
 				alignItems: 'center',
+				backgroundImage: 'linear-gradient(-135deg, #F24E86 0%, #D42360 100%)',
+				borderRadius: 4,
+				boxSizing: 'border-box',
+				color: '#fff',
 				display: 'flex',
+				flexWrap: 'wrap',
 				height: '100%',
+				minHeight: 300,
+				padding: '20px 20px',
 				width: '100%',
 			},
-			inner: {
-				marginRight: 'auto',
-				marginLeft: 'auto',
-				maxWidth: '800px',
-				textAlign: "left",
-				width: '80%',
-				[MediaBreakPointUp.SM]: {
-					textAlign: 'center',
-					width: '85%',
-				},
+			flexRow: {
+				alignContent: 'center',
+				alignItems: 'center',
+				display: 'flex',
+				justifyContent: 'flex-start',
+				width: '100%',
 			},
-			content: {
-				color: '#3f3456',
-				fontFamily: 'YuGothic',
-				fontSize: '1.08rem',
-				fontStyle: 'italic',
-				fontWeight: 600,
-				letterSpacing: '2px',
-				lineHeight: '2',
-				marginTop: '0',
+			detailWrap: {
+				flex: '0 1 80%',
+			},
+			lyric: {
+				color: '#fff',
+				fontSize: 17,
+				fontWeight: 200,
+				letterSpacing: 2,
+				lineHeight: 2,
+				marginTop: 0,
 				[MediaBreakPointUp.SM]: {
 					fontSize: '1.58rem',
 				},
 			},
 			title: {
-				color: '#8f8f8f',
+				display: 'block',
 				fontSize: '0.8rem',
-				fontStyle: 'italic',
-				fontWeight: 200,
+				fontWeight: 500,
+				letterSpacing: 1,
+				lineHeight: 1.55,
 				marginRight: '1rem',
-				letterSpacing: '1px',
+				marginBottom: 5,
+				width: '100%',
 				[MediaBreakPointUp.SM]: {
 					display: 'block',
 					fontSize: '0.8rem',
@@ -105,10 +96,9 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				},
 			},
 			singer: {
-				color: '#8f8f8f',
 				fontSize: '0.8rem',
 				fontWeight: 200,
-				letterSpacing: '1px',
+				letterSpacing: 1,
 				[MediaBreakPointUp.SM]: {
 					fontSize: '0.8rem',
 				},
@@ -133,6 +123,10 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 					color: '#fff',
 					transform: 'scale(1.05)',
 				},
+			},
+			playButton: {
+				marginLeft: 10,
+				marginRight: 8,
 			},
 		})
 	}

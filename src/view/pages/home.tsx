@@ -9,9 +9,7 @@ import { LyricPreviewList } from '../organisms'
 import { FullWidthLayout } from '../layouts'
 import { AccountService, Tracker } from '../../domain'
 import { MediaBreakPointUp } from '../styles'
-import { utils } from '../styles'
 import { RouteController } from '../../route/controller'
-import { FaTshirt } from 'react-icons/fa';
 
 interface IHomeProps {
 	vm: HomeVM
@@ -277,59 +275,56 @@ export class HomeVM {
 
 }
 
-class AppealCard extends React.Component<any, any> {
-	render() {
-		return (
-			<ul className={css(this.styles.container)}>
-				{this.items}
-			</ul>
-		)
-	}
+const AppealCard = () => {
+	const styles = StyleSheet.create({
+		container: {
+			border: '1px solid #F576A1',
+			borderRadius: 4,
+			marginRight: 'auto',
+			marginLeft: 'auto',
+			padding: '16px 25px 18px',
+			width: '70%',
+		},
+		itemRow: {
+			color: '#F576A1',
+			display: 'flex',
+			justifyContent: 'center',
+			':not(:last-child)': {
+				marginBottom: 10,
+			},
+		},
+		head: {
+			fontSize: '1.97em',
+			marginRight: 8,
+		},
+		text: {
+			fontSize: '0.9em',
+			letterSpacing: 2,
+			marginTop: 15,
+		},
+	})
 
-	get items() {
+	const items = () => {
 		const keyVals = [
 			{ head: "5", text: "秒で読める" },
 			{ head: "800", text: "以上の歌詞" },
 			{ head: "10", text: "ジャンル" },
+			{ head: "2", text: "秒で登録" },
 		]
 		return keyVals.map((item, idx) => {
 			return (
-				<li className={css(this.styles.itemRow)} key={idx}>
-					<span className={css(this.styles.head)}>{item.head}</span>
-					<span className={css(this.styles.text)}>{item.text}</span>
+				<li className={css(styles.itemRow)} key={idx}>
+					<span className={css(styles.head)}>{item.head}</span>
+					<span className={css(styles.text)}>{item.text}</span>
 				</li>
 			)
 		})
 	}
-
-	get styles() {
-		return StyleSheet.create({
-			container: {
-				border: '1px solid #F576A1',
-				borderRadius: 4,
-				marginRight: 'auto',
-				marginLeft: 'auto',
-				padding: '16px 25px 18px',
-				width: '70%',
-			},
-			itemRow: {
-				color: '#F576A1',
-				display: 'flex',
-				justifyContent: 'center',
-				':not(:last-child)': {
-					marginBottom: 10,
-				},
-			},
-			head: {
-				fontSize: '1.97em',
-				marginRight: 8,
-			},
-			text: {
-				fontSize: '0.9em',
-				letterSpacing: 2,
-				marginTop: 15,
-			},
-		})
-	}
+	
+	return (
+		<ul className={css(styles.container)}>
+			{items()}
+		</ul>
+	)
 
 }

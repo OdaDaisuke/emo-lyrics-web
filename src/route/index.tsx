@@ -29,7 +29,7 @@ export default class AppRoute extends React.Component<IAppRouteProps, IAppRouteS
           <Switch>
             <Route path="/lyric" component={this.pf.LyricPage} />
             <Route path="/signout" exact component={this.pf.SignoutPage} />
-            <Route path="/me" exact component={this.pf.MePage} />
+            <Route path="/favorites" exact component={this.pf.FavoritesPage} />
             <Route path="/" exact component={this.pf.HomePage} />
             <Route path="*" component={this.pf.NotFoundPage} />
           </Switch>
