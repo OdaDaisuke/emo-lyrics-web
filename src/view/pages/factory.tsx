@@ -3,6 +3,7 @@ import { bind } from 'bind-decorator'
 import { DomainFactory } from '../../domain/factory'
 import {
   Home, HomeVM,
+  LyricsPage, LyricsPageVM,
   LyricPage, LyricPageVM,
   NotFoundPage, NotFoundPageVM,
   SignoutPage, SignoutPageVM,
@@ -13,6 +14,7 @@ export class PageFactory {
   private domainFactory: DomainFactory
   private history: any
 
+  private lyricsPageVM: LyricsPageVM | null = null
   private lyricPageVM: LyricPageVM | null = null
 
   constructor(domainFactory: DomainFactory, history: any) {
@@ -25,7 +27,7 @@ export class PageFactory {
     const vm = new HomeVM(
       this.domainFactory.accountService,
       this.domainFactory.router,
-      this.domainFactory.tracker
+      this.domainFactory.tracker,
     )
     return (
       <Home vm={vm} history={this.history} />
@@ -33,8 +35,32 @@ export class PageFactory {
   }
 
   @bind
-  LyricPage(): JSX.Element {
-    const tmpVM = new LyricPageVM(this.domainFactory.lyricService, this.domainFactory.accountService, this.domainFactory.tracker)
+  LyricsPage(): JSX.Element {
+    const tmpVM = new LyricsPageVM(
+      this.domainFactory.lyricService,
+      this.domainFactory.accountService,
+      this.domainFactory.tracker,
+      this.domainFactory.router
+    )
+    const vm = this.cachedLyricsVM(tmpVM) as LyricsPageVM
+    return (
+      <LyricsPage
+        vm={vm}
+      	history={this.history}
+      />
+    )
+  }
+
+  @bind
+  LyricPage(props: any): JSX.Element {
+    const lyricId = props.match.params.id
+    const tmpVM = new LyricPageVM(
+      this.domainFactory.lyricService,
+      this.domainFactory.accountService,
+      this.domainFactory.tracker,
+      this.domainFactory.router,
+      lyricId,
+    )
     const vm = this.cachedLyricVM(tmpVM)
     return (
       <LyricPage
@@ -68,6 +94,14 @@ export class PageFactory {
     )
   }
 
+  private cachedLyricsVM(vm: LyricsPageVM) {
+    if(this.lyricsPageVM) {
+      return this.lyricPageVM
+    }
+    this.lyricsPageVM = vm
+    return this.lyricsPageVM
+  }
+
   private cachedLyricVM(vm: LyricPageVM) {
     if(this.lyricPageVM) {
       return this.lyricPageVM
@@ -75,4 +109,5 @@ export class PageFactory {
     this.lyricPageVM = vm
     return this.lyricPageVM
   }
+
 }

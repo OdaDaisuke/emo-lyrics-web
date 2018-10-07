@@ -1,9 +1,11 @@
 import * as firebase from 'firebase'
 import { APIClient, Storage } from '../infra'
+import { Account } from '../interfaces/account'
 
 export class AccountService {
   private apiClient: APIClient
   private storage: Storage
+  me: any
 
   constructor(apiClient: APIClient, storage: Storage) {
     this.apiClient = apiClient
@@ -13,8 +15,12 @@ export class AccountService {
   saveAccount() {
   }
 
-  loadAccount(): string | null {
-    return ""
+  loadAccount(): Account | null {
+    const s = this.storage.load()
+    if(!s) {
+      return null
+    }
+    return s.account
   }
 
   signout() {
@@ -44,16 +50,17 @@ export class AccountService {
         screenName: userInfo.profile.screen_name,
         url: userInfo.profile.url,
       }
+      this.me = account
 
       this.storage.save({
         ...storage,
-        account: account,
+        account: this.me,
       })
 
       if(account.isNewUser) {
-        this.apiClient.signup(account)
+        this.apiClient.signup(this.me)
       } else {
-        this.apiClient.signin(account.twitterId)
+        this.apiClient.signin(this.me.twitterId)
       }
  
       // }).catch((error) => {
@@ -63,17 +70,24 @@ export class AccountService {
 
   }
 
+  async fetchMyFavs() {
+    return await this.apiClient.fetchMyFavs(this.me.id)
+  }
+
+  async postFav(lyricId: string, userId: string) {
+    return await this.apiClient.postFav(lyricId, userId)
+  }
+
+  async unFav(lyricID: string, userId: string) {
+    return await this.apiClient.unFav(lyricID, userId)
+  }
+
   get isAuthed(): boolean {
     const s = this.storage.load()
     if(!s) {
       return false
     }
-
-    if(typeof s.account != "undefined" && s.account != null) {
-      return true
-    }
-
-    return false
+    return (typeof s.account != "undefined" && s.account != null)
   }
 
   get dummyAccountData() {

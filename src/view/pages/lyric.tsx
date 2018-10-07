@@ -6,7 +6,9 @@ import { bind } from 'bind-decorator'
 import { LyricService, Tracker, AccountService } from '../../domain'
 import * as interfaces from '../../interfaces'
 import { LyricCardList } from '../organisms'
+import { PagingBtnGroup } from '../molecules'
 import { FullWidthLayout } from '../layouts'
+import { RouteController } from '../../route/controller'
 
 export interface ILyricPageProps {
   history: any
@@ -23,45 +25,24 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
     )
   }
 
-  get containerClass() {
-    return [
-      css(this.styles.container),
-      !this.props.vm.lyrics && css(this.styles.emptyStatusContainer),
-    ].join(' ')
-  }
-
   get mainContent() {
-    if(!this.props.vm.lyrics) {
+    if(!this.props.vm.lyric) {
       return (
         <p className={css(this.styles.emptyStatusLabel)}>歌詞が取得できませんでした。</p>
       )
     }
 
     return (
-      <LyricCardList
-        onLast={this.onLast}
-        lyrics={this.props.vm.lyrics}
-        lyricIdx={this.props.vm.lyricIdx}
-        isAtLast={this.props.vm.isAtLast}
-        isAtFirst={this.props.vm.isAtFirst}
-        onClickNext={this.props.vm.onClickNext}
-        onClickPrev={this.props.vm.onClickPrev}
-      />
+      <div>
+        {this.props.vm.lyric.Lyric}
+      </div>
     )
-  }
-
-  @bind
-  onLast() {
-    this.props.history.push('/thanks')
   }
 
   get styles() {
     return StyleSheet.create({
       container: {
       	position: 'relative',
-      },
-      emptyStatusContainer: {
-        textAlign: 'center',
       },
       emptyStatusLabel: {
         color: '#5f5f5f',
@@ -77,16 +58,17 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
 export class LyricPageVM {
   private lyricService: LyricService | null = null
   private accountService: AccountService | null = null
+  private routeController: RouteController
   private tracker: Tracker | null = null
 
   @observable
   isAuthed: boolean = false
 
-  @observable
-  lyricIdx: number = 0
-
   @observable.ref
-  lyrics: interfaces.Lyric[] | null = null
+  lyricId: number = 0
+
+  @observable
+  lyric: interfaces.Lyric | null = null
 
   @observable
   isAtLast: boolean = false
@@ -94,82 +76,31 @@ export class LyricPageVM {
   @observable
   isAtFirst: boolean = true
 
-  constructor(lyricService: LyricService, accountService: AccountService, tracker: Tracker) {
+  constructor(
+    lyricService: LyricService,
+    accountService: AccountService,
+    tracker: Tracker,
+    routeController: RouteController,
+    lyricId: number
+  ) {
     this.lyricService = lyricService
     this.accountService = accountService
     this.tracker = tracker
-    this.fetchLyrics()
+    this.routeController = routeController
+    this.lyricId = lyricId
+    this.loadLyric()
     this.isAuthed = this.accountService.isAuthed
   }
 
-  async fetchLyrics() {
+  async loadLyric() {
     if(!this.lyricService) {
       return null
     }
     const lyrics = await this.lyricService.fetchLyric()
-    this.lyrics = this.lyricService.shuffle(lyrics)
-  }
-
-  @bind
-  onClickNext() {
-    if(!this.lyrics) {
-      return
-    }
-
-    this.beforeChangeLyric()
-    this.tracker!.trackLeaveLyric(this.lyrics[this.lyricIdx].Id)
-
-    const nextIdx = this.lyricIdx + 1
-    if(nextIdx < this.lyrics.length) {
-      this.lyricIdx = nextIdx
-    }
-
-    if(nextIdx + 1 == this.lyrics.length) {
-      this.isAtLast = true
-    } else {
-      this.isAtLast = false
-    }
-
-    this.onChangeLyric()
-  }
-
-  @bind
-  onClickPrev() {
-    this.beforeChangeLyric()
-    if(this.lyrics) {
-      this.tracker!.trackLeaveLyric(this.lyrics[this.lyricIdx].Id)
-    }
-
-    const prevIdx = this.lyricIdx - 1
-    if(prevIdx >= 0) {
-      this.lyricIdx = prevIdx
-    }
-    this.onChangeLyric()
-  }
-
-  private beforeChangeLyric() {
-    this.tracker!.trackLyricView(this.lyricIdx)
-  }
-
-  private onChangeLyric() {
-    if(!this.lyrics) {
-      return
-    }
-
-    // At last?
-    if(this.lyricIdx + 1 == this.lyrics.length || this.lyrics.length == 1) {
-      this.isAtLast = true
-    } else {
-      this.isAtLast = false
-    }
-
-    // At first?
-    if(this.lyricIdx == 0) {
-      this.isAtFirst = true
-    } else {
-      this.isAtFirst = false
-    }
-
+    const lyric = lyrics.filter(l => {
+      if(l.ID == this.lyricId) { return l }
+    })
+    this.lyric = lyric[0]
   }
 
 }

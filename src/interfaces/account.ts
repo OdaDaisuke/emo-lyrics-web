@@ -1,5 +1,3 @@
-import { Provider } from "mobx-react";
-
 export interface Account {
     isNewUser: boolean
     providerId: string

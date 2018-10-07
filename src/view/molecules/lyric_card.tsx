@@ -10,6 +10,7 @@ export interface LyricCardProps {
 	lyric: string
 	singer: string
 	url: string
+	onClickLyric: () => void
 }
 
 @observer
@@ -17,7 +18,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	render(): JSX.Element {
 		return (
 			<div className={css(this.styles.container)}>
-				<p className={css(this.styles.lyric)}>
+				<p onClick={this.props.onClickLyric} className={css(this.styles.lyric)}>
 					{this.props.lyric}
 				</p>
 				<div className={css(this.styles.flexRow)}>

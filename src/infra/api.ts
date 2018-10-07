@@ -4,6 +4,7 @@ import * as interfaces from '../interfaces'
 
 export class APIClient {
   private axios: AxiosInstance
+  lyrics: interfaces.Lyric[] = []
 
   constructor() {
     this.axios = axios.create({
@@ -20,7 +21,11 @@ export class APIClient {
   }
 
   async fetchLyric(): Promise<interfaces.Lyric[]> {
+    if(this.lyrics.length > 0) {
+      return this.lyrics
+    }
     const res = await this.axios.get<interfaces.Lyric[]>('/lyric')
+    this.lyrics = res.data
     return res.data
   }
 
@@ -37,6 +42,25 @@ export class APIClient {
 
   async signin(id: string) {
     const res = await this.axios.get<interfaces.Account>(`/account/me?twitterId=${id}`)
+    return res.data
+  }
+
+  async fetchMyFavs(id: string) {
+    const res = await this.axios.get<interfaces.Fav[]>(`/account/favs?user_id=${id}`)
+    return res.data
+  }
+
+  async postFav(lyricId: string, userId: string) {
+    const params = {
+      lyricId: lyricId,
+      userId: userId,
+    }
+    const res = await this.axios.post<any>("/account/fav", params)
+    return res.data
+  }
+
+  async unFav(lyricId: string, userId: string) {
+    const res = await this.axios.delete(`/account/fav?lyricId=${lyricId}&userId=${userId}`)
     return res.data
   }
 

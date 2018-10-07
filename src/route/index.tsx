@@ -27,7 +27,8 @@ export default class AppRoute extends React.Component<IAppRouteProps, IAppRouteS
       <Router history={this.props.history}>
         <div>
           <Switch>
-            <Route path="/lyric" component={this.pf.LyricPage} />
+            <Route path="/lyrics" component={this.pf.LyricsPage} />
+            <Route path="/lyric/:id" component={this.pf.LyricPage} />
             <Route path="/signout" exact component={this.pf.SignoutPage} />
             <Route path="/favorites" exact component={this.pf.FavoritesPage} />
             <Route path="/" exact component={this.pf.HomePage} />

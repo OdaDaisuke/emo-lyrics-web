@@ -10,13 +10,11 @@ import { Button, BadgeButton } from '../atoms'
 import { MediaBreakPointUp } from '../styles'
 
 export interface ILyricCardList {
-  onLast: any
   lyrics: Lyric[] | null
   lyricIdx: number
   isAtFirst: boolean
   isAtLast: boolean
-  onClickNext: () => void
-  onClickPrev: () => void
+  onClickLyric: any
 }
 
 @observer
@@ -47,19 +45,6 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
 		return `https://twitter.com/intent/tweet?url=${configs.env.siteUrl}&text=「${lyric}」&hashtags=エモ詩&via=hinodeya_pon`
 	}  
 
-  @bind
-  handleNext() {
-    this.props.onClickNext()
-    if(this.props.isAtLast) {
-       this.props.onLast()
-    }
-  }
-
-  @bind
-  handlePrev() {
-    this.props.onClickPrev()
-  }
-
   get innerContainer() {
     if(!this.props.lyrics) {
       return null
@@ -68,39 +53,15 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
     return (
       <div className={css(this.styles.innerContainer)}>
         <LyricCard
+          onClickLyric={this.props.onClickLyric}
           title={curLyric.Title}
           lyric={curLyric.Lyric}
           singer={curLyric.Singer}
           url={curLyric.Url}
           key={curLyric.Lyric}
         />
-        <div className={css(this.styles.pagingBtnGroup)}>
-          {this.prevButton}
-          {this.nextButton}
-        </div>
       </div>
     )
-  }
-
-  get prevButton() {
-    if(!this.props.isAtFirst) {
-      return (
-        <Button
-          className={css(this.styles.prevButton)}
-          onClick={this.handlePrev}>{"戻る"}</Button>
-      )
-    }
-  }
-
-  get nextButton() {
-    if(!this.props.isAtLast) {
-      return (
-        <Button
-          enableNextArrow={true}
-          className={css(this.styles.nextButton)}
-          onClick={this.handleNext}>次の歌詞へ</Button>
-      )
-    }
   }
 
   get styles() {
@@ -114,23 +75,6 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
       innerContainer: {
         paddingRight: '2.5%',
         paddingLeft: '2.5%',
-      },
-      pagingBtnGroup: {
-        display: 'flex',
-        justifyContent: 'center',
-        marginRight: -10,
-        width: '100%',
-        [MediaBreakPointUp.SM]: {},
-      },
-      prevButton: {
-        backgroundImage: 'linear-gradient(-135deg, #B27D8F 0%, #7D5261 100%)',
-        boxShadow: '0 2px 10px -4px rgba(0,0,0,0.50)',
-        flex: '0 1 33.3%',
-        marginLeft: 0,
-        marginRight: 0,
-      },
-      nextButton: {
-        flex: '0 1 66.666%',
       },
       share: {
         textAlign: 'center',

@@ -1,5 +1,5 @@
 export interface Lyric {
-    Id: number
+    ID: number
     CreatedAt: string
     DeletedAt: string
     Lyric: string

@@ -259,18 +259,18 @@ export class HomeVM {
 	@bind
 	async signin() {
 		if(this.isAuthed) {
-			this.router.push('/lyric')
+			this.router.push('/lyrics')
 			return
 		}
 
 		const account = await this.accountService.signinWithTwitter()
-		this.router.push('/lyric')
+		this.router.push('/lyrics')
 		this.tracker.trackSignup(account)
 	}
 
 	@bind
 	onClickToTL() {
-		this.router.push('/lyric')
+		this.router.push('/lyrics')
 	}
 
 }

@@ -9,8 +9,8 @@ export class LyricService {
     this.apiClient = apiClient
   }
 
-  fetchLyric() {
-    return this.apiClient.fetchLyric()
+  async fetchLyric() {
+    return await this.apiClient.fetchLyric()
   }
 
   fetchNotFoundLyric() {

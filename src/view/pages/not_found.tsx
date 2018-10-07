@@ -2,6 +2,7 @@ import * as React from 'react'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { css, StyleSheet } from 'aphrodite'
+import { bind } from 'bind-decorator'
 import { MediaBreakPointUp } from '../styles'
 import { LyricCard } from '../molecules'
 import { FullWidthLayout } from '../layouts'
@@ -32,6 +33,7 @@ export class NotFoundPage extends React.Component<INotFoundPageProps, any> {
 
     return (
       <LyricCard
+        onClickLyric={this.props.vm.onClickLyric}
         title={this.props.vm.notFoundLyric.Title}
         lyric={this.props.vm.notFoundLyric.Lyric}
         singer={this.props.vm.notFoundLyric.Singer}
@@ -85,6 +87,9 @@ export class NotFoundPageVM {
     this.fetchNotFoundLyric()
   }
 
+  @bind
+  onClickLyric() {
+  }
 
   async fetchNotFoundLyric() {
     if(!this.lyricService) {
