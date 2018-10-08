@@ -14,8 +14,14 @@ export class RouteController {
         this.curLocation = history.location
         this.tracker = tracker
 
+        this.initialize()
+    }
+
+    initialize() {
         this.bindLocationEvents()
         this.handleRedirect()
+        this.accountService!.loadAccount()
+        this.accountService!.fetchMyFavs()
     }
 
     push(location: string) {

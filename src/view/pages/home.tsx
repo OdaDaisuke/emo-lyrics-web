@@ -215,7 +215,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				fontSize: 12,
 				fontWeight: 500,
 				letterSpacing: 1,
-				marginBottom: 0,
+				marginBottom: 5,
 			},
 			sectionWrap: {
 				paddingBottom: 20,

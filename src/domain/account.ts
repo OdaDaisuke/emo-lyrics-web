@@ -5,7 +5,7 @@ import { Account } from '../interfaces/account'
 export class AccountService {
   private apiClient: APIClient
   private storage: Storage
-  me: any
+  me: Account | null = null
 
   constructor(apiClient: APIClient, storage: Storage) {
     this.apiClient = apiClient
@@ -20,7 +20,8 @@ export class AccountService {
     if(!s) {
       return null
     }
-    return s.account
+    this.me = s.account
+    return this.me
   }
 
   signout() {
@@ -71,15 +72,24 @@ export class AccountService {
   }
 
   async fetchMyFavs() {
-    return await this.apiClient.fetchMyFavs(this.me.id)
+    if(!this.me) {
+      return null
+    }
+    return await this.apiClient.fetchMyFavs(this.me.twitterId)
   }
 
-  async postFav(lyricId: string, userId: string) {
-    return await this.apiClient.postFav(lyricId, userId)
+  async postFav(lyricId: number) {
+    if(!this.me) {
+      return null
+    }
+    return await this.apiClient.postFav(lyricId, this.me.twitterId)
   }
 
-  async unFav(lyricID: string, userId: string) {
-    return await this.apiClient.unFav(lyricID, userId)
+  async unFav(lyricID: number) {
+    if(!this.me) {
+      return null
+    }
+    return await this.apiClient.unFav(lyricID, this.me.twitterId)
   }
 
   get isAuthed(): boolean {

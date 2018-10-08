@@ -1,5 +1,5 @@
 
 export interface Fav {
-    id: string
-    lyricId: string
+    ID: string
+    LyricID: number
 }

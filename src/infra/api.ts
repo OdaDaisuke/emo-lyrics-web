@@ -5,6 +5,7 @@ import * as interfaces from '../interfaces'
 export class APIClient {
   private axios: AxiosInstance
   lyrics: interfaces.Lyric[] = []
+  myFavs: interfaces.Fav[] = []
 
   constructor() {
     this.axios = axios.create({
@@ -46,21 +47,29 @@ export class APIClient {
   }
 
   async fetchMyFavs(id: string) {
-    const res = await this.axios.get<interfaces.Fav[]>(`/account/favs?user_id=${id}`)
+    if(!this.myFavs) {
+      return null
+    }
+    const res = await this.axios.get<interfaces.Fav[]>(`/account/favs?userId=${id}`)
+    this.myFavs = res.data
     return res.data
   }
 
-  async postFav(lyricId: string, userId: string) {
-    const params = {
+  async postFav(lyricId: number, userId: string) {
+    const params = this.buildParams({
       lyricId: lyricId,
       userId: userId,
-    }
+    })
     const res = await this.axios.post<any>("/account/fav", params)
     return res.data
   }
 
-  async unFav(lyricId: string, userId: string) {
-    const res = await this.axios.delete(`/account/fav?lyricId=${lyricId}&userId=${userId}`)
+  async unFav(lyricId: number, userId: string) {
+    const params = this.buildParams({
+      lyricId: lyricId,
+      userId: userId,
+    })
+    const res = await this.axios.post(`/account/unfav`, params)
     return res.data
   }
 

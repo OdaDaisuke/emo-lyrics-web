@@ -4,12 +4,14 @@ import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { bind } from 'bind-decorator'
 import { LyricService, Tracker, AccountService } from '../../domain'
+import { FaTwitter } from 'react-icons/fa'
+import { BadgeButton } from '../atoms'
 import * as interfaces from '../../interfaces'
+import * as configs from '../../configs'
 import { LyricCardList } from '../organisms'
 import { PagingBtnGroup } from '../molecules'
 import { FullWidthLayout } from '../layouts'
 import { RouteController } from '../../route/controller'
-import { MediaBreakPointUp } from '../styles'
 
 export interface ILyricsPageProps {
   history: any
@@ -44,6 +46,9 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
       <div>
         <LyricCardList
           onClickLyric={this.props.vm.onClickLyric}
+          onClickFav={this.props.vm.onClickFav}
+          onClickUnfav={this.props.vm.onClickUnfav}
+          favs={this.props.vm.favs}
           lyrics={this.props.vm.lyrics}
           lyricIdx={this.props.vm.lyricIdx}
           isAtLast={this.props.vm.isAtLast}
@@ -55,6 +60,12 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
           onClickNext={this.onClickNext}
           onClickPrev={this.props.vm.onClickPrev}
         />
+        <div className={css(this.styles.share)}>
+          <h4 className={css(this.styles.blockCaption)}>気に入ったらシェア</h4>
+          <BadgeButton link={this.tweetLink} type="tweet">
+            <FaTwitter color="#fff" />
+          </BadgeButton>
+        </div>
       </div>
     )
   }
@@ -69,6 +80,18 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
     this.props.vm.onClickNext()
   }
 
+  get tweetLink() {
+		if(!this.props.vm.lyrics) {
+			return ""
+    }
+    const lyric = this.props.vm.lyrics[this.props.vm.lyricIdx]
+		let lyricLabel = lyric.Lyric.substr(0, 80)
+		if(lyricLabel.length > 80) {
+			lyricLabel += "..."
+		}
+		return `https://twitter.com/intent/tweet?url=${configs.env.siteUrl}&text=「${lyric}」&hashtags=エモ詩&via=hinodeya_pon`
+	}  
+
   get styles() {
     return StyleSheet.create({
       container: {
@@ -82,6 +105,17 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
         fontSize: '0.9em',
         letterSpacing: '1px',
         marginTop: '3em',
+      },
+      share: {
+        textAlign: 'center',
+      },
+      blockCaption: {
+        color: '#6f6f8f',
+        fontSize: 18,
+        fontWeight: 300,
+        letterSpacing: 2,
+        marginTop: 25,
+        marginBottom: 15,
       },
     })
   }
@@ -103,6 +137,9 @@ export class LyricsPageVM {
   @observable.ref
   lyrics: interfaces.Lyric[] | null = null
 
+  @observable.ref
+  favs: interfaces.Fav[] | null = null
+
   @observable
   isAtLast: boolean = false
 
@@ -114,8 +151,10 @@ export class LyricsPageVM {
     this.accountService = accountService
     this.tracker = tracker
     this.routeController = routeController
-    this.fetchLyrics()
     this.isAuthed = this.accountService.isAuthed
+
+    this.fetchFavs()
+    this.fetchLyrics()
   }
 
   async fetchLyrics() {
@@ -126,6 +165,13 @@ export class LyricsPageVM {
     this.lyrics = this.lyricService.shuffle(lyrics)
   }
 
+  async fetchFavs() {
+    if(!this.accountService) {
+      return null
+    }
+    this.favs = await this.accountService.fetchMyFavs()
+  }
+
   @bind
   onClickLyric() {
     //クリックしたらlyric_detailに飛ばす
@@ -134,6 +180,24 @@ export class LyricsPageVM {
     }
     const lyric = this.lyrics[this.lyricIdx]
     this.routeController.push(`/lyric/${lyric.ID}`)
+  }
+
+  @bind
+  onClickFav() {
+    if(!this.lyrics || !this.accountService) {
+      return null
+    }
+    const l = this.lyrics[this.lyricIdx]
+    this.accountService.postFav(l.ID)
+  }
+
+  @bind
+  onClickUnfav() {
+    if(!this.lyrics || !this.accountService) {
+      return null
+    }
+    const l = this.lyrics[this.lyricIdx]
+    this.accountService.unFav(l.ID)
   }
 
   onClickNext() {

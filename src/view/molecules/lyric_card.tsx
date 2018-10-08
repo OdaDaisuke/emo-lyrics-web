@@ -4,13 +4,18 @@ import { css, StyleSheet } from 'aphrodite'
 import { bind } from 'bind-decorator'
 import { FavoriteButton, PlayButton } from '../atoms'
 import { MediaBreakPointUp } from '../styles'
+import { Lyric, Fav } from '../../interfaces'
 
 export interface LyricCardProps {
 	title: string
 	lyric: string
 	singer: string
 	url: string
+	favs?: Fav[] | null
+	lyricObj: Lyric | null
 	onClickLyric: () => void
+	onClickFav: () => void
+	onClickUnfav: () => void
 }
 
 @observer
@@ -31,8 +36,8 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 						<span className={css(this.styles.singer)}>{this.props.singer}</span>
 					</div>
 					<FavoriteButton
-						favorited={false}
-						onClick={this.onClickFav}
+						favorited={this.favorited}
+						onClick={this.onClickFavButton}
 					/>
 				</div>
 			</div>
@@ -40,7 +45,25 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 	}
 
 	@bind
-	onClickFav() {
+	onClickFavButton() {
+		if(this.favorited) {
+			this.props.onClickUnfav()
+			return
+		}
+		this.props.onClickFav()
+	}
+
+	get favorited() {
+		if(!this.props.favs) {
+			return false
+		}
+		let favorited = false
+		this.props.favs.map((fav: Fav) => {
+			if(fav.LyricID == this.props.lyricObj!.ID) {
+				favorited = true
+			}
+		})
+		return favorited
 	}
 
 	get styles() {

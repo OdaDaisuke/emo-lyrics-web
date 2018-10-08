@@ -12,7 +12,7 @@ interface IPagingBtnGroupProps {
 
 export const PagingBtnGroup = (props: IPagingBtnGroupProps) => {
     return (
-        <div>
+        <div className={css(styles.container)}>
             <PrevButton isAtFirst={props.isAtFirst} onClickPrev={props.onClickPrev} />
             <NextButton isAtLast={props.isAtLast} onClickNext={props.onClickNext} />
         </div>
@@ -51,21 +51,23 @@ const NextButton = (props: INextButtonProps) => {
 }
 
 const styles = StyleSheet.create({
-    pagingBtnGroup: {
+    container: {
+        boxSizing: 'border-box',
         display: 'flex',
         justifyContent: 'center',
-        marginRight: -10,
+        paddingRight: '2.5%',
+        paddingLeft: '2.5%',
         width: '100%',
         [MediaBreakPointUp.SM]: {},
-      },
-      prevButton: {
+    },
+    prevButton: {
         backgroundImage: 'linear-gradient(-135deg, #B27D8F 0%, #7D5261 100%)',
         boxShadow: '0 2px 10px -4px rgba(0,0,0,0.50)',
         flex: '0 1 33.3%',
-        marginLeft: 0,
-        marginRight: 0,
-      },
-      nextButton: {
+        marginRight: 5,
+    },
+    nextButton: {
         flex: '0 1 66.666%',
-      },
+        marginLeft: 5,
+    },
 })

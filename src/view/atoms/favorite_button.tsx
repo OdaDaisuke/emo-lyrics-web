@@ -3,25 +3,29 @@ import { StyleSheet, css } from 'aphrodite'
 import { FaStar } from 'react-icons/fa'
 
 interface IFavoriteButtonProps {
-    onClick: any
+    onClick: () => void
     className?: string
     favorited: boolean
 }
 
 export const FavoriteButton = (props: IFavoriteButtonProps) => {
     const styles = StyleSheet.create({
-        link: {
-            color: (props.favorited) ? "#fff" : "#feace2",
+        icon: {
+            color: "#eeace2",
             flex: '0 1 auto',
             fontSize: '1.62em',
             marginRight: 15,
             textAlign: 'center',
             textDecoration: 'none',
         },
+        favoitedIcon: {
+            color: '#fff',
+        },
     })
 
     const className = [
-        css(styles.link),
+        css(styles.icon),
+        props.favorited && css(styles.favoitedIcon),
         props.className || "",
     ].join(" ")
 
