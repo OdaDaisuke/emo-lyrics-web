@@ -4,6 +4,7 @@ import { Header } from '../organisms/'
 
 interface IFullWidthLayoutProps {
     className?: string
+    innerContainerClassName?: string
     transparentHeader?: boolean
     isAuthed: boolean
 }
@@ -16,7 +17,7 @@ export class FullWidthLayout extends React.Component<IFullWidthLayoutProps, any>
                     isAuthed={this.props.isAuthed}
                     isTransparent={this.props.transparentHeader}
                 />
-                <div className={css(this.styles.innerContainer)}>
+                <div className={this.innerContainerClass}>
                     {this.props.children}
                 </div>
             </div>
@@ -27,6 +28,13 @@ export class FullWidthLayout extends React.Component<IFullWidthLayoutProps, any>
         return [
             css(this.styles.container),
             this.props.className || ""
+        ].join(" ")
+    }
+
+    get innerContainerClass() {
+        return [
+            css(this.styles.innerContainer),
+            this.props.innerContainerClassName || ""
         ].join(" ")
     }
 

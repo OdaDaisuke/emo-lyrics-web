@@ -5,8 +5,7 @@ import { observer } from 'mobx-react'
 import { bind } from 'bind-decorator'
 import { LyricService, Tracker, AccountService } from '../../domain'
 import * as interfaces from '../../interfaces'
-import { LyricCardList } from '../organisms'
-import { PagingBtnGroup } from '../molecules'
+import { PlayButton, FavoriteButton } from '../atoms'
 import { FullWidthLayout } from '../layouts'
 import { RouteController } from '../../route/controller'
 
@@ -19,7 +18,11 @@ export interface ILyricPageProps {
 export class LyricPage extends React.Component<ILyricPageProps, any> {
   render(): JSX.Element {
     return (
-      <FullWidthLayout isAuthed={this.props.vm.isAuthed}>
+      <FullWidthLayout
+        className={css(this.styles.container)}
+        innerContainerClassName={css(this.styles.innerContainer)}
+        isAuthed={this.props.vm.isAuthed}
+      >
         {this.mainContent}
       </FullWidthLayout>
     )
@@ -34,7 +37,26 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
 
     return (
       <div>
-        {this.props.vm.lyric.Lyric}
+        <p className={css(this.styles.lyricLabel)}>{this.props.vm.lyric.Lyric}</p>
+        <div className={css(this.styles.lyricDetail)}>
+          <span className={css(this.styles.title)}>{this.props.vm.lyric.Title}</span>
+          <span className={css(this.styles.singer)}>{this.props.vm.lyric.Singer}</span>
+        </div>
+        <div className={css(this.styles.opBtnGroup)}>
+          <span
+            className={css(this.styles.backLabel)}
+            onClick={this.props.vm.onClickBackPage
+          }>{"< 戻る"}</span>
+          <PlayButton
+            className={css(this.styles.playButton)}
+            link={this.props.vm.lyric.Url}
+          />
+          <FavoriteButton
+            className={css(this.styles.favButton)}
+            onClick={this.props.vm.onClickFavButton}
+            favorited={this.props.vm.favorited}
+          />
+        </div>
       </div>
     )
   }
@@ -42,13 +64,67 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
   get styles() {
     return StyleSheet.create({
       container: {
+        backgroundColor: '#2F2F41',
+        minHeight: '97vh',
       	position: 'relative',
       },
+      innerContainer: {
+        alignContent: 'center',
+        alignItems: 'center',
+        color: '#fff',
+        display: 'flex',
+        height: '97vh',
+        justifyContent: 'center',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        width: '87%',
+      },
       emptyStatusLabel: {
-        color: '#5f5f5f',
+        color: '#fff',
         fontSize: '0.9em',
         letterSpacing: '1px',
         marginTop: '3em',
+      },
+      lyricLabel: {
+        fontSize: '1.25em',
+        fontWeight: 200,
+        letterSpacing: 2,
+        lineHeight: 2,
+        marginTop: '-15vh',
+      },
+      lyricDetail: {
+        marginBottom: 30,
+        textAlign: 'center',
+      },
+      title: {
+        display: 'block',
+        fontSize: '0.9em',
+        fontWeight: 600,
+        letterSpacing: 2,
+        lineHeight: 1.65,
+        marginBottom: 10,
+      },
+      singer: {
+        display: 'block',
+        fontSize: '0.9em',
+        fontWeight: 200,
+        letterSpacing: 2,
+      },
+      opBtnGroup: {
+        alignContent: 'center',
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+      },
+      backLabel: {
+        fontSize: '0.9em',
+        letterSpacing: 2,
+      },
+      playButton: {
+        marginLeft: 28,
+      },
+      favButton: {
+        marginLeft: 24,
       },
     })
   }
@@ -70,6 +146,9 @@ export class LyricPageVM {
   @observable
   lyric: interfaces.Lyric | null = null
 
+  @observable.ref
+  favs: interfaces.Fav[] | null = null
+
   @observable
   isAtLast: boolean = false
 
@@ -89,6 +168,7 @@ export class LyricPageVM {
     this.routeController = routeController
     this.lyricId = lyricId
     this.loadLyric()
+    this.loadFavs()
     this.isAuthed = this.accountService.isAuthed
   }
 
@@ -102,5 +182,47 @@ export class LyricPageVM {
     })
     this.lyric = lyric[0]
   }
+
+  async loadFavs() {
+    if(!this.accountService) {
+      return
+    }
+    this.favs = await this.accountService.fetchMyFavs()
+  }
+
+  @bind
+  onClickBackPage() {
+    this.routeController.backPage()
+  }
+
+	@bind
+	onClickFavButton() {
+    if(!this.accountService) {
+      return null
+    }
+    if(!this.lyric) {
+      return null
+    }
+
+    if(this.favorited) {
+      this.accountService.unFav(this.lyric.ID)
+			return null
+		}
+    this.accountService.postFav(this.lyric.ID)
+	}
+
+	get favorited() {
+		if(!this.favs) { return false }
+    if(!this.lyric) { return false }
+    const lyric = this.lyric
+
+    let favorited = false
+		this.favs.map((fav: interfaces.Fav) => {
+			if(fav.LyricID == lyric.ID) {
+				favorited = true
+			}
+		})
+		return favorited
+	}
 
 }

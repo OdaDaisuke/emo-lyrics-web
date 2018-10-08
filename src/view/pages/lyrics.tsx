@@ -63,7 +63,7 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
         <div className={css(this.styles.share)}>
           <h4 className={css(this.styles.blockCaption)}>気に入ったらシェア</h4>
           <BadgeButton link={this.tweetLink} type="tweet">
-            <FaTwitter color="#fff" />
+            <FaTwitter size={18} color="#fff" />
           </BadgeButton>
         </div>
       </div>
@@ -107,11 +107,12 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
         marginTop: '3em',
       },
       share: {
+        marginTop: 40,
         textAlign: 'center',
       },
       blockCaption: {
         color: '#6f6f8f',
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 300,
         letterSpacing: 2,
         marginTop: 25,

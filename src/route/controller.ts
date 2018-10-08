@@ -29,6 +29,10 @@ export class RouteController {
         this.tracker!.trackPageView()
     }
 
+    backPage() {
+        this.history.goBack()
+    }
+
     onLocationChanged(location: any) {
         this.curLocation = location
         this.handleRedirect()

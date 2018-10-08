@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite'
 import { FaStar } from 'react-icons/fa'
 
 interface IFavoriteButtonProps {
-    onClick: () => void
+    onClick: () => any
     className?: string
     favorited: boolean
 }
@@ -19,7 +19,7 @@ export const FavoriteButton = (props: IFavoriteButtonProps) => {
             textDecoration: 'none',
         },
         favoitedIcon: {
-            color: '#fff',
+            color: '#F8E71C',
         },
     })
 

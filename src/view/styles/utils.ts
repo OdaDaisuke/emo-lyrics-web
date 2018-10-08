@@ -2,7 +2,7 @@ import { MediaBreakPointUp } from './breakpoints'
 
 const buttonBaseStyle = {
     backgroundImage: 'linear-gradient(135deg, #ef5489, #f7417f, #c11c54) !important',
-    fontSize: '1.15em',
+    fontSize: '1.05em',
     marginRight: 'auto',
     marginLeft: 'auto',
     borderRadius: 4,
