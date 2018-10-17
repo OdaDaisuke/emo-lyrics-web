@@ -72,7 +72,12 @@ export class PageFactory {
 
   @bind
   FavoritesPage(): JSX.Element {
-    const vm = new FavoritesPageVM(this.domainFactory.lyricService)
+    const vm = new FavoritesPageVM(
+      this.domainFactory.accountService,
+      this.domainFactory.lyricService,
+      this.domainFactory.tracker,
+      this.domainFactory.router,
+    )
     return (
       <FavoritesPage vm={vm} />
     )

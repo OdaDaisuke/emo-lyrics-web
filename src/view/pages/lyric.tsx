@@ -23,6 +23,12 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
         innerContainerClassName={css(this.styles.innerContainer)}
         isAuthed={this.props.vm.isAuthed}
       >
+        <div className={css(this.styles.stardustTopRight)}>
+          <img src="/assets/images/stardust_top_right.svg" className={css(this.styles.stardustTopRightImg)} />
+        </div>
+        <div className={css(this.styles.stardustBottomLeft)}>
+          <img src="/assets/images/stardust_bottom_left.svg" className={css(this.styles.stardustBottomLeftImg)} />
+        </div>
         {this.mainContent}
       </FullWidthLayout>
     )
@@ -126,6 +132,22 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
       favButton: {
         marginLeft: 24,
       },
+      stardustBottomLeft: {
+				bottom: -4,
+				left: 0,
+				position: 'absolute',
+			},
+			stardustBottomLeftImg: {
+				width: 150,
+			},
+			stardustTopRight: {
+				position: 'absolute',
+				right: 0,
+				top: 0,
+			},
+			stardustTopRightImg: {
+				width: 150,
+			},
     })
   }
 
@@ -148,12 +170,6 @@ export class LyricPageVM {
 
   @observable.ref
   favs: interfaces.Fav[] | null = null
-
-  @observable
-  isAtLast: boolean = false
-
-  @observable
-  isAtFirst: boolean = true
 
   constructor(
     lyricService: LyricService,

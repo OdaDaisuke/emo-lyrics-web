@@ -64,11 +64,6 @@ export class AccountService {
         this.apiClient.signin(this.me.twitterId)
       }
  
-      // }).catch((error) => {
-      //   console.error(error)
-      //   alert("ログイン中にエラーが発生しました。")
-      // })
-
   }
 
   async fetchMyFavs() {
