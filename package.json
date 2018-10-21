@@ -26,6 +26,7 @@
     "browser-sync": "^2.24.4",
     "browser-sync-webpack-plugin": "^2.2.2",
     "firebase": "^5.5.1",
+    "memoizee": "^0.4.14",
     "mobx": "^4.1.0",
     "puppeteer": "^1.2.0",
     "react": "^16.2.0",
@@ -44,6 +45,7 @@
     "webpack-dev-server": "^3.1.1"
   },
   "devDependencies": {
+    "@types/memoizee": "^0.4.2",
     "@types/react-icons": "^2.2.6",
     "@types/webpack-env": "1.13.5",
     "bind-decorator": "^1.0.11",

@@ -9,13 +9,11 @@ import {
   SignoutPage, SignoutPageVM,
   FavoritesPage, FavoritesPageVM,
 } from './'
+import { Memoize } from '../../utils'
 
 export class PageFactory {
   private domainFactory: DomainFactory
   private history: any
-
-  private lyricsPageVM: LyricsPageVM | null = null
-  private lyricPageVM: LyricPageVM | null = null
 
   constructor(domainFactory: DomainFactory, history: any) {
     this.domainFactory = domainFactory
@@ -36,83 +34,75 @@ export class PageFactory {
 
   @bind
   LyricsPage(): JSX.Element {
-    const tmpVM = new LyricsPageVM(
+    const vm = this.LyricsPageVM()
+    return (<LyricsPage vm={vm} history={this.history} />)
+  }
+
+  @bind
+  LyricPage(props: any): JSX.Element {
+    const vm = this.LyricPageVM(props.match.params.id)
+    return (<LyricPage vm={vm} history={this.history} />)
+  }
+
+  @bind
+  FavoritesPage(): JSX.Element {
+    const vm = this.FavoritesPageVM()
+    return (<FavoritesPage vm={vm} />)
+  }
+
+  @bind
+  SignoutPage(): JSX.Element {
+    const vm = this.SignoutPageVM()
+    return (<SignoutPage vm={vm} />)
+  }
+
+  @bind
+  NotFoundPage(): JSX.Element {
+    const vm = this.NotFoundPageVM()
+    return (<NotFoundPage vm={vm} />)
+  }
+
+  /*------ ViewModels ------*/
+
+  @Memoize
+  private LyricsPageVM() {
+    return new LyricsPageVM(
       this.domainFactory.lyricService,
       this.domainFactory.accountService,
       this.domainFactory.tracker,
       this.domainFactory.router
     )
-    const vm = this.cachedLyricsVM(tmpVM) as LyricsPageVM
-    return (
-      <LyricsPage
-        vm={vm}
-      	history={this.history}
-      />
-    )
   }
 
-  @bind
-  LyricPage(props: any): JSX.Element {
-    const lyricId = props.match.params.id
-    const tmpVM = new LyricPageVM(
+  @Memoize
+  private LyricPageVM(lyricId: number) {
+    return new LyricPageVM(
       this.domainFactory.lyricService,
       this.domainFactory.accountService,
       this.domainFactory.tracker,
       this.domainFactory.router,
       lyricId,
     )
-    const vm = this.cachedLyricVM(tmpVM)
-    return (
-      <LyricPage
-        vm={vm}
-      	history={this.history}
-      />
-    )
   }
 
-  @bind
-  FavoritesPage(): JSX.Element {
-    const vm = new FavoritesPageVM(
+  @Memoize
+  private FavoritesPageVM() {
+    return new FavoritesPageVM(
       this.domainFactory.accountService,
       this.domainFactory.lyricService,
       this.domainFactory.tracker,
       this.domainFactory.router,
     )
-    return (
-      <FavoritesPage vm={vm} />
-    )
   }
 
-  @bind
-  SignoutPage(): JSX.Element {
-    const vm = new SignoutPageVM(this.domainFactory.accountService, this.domainFactory.router)
-    return (
-      <SignoutPage vm={vm} />
-    )
+  @Memoize
+  private NotFoundPageVM() {
+    return new NotFoundPageVM(this.domainFactory.lyricService)
   }
 
-  @bind
-  NotFoundPage(): JSX.Element {
-    const vm = new NotFoundPageVM(this.domainFactory.lyricService)
-    return (
-      <NotFoundPage vm={vm} />
-    )
-  }
-
-  private cachedLyricsVM(vm: LyricsPageVM) {
-    if(this.lyricsPageVM) {
-      return this.lyricPageVM
-    }
-    this.lyricsPageVM = vm
-    return this.lyricsPageVM
-  }
-
-  private cachedLyricVM(vm: LyricPageVM) {
-    if(this.lyricPageVM) {
-      return this.lyricPageVM
-    }
-    this.lyricPageVM = vm
-    return this.lyricPageVM
+  @Memoize
+  private SignoutPageVM() {
+    return new SignoutPageVM(this.domainFactory.accountService, this.domainFactory.router)
   }
 
 }
