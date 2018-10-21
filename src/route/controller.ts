@@ -18,6 +18,8 @@ export class RouteController {
     }
 
     initialize() {
+        this.tracker!.trackPageView()
+
         this.bindLocationEvents()
         this.handleRedirect()
         this.accountService!.loadAccount()
@@ -26,7 +28,6 @@ export class RouteController {
 
     push(location: string) {
         this.history.push(location)
-        this.tracker!.trackPageView()
     }
 
     backPage() {
@@ -35,6 +36,7 @@ export class RouteController {
 
     onLocationChanged(location: any) {
         this.curLocation = location
+        this.tracker!.trackPageView()
         this.handleRedirect()
     }
 
