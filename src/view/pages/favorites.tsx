@@ -5,9 +5,9 @@ import { observer } from 'mobx-react'
 import { bind } from 'bind-decorator'
 import { LyricService, Tracker, AccountService } from '../../domain'
 import * as interfaces from '../../interfaces'
-import { PlayButton, FavoriteButton } from '../atoms'
 import { FullWidthLayout } from '../layouts'
 import { RouteController } from '../../route/controller'
+import { LyricCard } from '../molecules';
 
 export interface IFavoritesPageProps {
   vm: FavoritesPageVM
@@ -22,22 +22,28 @@ export class FavoritesPage extends React.Component<IFavoritesPageProps, any> {
         innerContainerClassName={css(this.styles.innerContainer)}
         isAuthed={this.props.vm.isAuthed}
       >
-        {this.mainContent}
+        {this.renderMmain}
       </FullWidthLayout>
     )
   }
 
-  get mainContent() {
+  get renderMmain() {
     if(!this.props.vm.favs) {
       return (
         <p className={css(this.styles.emptyStatusLabel)}>お気に入りが取得できませんでした。</p>
       )
     }
 
-    return (
-      <div>
-      </div>
-    )
+    return this.renderLyrics
+  }
+
+  get renderLyrics() {
+    if(!this.props.vm.favs) {
+      return
+    }
+    return this.props.vm.favs.map((fav, idx) => {
+      return <span key={idx}>{fav.LyricID}</span>
+    })
   }
 
   get styles() {
@@ -48,12 +54,7 @@ export class FavoritesPage extends React.Component<IFavoritesPageProps, any> {
       	position: 'relative',
       },
       innerContainer: {
-        alignContent: 'center',
-        alignItems: 'center',
         color: '#fff',
-        display: 'flex',
-        height: '97vh',
-        justifyContent: 'center',
         marginRight: 'auto',
         marginLeft: 'auto',
         width: '87%',
@@ -63,47 +64,6 @@ export class FavoritesPage extends React.Component<IFavoritesPageProps, any> {
         fontSize: '0.9em',
         letterSpacing: '1px',
         marginTop: '3em',
-      },
-      lyricLabel: {
-        fontSize: '1.25em',
-        fontWeight: 200,
-        letterSpacing: 2,
-        lineHeight: 2,
-        marginTop: '-15vh',
-      },
-      lyricDetail: {
-        marginBottom: 30,
-        textAlign: 'center',
-      },
-      title: {
-        display: 'block',
-        fontSize: '0.9em',
-        fontWeight: 600,
-        letterSpacing: 2,
-        lineHeight: 1.65,
-        marginBottom: 10,
-      },
-      singer: {
-        display: 'block',
-        fontSize: '0.9em',
-        fontWeight: 200,
-        letterSpacing: 2,
-      },
-      opBtnGroup: {
-        alignContent: 'center',
-        alignItems: 'center',
-        display: 'flex',
-        justifyContent: 'center',
-      },
-      backLabel: {
-        fontSize: '0.9em',
-        letterSpacing: 2,
-      },
-      playButton: {
-        marginLeft: 28,
-      },
-      favButton: {
-        marginLeft: 24,
       },
     })
   }
@@ -135,8 +95,9 @@ export class FavoritesPageVM {
     this.accountService = accountService
     this.tracker = tracker
     this.routeController = routeController
-    this.loadFavs()
+
     this.isAuthed = this.accountService.isAuthed
+    this.loadFavs()
   }
 
   async loadFavs() {
@@ -146,21 +107,8 @@ export class FavoritesPageVM {
     this.favs = await this.accountService.fetchMyFavs()
   }
 
-  @bind
-  onClickBackPage() {
-    this.routeController.backPage()
+	@bind
+	onClickLyric() {
   }
 
-	@bind
-	onClickFavButton() {
-    if(!this.accountService) {
-      return null
-    }
-    if(!this.favs) {
-      return null
-    }
-
-    const curFav = this.favs[this.favIdx].LyricID
-    this.accountService.unFav(curFav)
-	}
 }

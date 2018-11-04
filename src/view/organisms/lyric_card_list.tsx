@@ -37,11 +37,7 @@ export class LyricCardList extends React.Component<ILyricCardList, any> {
           onClickFav={this.props.onClickFav}
           onClickUnfav={this.props.onClickUnfav}
           favs={this.props.favs}
-          lyricObj={curLyric}
-          title={curLyric.Title}
-          lyric={curLyric.Lyric}
-          singer={curLyric.Singer}
-          url={curLyric.Url}
+          lyric={curLyric}
           key={curLyric.Lyric}
         />
       </div>

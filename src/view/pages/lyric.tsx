@@ -49,18 +49,20 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
           <span className={css(this.styles.singer)}>{this.props.vm.lyric.Singer}</span>
         </div>
         <div className={css(this.styles.opBtnGroup)}>
+          <FavoriteButton
+              className={css(this.styles.favButton)}
+              onClick={this.props.vm.onClickFavButton}
+              favorited={this.props.vm.favorited}
+            />
+        </div>
+        <div className={css(this.styles.opBtnGroup)}>
           <span
             className={css(this.styles.backLabel)}
             onClick={this.props.vm.onClickBackPage
-          }>{"< 戻る"}</span>
+          }>{"< 一覧へ"}</span>
           <PlayButton
             className={css(this.styles.playButton)}
             link={this.props.vm.lyric.Url}
-          />
-          <FavoriteButton
-            className={css(this.styles.favButton)}
-            onClick={this.props.vm.onClickFavButton}
-            favorited={this.props.vm.favorited}
           />
         </div>
       </div>
@@ -121,13 +123,14 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
         alignItems: 'center',
         display: 'flex',
         justifyContent: 'center',
+        marginBottom: 8,
       },
       backLabel: {
         fontSize: '0.9em',
         letterSpacing: 2,
       },
       playButton: {
-        marginLeft: 28,
+        marginLeft: 20,
       },
       favButton: {
         marginLeft: 24,

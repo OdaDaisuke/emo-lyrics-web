@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { bind } from 'bind-decorator'
 import { css, StyleSheet } from 'aphrodite'
-import { utils } from '../styles'
+import { MediaBreakPointUp } from '../styles'
 
 export interface IButtonProps {
   onClick?: (event: React.FormEvent<any>) => void,
@@ -43,7 +43,33 @@ export class Button extends React.Component<IButtonProps, any> {
 
     get styles() {
         return StyleSheet.create({
-            button: utils.button,
+            button: {
+                backgroundImage: 'linear-gradient(135deg, #ef5489, #f7417f, #c11c54)',
+                borderRadius: 4,
+                boxShadow: '0 2px 15px -3px #3f3f3f',
+                fontSize: '1.05em',
+                marginRight: 'auto',
+                marginLeft: 'auto',
+                position: 'relative',
+                borderWidth: 0,
+                color: '#fff',
+                cursor: 'pointer',
+                display: 'block',
+                fontWeight: 'bold',
+                letterSpacing: 2,
+                outline: 'none',
+                padding: '14px 38px',
+                textDecoration: 'none',
+                transition: 'all 0.2s',
+                willChange: 'transform',
+                ':hover': {
+                    opacity: 0.8,
+                },
+                [MediaBreakPointUp.SM]: {
+                  fontSize: '1.08em',
+                  padding: '16px 48px 18px',
+                },
+            },
             signinButton: {
                 backgroundColor: '#4F9DF7',
                 backgroundImage: 'linear-gradient(90deg, #7CB9FF 0%, #3A9CF9 53%, #56E5FF 100%) !important',

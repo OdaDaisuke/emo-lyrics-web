@@ -5,7 +5,7 @@ import * as interfaces from '../interfaces'
 export class APIClient {
   private axios: AxiosInstance
   lyrics: interfaces.Lyric[] = []
-  myFavs: interfaces.Fav[] = []
+  myFavs: interfaces.Fav[] | null = null
 
   constructor() {
     this.axios = axios.create({
@@ -47,8 +47,8 @@ export class APIClient {
   }
 
   async fetchMyFavs(id: string) {
-    if(!this.myFavs) {
-      return null
+    if(this.myFavs) {
+      return this.myFavs
     }
     const res = await this.axios.get<interfaces.Fav[]>(`/account/favs?userId=${id}`)
     this.myFavs = res.data

@@ -2,8 +2,8 @@ import * as memoizee from "memoizee"
 
 // Memoize デコレータ
 export const Memoize: MethodDecorator = <T>(
-    _target: any,
-    _propertyKey: string,
+    _target: Object,
+    _propertyKey: string | symbol,
     descriptor: TypedPropertyDescriptor<T>,
 ): TypedPropertyDescriptor<T> => {
     if (descriptor.value) {

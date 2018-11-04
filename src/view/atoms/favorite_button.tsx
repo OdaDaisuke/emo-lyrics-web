@@ -10,31 +10,43 @@ interface IFavoriteButtonProps {
 
 export const FavoriteButton = (props: IFavoriteButtonProps) => {
     const styles = StyleSheet.create({
-        icon: {
-            color: "#eeace2",
-            flex: '0 1 auto',
-            fontSize: '1.62em',
+        container: {
+            border: "1px solid #fff",
+            borderRadius: 4,
+            color: "#fff",
+            display: 'inline-block',
+            fontSize: '0.78em',
             marginRight: 15,
+            marginBottom: 7,
+            padding: '4px 18px',
             textAlign: 'center',
             textDecoration: 'none',
         },
         favoitedIcon: {
-            color: '#F8E71C',
         },
     })
 
+    let label = "お気に入りにする"
+    if(props.favorited) {
+        label = "お気に入りを解除"
+    }
+
     const className = [
-        css(styles.icon),
+        css(styles.container),
         props.favorited && css(styles.favoitedIcon),
         props.className || "",
     ].join(" ")
 
+    const onClick = () => {
+        props.onClick()
+    }
+
     return (
         <div
-            onClick={props.onClick}
+            onClick={onClick}
             className={className}
         >
-            <FaStar />
+            <FaStar /> {label}
         </div>
     )
 }

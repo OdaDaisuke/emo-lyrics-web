@@ -102,20 +102,24 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
       },
       emptyStatusLabel: {
         color: '#5f5f5f',
+        display: 'block',
         fontSize: '0.9em',
         letterSpacing: '1px',
         marginTop: '3em',
+        textAlign: 'center',
       },
       share: {
+        backgroundColor: '#3d3d50',
         marginTop: 40,
+        padding: '20px 0',
         textAlign: 'center',
       },
       blockCaption: {
-        color: '#6f6f8f',
-        fontSize: 16,
+        color: '#fff',
+        fontSize: 14,
         fontWeight: 300,
         letterSpacing: 2,
-        marginTop: 25,
+        marginTop: 0,
         marginBottom: 15,
       },
     })
@@ -147,7 +151,12 @@ export class LyricsPageVM {
   @observable
   isAtFirst: boolean = true
 
-  constructor(lyricService: LyricService, accountService: AccountService, tracker: Tracker, routeController: RouteController) {
+  constructor(
+    lyricService: LyricService,
+    accountService: AccountService,
+    tracker: Tracker,
+    routeController: RouteController
+  ) {
     this.lyricService = lyricService
     this.accountService = accountService
     this.tracker = tracker
@@ -190,6 +199,12 @@ export class LyricsPageVM {
     }
     const l = this.lyrics[this.lyricIdx]
     this.accountService.postFav(l.ID)
+
+    this.favs!.push({
+      ID: "",
+      LyricID: l.ID,
+    })
+
   }
 
   @bind
@@ -199,6 +214,12 @@ export class LyricsPageVM {
     }
     const l = this.lyrics[this.lyricIdx]
     this.accountService.unFav(l.ID)
+
+    this.favs!.map((fav, idx) => {
+      if(fav.LyricID === l.ID) {
+        this.favs!.slice(idx, 1)
+      }
+    })
   }
 
   onClickNext() {

@@ -36,11 +36,7 @@ export class NotFoundPage extends React.Component<INotFoundPageProps, any> {
         onClickLyric={this.props.vm.onClickLyric}
         onClickFav={this.props.vm.onClickFav}
         onClickUnfav={this.props.vm.onClickUnfav}
-        lyricObj={this.props.vm.notFoundLyric}
-        title={this.props.vm.notFoundLyric.Title}
-        lyric={this.props.vm.notFoundLyric.Lyric}
-        singer={this.props.vm.notFoundLyric.Singer}
-        url={this.props.vm.notFoundLyric.Url}
+        lyric={this.props.vm.notFoundLyric}
       />
     )
   }

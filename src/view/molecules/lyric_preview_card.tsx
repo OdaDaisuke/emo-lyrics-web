@@ -65,14 +65,13 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
     get styles() {
         return StyleSheet.create({
             container: {
-                backgroundColor: '#fff',
-                backgroundImage: 'linear-gradient(-135deg, #F24E86 0%, #D42360 100%)',
-                borderRadius: '3px',
+                border: '1px solid #fff',
+                borderRadius: 2,
                 boxShadow: '0 2px 20px -10px rgba(0,0,0,0.50)',
                 boxSizing: 'border-box',
                 flex: '1 0 265px',
                 marginRight: 10,
-                padding: '0.75em 1.17em 1.5em 1.32em',
+                padding: '0.66em 1.28em 0.72em 1em',
                 textAlign: 'left',
                 width: '270px',
                 ':first-child': {
@@ -101,7 +100,6 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 alignContent: 'center',
                 alignItems: 'center',
                 backgroundColor: '#fff',
-                backgroundImage: 'linear-gradient(#fff, #fff)',
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
@@ -120,7 +118,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 fontWeight: 400,
                 letterSpacing: '1px',
                 lineHeight: '2.05',
-                marginTop: 8,
+                marginTop: 0,
                 marginBottom: 15,
                 [MediaBreakPointUp.SM]: {
                     fontSize: '14px',

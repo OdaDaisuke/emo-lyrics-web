@@ -19,6 +19,10 @@ export const PagingBtnGroup = (props: IPagingBtnGroupProps) => {
     )
 }
 
+/*----------------
+Child components
+------------------*/
+
 interface IPrevButtonProps {
     isAtFirst: boolean
     onClickPrev: () => void
@@ -30,7 +34,8 @@ const PrevButton = (props: IPrevButtonProps) => {
     return (
         <Button
             className={css(styles.prevButton)}
-            onClick={props.onClickPrev}>{"戻る"}</Button>
+            onClick={props.onClickPrev}
+        >{"戻る"}</Button>
     )
 }
 
@@ -44,9 +49,10 @@ const NextButton = (props: INextButtonProps) => {
     }
     return (
         <Button
-            enableNextArrow={true}
+            enableNextArrow
             className={css(styles.nextButton)}
-            onClick={props.onClickNext}>次の歌詞へ</Button>
+            onClick={props.onClickNext}
+        >次の歌詞へ</Button>
     )
 }
 
@@ -64,10 +70,9 @@ const styles = StyleSheet.create({
         backgroundImage: 'linear-gradient(-135deg, #B27D8F 0%, #7D5261 100%)',
         boxShadow: '0 2px 10px -4px rgba(0,0,0,0.50)',
         flex: '0 1 33.3%',
-        marginRight: 5,
+        marginRight: 10,
     },
     nextButton: {
         flex: '0 1 66.666%',
-        marginLeft: 5,
     },
 })

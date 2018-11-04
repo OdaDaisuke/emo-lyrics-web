@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { bind } from 'bind-decorator'
 import { css, StyleSheet } from 'aphrodite'
-import FaTwitter from 'react-icons/lib/fa/twitter'
-import { utils } from '../styles'
 
 export interface IBadgeButtonProps {
   onClick?: (event: React.FormEvent<any>) => void,
@@ -44,9 +42,21 @@ export class BadgeButton extends React.Component<IBadgeButtonProps, any> {
 
     get styles() {
         return StyleSheet.create({
-            tweetButton: Object.assign({},utils.tweetButton, {
+            tweetButton: {
+                backgroundColor: '#2196f3',
+                backgroundImage: '#2196f3',
+                borderRadius: 4,
+                color: '#fff',
+                fontSize: '0.87rem',
+                letterSpacing: 1,
+                margin: 2,
+                padding: '14px 45px 12px',
+                ':hover': {
+                    backgroundColor: '#2196f3',
+                    color: '#ffffff',
+                },
                 display: 'inline-block',
-            })
+            },
         })
     }
 

@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
-import { LoginButton } from '../molecules'
 import { bind } from 'bind-decorator'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
@@ -21,7 +20,7 @@ export class Home extends React.Component<IHomeProps, any> {
     render(): JSX.Element {
 
         return (
-			<div>
+			<>
 				<FullWidthLayout
 					className={css(this.styles.container)}
 					transparentHeader={true}
@@ -30,10 +29,11 @@ export class Home extends React.Component<IHomeProps, any> {
 					<div className={css(this.styles.stardustBottomLeft)}>
 						<img src="./assets/images/stardust_bottom_left.svg" className={css(this.styles.stardustBottomLeftImg)} />
 					</div>
+					<div className={css(this.styles.moon)}></div>
 					<div className={css(this.styles.innerFirstview)}>
 						<div className={css(this.styles.textCenter)}>
 							<h2 className={css(this.styles.pageTitle)}>
-								<span className={css(this.styles.numberCaption)}>5秒</span>で曲を好きになる
+								"5秒"で曲を好きになる
 							</h2>
 							<p className={css(this.styles.subTitle)}>歌詞が主役の音楽発見サービス<br />エモい歌詞、揃えてます</p>
 						</div>
@@ -71,12 +71,12 @@ export class Home extends React.Component<IHomeProps, any> {
 				<div className={css(this.styles.sectionWrap)}>
 					<div className={css(this.styles.innerContainer)}>
 						<div className={css(this.styles.textCenter)}>
-							<Sentence center>エモい歌詞、揃えてます</Sentence>
+							<Sentence className={css(this.styles.emoi)} center>エモい歌詞、揃えてます</Sentence>
 							{this.onboardButton}
 						</div>
 					</div>
 				</div>
-			</div>
+			</>
         )
 	}
 
@@ -129,7 +129,7 @@ export class Home extends React.Component<IHomeProps, any> {
         return StyleSheet.create({
             container: {
 				backgroundBlendMode: 'overlay',
-				backgroundColor: 'rgba(0, 0, 0, 0.86)',
+				backgroundColor: 'rgb(19, 13, 0)',
 				backgroundImage: 'url("./assets/images/live.jpg")',
 				backgroundSize: 'cover',
 				minHeight: '95vh',
@@ -144,14 +144,40 @@ export class Home extends React.Component<IHomeProps, any> {
 				position: 'relative',
 				width: '87.5%',
 			},
-			innerFirstview: {},
+			innerFirstview: {
+				position: 'relative',
+				zIndex: 2,
+			},
 			stardustBottomLeft: {
-				bottom: -4,
+				bottom: -6,
 				left: 0,
 				position: 'absolute',
 			},
+			moon: {
+				animationName: 'moon',
+                animationDuration: '0.8s',
+                animationTimingFunction: 'linear',
+                animationIterationCount: 1,
+				backgroundColor: '#AE375F',
+				borderRadius: '50%',
+				height: 220,
+				position: 'absolute',
+				right: -80,
+				top: -60,
+				transform: 'scale(1)',
+				width: 220,
+				zIndex: 1,
+			},
+			'@keyframes moon': {
+				'0%': {
+					transform: 'scale(0.8)',
+				},
+				'100%': {
+					transform: 'scale(1)',
+				},
+			},
 			stardustBottomLeftImg: {
-				width: 250,
+				width: 200,
 			},
 			stardustTopRight: {
 				position: 'absolute',
@@ -167,10 +193,10 @@ export class Home extends React.Component<IHomeProps, any> {
 			pageTitle: {
 				color: '#fff',
 				fontSize: 26,
-				fontWeight: 600,
+				fontWeight: 200,
 				letterSpacing: 2,
 				marginTop: 50,
-				marginBottom: 10,
+				marginBottom: 2,
 				textAlign: 'center',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
@@ -218,6 +244,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				marginBottom: 5,
 			},
 			sectionWrap: {
+				backgroundColor: '#fff',
 				paddingBottom: 20,
 				position: 'relative',
 			},
@@ -231,15 +258,18 @@ export class Home extends React.Component<IHomeProps, any> {
 			textWhite: {
 				color: '#fff !important',
 			},
+			emoi: {
+				color: '#6f6f7f',
+			},
         })
     }
 
 }
 
 export class HomeVM {
-	accountService: AccountService
-	router: RouteController
-	tracker: Tracker
+	private accountService: AccountService
+	private router: RouteController
+	private tracker: Tracker
 
 	@observable
 	isAuthed: boolean = false
@@ -249,23 +279,20 @@ export class HomeVM {
 		this.router = router
 		this.tracker = tracker
 
-		this.init()
-	}
-
-	async init() {
 		this.isAuthed = this.accountService.isAuthed
 	}
 
 	@bind
-	async signin() {
+	signin() {
 		if(this.isAuthed) {
 			this.router.push('/lyrics')
 			return
 		}
 
-		const account = await this.accountService.signinWithTwitter()
-		this.router.push('/lyrics')
-		this.tracker.trackSignup(account)
+		this.accountService.signinWithTwitter().then(account => {
+			this.router.push('/lyrics')
+			this.tracker.trackSignup(account)	
+		})
 	}
 
 	@bind
@@ -275,32 +302,35 @@ export class HomeVM {
 
 }
 
+/*-----------------
+ Child component
+--------------------*/
+
 const AppealCard = () => {
 	const styles = StyleSheet.create({
 		container: {
-			border: '1px solid #F576A1',
-			borderRadius: 4,
-			marginRight: 'auto',
-			marginLeft: 'auto',
-			padding: '16px 25px 18px',
-			width: '70%',
+			display: 'flex',
+			flexWrap: 'wrap',
+			marginTop: 25,
+			padding: '0',
 		},
 		itemRow: {
-			color: '#F576A1',
+			alignItems: 'flex-end',
+			color: '#fff',
 			display: 'flex',
-			justifyContent: 'center',
-			':not(:last-child)': {
-				marginBottom: 10,
-			},
+			flex: '1 0 50%',
+			justifyContent: 'flex-start',
+			marginBottom: 15,
 		},
 		head: {
 			fontSize: '1.97em',
+			fontWeight: 'bold',
+			lineHeight: 1,
 			marginRight: 8,
 		},
 		text: {
 			fontSize: '0.9em',
 			letterSpacing: 2,
-			marginTop: 15,
 		},
 	})
 

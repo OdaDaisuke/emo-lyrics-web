@@ -7,38 +7,39 @@ import { MediaBreakPointUp } from '../styles'
 import { Lyric, Fav } from '../../interfaces'
 
 export interface LyricCardProps {
-	title: string
-	lyric: string
-	singer: string
-	url: string
-	favs?: Fav[] | null
-	lyricObj: Lyric | null
+	lyric: Lyric | null
 	onClickLyric: () => void
 	onClickFav: () => void
 	onClickUnfav: () => void
+	favs?: Fav[] | null
 }
 
 @observer
 export class LyricCard extends React.Component<LyricCardProps, any> {
 	render(): JSX.Element {
+		if(!this.props.lyric) {
+			return <span></span>
+		}
 		return (
 			<div className={css(this.styles.container)}>
-				<p onClick={this.props.onClickLyric} className={css(this.styles.lyric)}>
-					{this.props.lyric}
-				</p>
-				<div className={css(this.styles.flexRow)}>
-					<PlayButton
-						link={this.props.url}
-						className={css(this.styles.playButton)}
-					/>
-					<div className={css(this.styles.detailWrap)}>
-						<span className={css(this.styles.title)}>{this.props.title}</span>
-						<span className={css(this.styles.singer)}>{this.props.singer}</span>
-					</div>
+				<div className={css(this.styles.favWrap)}>
 					<FavoriteButton
 						favorited={this.favorited}
 						onClick={this.onClickFavButton}
 					/>
+				</div>
+				<p onClick={this.props.onClickLyric} className={css(this.styles.lyric)}>
+					{this.props.lyric.Lyric}
+				</p>
+				<div className={css(this.styles.flexRow)}>
+					<PlayButton
+						link={this.props.lyric.Url}
+						className={css(this.styles.playButton)}
+					/>
+					<div className={css(this.styles.detailWrap)}>
+						<span className={css(this.styles.title)}>{this.props.lyric.Title}</span>
+						<span className={css(this.styles.singer)}>{this.props.lyric.Singer}</span>
+					</div>
 				</div>
 			</div>
 		)
@@ -59,7 +60,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 		}
 		let favorited = false
 		this.props.favs.map((fav: Fav) => {
-			if(fav.LyricID == this.props.lyricObj!.ID) {
+			if(fav.LyricID == this.props.lyric!.ID) {
 				favorited = true
 			}
 		})
@@ -71,7 +72,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 			container: {
 				alignContent: 'center',
 				alignItems: 'center',
-				backgroundImage: 'linear-gradient(-135deg, #F24E86 0%, #D42360 100%)',
+				backgroundImage: '#fff',
 				borderRadius: 4,
 				boxSizing: 'border-box',
 				color: '#fff',
@@ -149,8 +150,12 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				},
 			},
 			playButton: {
-				marginLeft: 10,
-				marginRight: 8,
+				marginLeft: 6,
+				marginRight: 10,
+			},
+			favWrap: {
+				textAlign: 'right',
+				width: '100%',
 			},
 		})
 	}

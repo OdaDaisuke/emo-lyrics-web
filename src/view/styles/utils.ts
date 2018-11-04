@@ -1,32 +1,5 @@
 import { MediaBreakPointUp } from './breakpoints'
 
-const buttonBaseStyle = {
-    backgroundImage: 'linear-gradient(135deg, #ef5489, #f7417f, #c11c54) !important',
-    fontSize: '1.05em',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    borderRadius: 4,
-    position: 'relative',
-    borderWidth: 0,
-    color: '#fff',
-    cursor: 'pointer',
-    letterSpacing: 2,
-    outline: 'none',
-    paddingTop: 14,
-    paddingRight: 35,
-    paddingBottom: 14,
-    paddingLeft: 35,
-    textDecoration: 'none',
-    transition: 'all 0.2s',
-    willChange: 'transform',
-    ':hover': {
-      opacity: 0.8,
-    },
-    [MediaBreakPointUp.SM]: {
-      fontSize: '0.9rem',
-    },
-}
-
 export const utils = {
   container: {
     marginRight: 'auto',
@@ -46,37 +19,6 @@ export const utils = {
       fontSize: '0.9rem',
     },
   },
-
-  button: Object.assign({}, buttonBaseStyle, {
-    boxShadow: '0 2px 15px -3px #3f3f3f',
-    [MediaBreakPointUp.SM]: {
-      fontSize: '1.08em',
-      padding: '16px 48px 18px',
-    },
-  }),
-
-  tweetButton: {
-    backgroundColor: '#2196f3',
-    backgroundImage: '#2196f3',
-    borderRadius: 4,
-    color: '#fff',
-    fontSize: '0.87rem',
-    letterSpacing: 1,
-    margin: 2,
-    padding: '14px 45px 12px',
-    ':hover': {
-      backgroundColor: '#2196f3',
-      color: '#ffffff',
-    },
-  },
-
-  tweetFilledButton: Object.assign({}, buttonBaseStyle, {
-    backgroundColor: '#2196f3',
-    borderRadius: '100px',
-    color: '#fff',
-    fontSize: '0.87rem',
-    fontWeight: 'lighter',
-  }),
 
   pageCaptionStyle: {
     fontSize: '28px',

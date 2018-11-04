@@ -44,7 +44,7 @@ export class RouteController {
         if(this.isAtRestrictedLocation) {
 
             if(!this.isAuthed) {
-                // this.history.push('/')
+                this.history.push('/')
             }
 
         }
