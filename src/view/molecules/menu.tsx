@@ -73,7 +73,7 @@ export class Menu extends React.Component<MenuProps, any> {
             container: {
                 alignContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'rgba(0,0,0,0.84)',
+                backgroundColor: 'rgba(0,0,0,0.94)',
                 boxShadow: '0 2px 15px -5px #5f5f5f',
                 display: 'none',
                 flexWrap: 'wrap',
@@ -85,10 +85,11 @@ export class Menu extends React.Component<MenuProps, any> {
                 width: '100vw',
                 zIndex: 10000,
                 [MediaBreakPointUp.MD]: {
-                    backgroundColor: '#fff',
+                    backgroundColor: 'transparent',
                     boxShadow: 'none',
                     display: 'flex',
                     height: 'auto',
+                    marginLeft: 50,
                     position: 'relative',
                     right: 0,
                     width: 'auto',
@@ -97,12 +98,12 @@ export class Menu extends React.Component<MenuProps, any> {
             innerContainer: {
             },
             activeContainer: {
-                display: 'flex',
-                right: 0,
                 animationName: 'activeContainer',
                 animationDuration: '1s',
                 animationTimingFunction: 'linear',
-                animationIterationCount: 1,
+                animationIterationCount: 10,
+                display: 'flex',
+                right: 0,
             },
             link: {
                 boxSizing: 'border-box',
@@ -118,7 +119,6 @@ export class Menu extends React.Component<MenuProps, any> {
                     borderBottom: '1px solid #fff',
                 },
                 [MediaBreakPointUp.MD]: {
-                    color: '#3f3f3f',
                     flex: '1 0 auto',
                     fontSize: '0.92em',
                     marginBottom: 0,

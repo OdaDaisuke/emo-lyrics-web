@@ -53,17 +53,17 @@ export class NotFoundPage extends React.Component<INotFoundPageProps, any> {
         width: '90%',
       },
       caption: {
-        color: '#4f4f5f',
+        color: '#fff',
         fontSize: '1.27em',
         fontStyle: 'italic',
         fontWeight: 200,
         letterSpacing: 5,
         marginTop: 50,
-        marginBottom: 50,
+        marginBottom: 40,
         [MediaBreakPointUp.SM]: {
-          fontSize: '1.2rem',
+          fontSize: '1.92rem',
           marginTop: 100,
-          marginBottom: 100,  
+          marginBottom: 60,  
         },
       },
     })

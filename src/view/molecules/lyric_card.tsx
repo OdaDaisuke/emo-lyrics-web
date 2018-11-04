@@ -32,10 +32,12 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 					{this.props.lyric.Lyric}
 				</p>
 				<div className={css(this.styles.flexRow)}>
-					<PlayButton
-						link={this.props.lyric.Url}
-						className={css(this.styles.playButton)}
+					<div className={css(this.styles.playButtonWrap)}>
+						<PlayButton
+							link={this.props.lyric.Url}
+							className={css(this.styles.playButton)}
 					/>
+					</div>
 					<div className={css(this.styles.detailWrap)}>
 						<span className={css(this.styles.title)}>{this.props.lyric.Title}</span>
 						<span className={css(this.styles.singer)}>{this.props.lyric.Singer}</span>
@@ -82,6 +84,11 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				minHeight: 300,
 				padding: '20px 20px',
 				width: '100%',
+				[MediaBreakPointUp.SM]: {
+					margin: '0 auto',
+					maxWidth: 720,
+					width: '75%',
+				},
 			},
 			flexRow: {
 				alignContent: 'center',
@@ -89,9 +96,17 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				display: 'flex',
 				justifyContent: 'flex-start',
 				width: '100%',
+				[MediaBreakPointUp.SM]: {
+					justifyContent: 'center',
+				},
 			},
 			detailWrap: {
 				flex: '0 1 80%',
+				[MediaBreakPointUp.SM]: {
+					display: 'inline',
+					flex: '1 !important',
+					textAlign: 'left',
+				},
 			},
 			lyric: {
 				color: '#fff',
@@ -152,6 +167,13 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 			playButton: {
 				marginLeft: 6,
 				marginRight: 10,
+			},
+			playButtonWrap: {
+				[MediaBreakPointUp.SM]: {
+					display: 'flex',
+					flex: 1,
+					justifyContent: 'flex-end',
+				},
 			},
 			favWrap: {
 				textAlign: 'right',

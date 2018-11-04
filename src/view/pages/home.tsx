@@ -64,7 +64,7 @@ export class Home extends React.Component<IHomeProps, any> {
 						<div>
 							<SectionCaption isWhite>歌詞から曲を好きになる<br />音楽発見サービス</SectionCaption>
 						</div>
-						<Sentence>歌詞にはストーリーが込められている。<br />湧きあがる想いを込めて書いた詩も<br />無機質だけどカッコいい詩も<br />なんだっていい。<br />歌詞の良さを今一度味わって見ませんか。</Sentence>
+						<Sentence className={css(this.styles.pcCenter)}>歌詞にはストーリーが込められている。<br />湧きあがる想いを込めて書いた詩も<br />無機質だけどカッコいい詩も<br />なんだっていい。<br />歌詞の良さを今一度味わって見ませんか。</Sentence>
 						<AppealCard />
 					</div>
 				</div>
@@ -92,14 +92,6 @@ export class Home extends React.Component<IHomeProps, any> {
 	}
 
     get onboardButtonBlock() {
-		if(this.props.vm.isAuthed) {
-			return (
-				<div className={css(this.styles.textCenter)}>
-					<p className={css(this.styles.onbordCaption)}>エモい歌詞、揃えてます</p>
-					{this.onboardButton}
-				</div>
-			)
-		}
 		return (
 			<div className={css(this.styles.textCenter)}>
 					<p className={css(this.styles.onbordCaption)}>エモい歌詞、揃えてます</p>
@@ -147,6 +139,16 @@ export class Home extends React.Component<IHomeProps, any> {
 			innerFirstview: {
 				position: 'relative',
 				zIndex: 2,
+				[MediaBreakPointUp.SM]: {
+					margin: '0 auto',
+					maxWidth: '1100px',
+					width: '90',
+				},
+			},
+			pcCenter: {
+				[MediaBreakPointUp.SM]: {
+					textAlign: 'center',
+				},
 			},
 			stardustBottomLeft: {
 				bottom: -6,
@@ -154,27 +156,15 @@ export class Home extends React.Component<IHomeProps, any> {
 				position: 'absolute',
 			},
 			moon: {
-				animationName: 'moon',
-                animationDuration: '0.8s',
-                animationTimingFunction: 'linear',
-                animationIterationCount: 1,
-				backgroundColor: '#AE375F',
+				backgroundColor: 'rgba(90, 83, 16, 0.5)',
 				borderRadius: '50%',
-				height: 220,
+				height: 450,
 				position: 'absolute',
-				right: -80,
-				top: -60,
-				transform: 'scale(1)',
-				width: 220,
+				right: -190,
+				top: '50vh',
+				transform: 'translate(0, -50%)',
+				width: 450,
 				zIndex: 1,
-			},
-			'@keyframes moon': {
-				'0%': {
-					transform: 'scale(0.8)',
-				},
-				'100%': {
-					transform: 'scale(1)',
-				},
 			},
 			stardustBottomLeftImg: {
 				width: 200,
@@ -192,7 +182,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			},
 			pageTitle: {
 				color: '#fff',
-				fontSize: 26,
+				fontSize: 22,
 				fontWeight: 200,
 				letterSpacing: 2,
 				marginTop: 50,
@@ -200,7 +190,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				textAlign: 'center',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
-					fontSize: '2.5rem',
+					fontSize: 28,
 				},
 			},
 			numberCaption: {
@@ -227,6 +217,11 @@ export class Home extends React.Component<IHomeProps, any> {
 				fontWeight: 300,
 				letterSpacing: 1,
 				lineHeight: 2.35,
+				[MediaBreakPointUp.SM]: {
+					fontSize: 25,
+					fontWeight: 'bold',
+					marginBottom: 25,
+				},
 			},
 			link: {
 				bottom: '20px',
@@ -241,7 +236,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				fontSize: 12,
 				fontWeight: 500,
 				letterSpacing: 1,
-				marginBottom: 5,
+				marginBottom: 10,
 			},
 			sectionWrap: {
 				backgroundColor: '#fff',
@@ -251,6 +246,9 @@ export class Home extends React.Component<IHomeProps, any> {
 			aboutSection: {
 				backgroundColor: '#3f3f5f',
 				color: '#fff',
+				[MediaBreakPointUp.SM]: {
+					textAlign: 'center',
+				},
 			},
 			pink: {
 				color: '#e73774 !important',
@@ -312,24 +310,43 @@ const AppealCard = () => {
 			display: 'flex',
 			flexWrap: 'wrap',
 			marginTop: 25,
-			padding: '0',
+			padding: 0,
+			[MediaBreakPointUp.SM]: {
+				marginTop: 40,
+			},
 		},
 		itemRow: {
 			alignItems: 'flex-end',
+			boxSizing: 'border-box',
 			color: '#fff',
 			display: 'flex',
 			flex: '1 0 50%',
 			justifyContent: 'flex-start',
 			marginBottom: 15,
+			[MediaBreakPointUp.SM]: {
+				marginBottom: 30,
+			},
+			':nth-child(2n - 1)': {
+				[MediaBreakPointUp.SM]: {
+					justifyContent: 'flex-end',
+					paddingRight: 15,
+				},	
+			},
+			':nth-child(2n)': {
+				[MediaBreakPointUp.SM]: {
+					justifyContent: 'flex-start',
+					paddingLeft: 15,
+				},	
+			},
 		},
 		head: {
-			fontSize: '1.97em',
+			fontSize: '1.9em',
 			fontWeight: 'bold',
 			lineHeight: 1,
 			marginRight: 8,
 		},
 		text: {
-			fontSize: '0.9em',
+			fontSize: '0.83em',
 			letterSpacing: 2,
 		},
 	})

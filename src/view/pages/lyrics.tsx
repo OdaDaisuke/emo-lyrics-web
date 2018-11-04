@@ -110,9 +110,11 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
       },
       share: {
         backgroundColor: '#3d3d50',
+        display: 'flex',
+        flexWrap: 'wrap',
         marginTop: 40,
-        padding: '20px 0',
-        textAlign: 'center',
+        justifyContent: 'center',
+        padding: '28px 0',
       },
       blockCaption: {
         color: '#fff',
@@ -121,6 +123,8 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
         letterSpacing: 2,
         marginTop: 0,
         marginBottom: 15,
+        textAlign: 'center',
+        width: '100%',
       },
     })
   }

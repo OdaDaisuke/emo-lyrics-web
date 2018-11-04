@@ -43,19 +43,22 @@ export class BadgeButton extends React.Component<IBadgeButtonProps, any> {
     get styles() {
         return StyleSheet.create({
             tweetButton: {
+                alignItems: 'center',
                 backgroundColor: '#2196f3',
                 backgroundImage: '#2196f3',
-                borderRadius: 4,
+                borderRadius: '50%',
                 color: '#fff',
-                fontSize: '0.87rem',
+                display: 'flex',
+                fontSize: '0.85rem',
+                height: 40,
+                justifyContent: 'center',
                 letterSpacing: 1,
                 margin: 2,
-                padding: '14px 45px 12px',
+                width: 40,
                 ':hover': {
                     backgroundColor: '#2196f3',
                     color: '#ffffff',
                 },
-                display: 'inline-block',
             },
         })
     }
