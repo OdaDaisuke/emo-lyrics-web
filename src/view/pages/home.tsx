@@ -23,7 +23,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			<>
 				<FullWidthLayout
 					className={css(this.styles.container)}
-					transparentHeader={true}
+					transparentHeader={false}
 					isAuthed={this.props.vm.isAuthed}
 				>
 					<div className={css(this.styles.stardustBottomLeft)}>
@@ -121,7 +121,7 @@ export class Home extends React.Component<IHomeProps, any> {
         return StyleSheet.create({
             container: {
 				backgroundBlendMode: 'overlay',
-				backgroundColor: 'rgb(19, 13, 0)',
+				backgroundColor: '#f4f4f4',
 				backgroundImage: 'url("./assets/images/live.jpg")',
 				backgroundSize: 'cover',
 				minHeight: '95vh',
@@ -156,7 +156,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				position: 'absolute',
 			},
 			moon: {
-				backgroundColor: 'rgba(90, 83, 16, 0.5)',
+				backgroundColor: 'rgba(167, 151, 7, 0.5)',
 				borderRadius: '50%',
 				height: 450,
 				position: 'absolute',
@@ -181,7 +181,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				textAlign: 'center',
 			},
 			pageTitle: {
-				color: '#fff',
+				color: '#20203f',
 				fontSize: 22,
 				fontWeight: 200,
 				letterSpacing: 2,
@@ -196,11 +196,11 @@ export class Home extends React.Component<IHomeProps, any> {
 			numberCaption: {
 				fontSize: '1.5em',
 				fontWeight: 600,
-				color: '#ffffff',
+				color: '#20203f',
 				textShadow: '1px 1px 10px #301341',
 			},
 			subTitle: {
-				color: '#fff',
+				color: '#20203f',
 				fontSize: 12,
 				fontWeight: 400,
 				letterSpacing: '1px',
@@ -232,7 +232,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				marginBottom: '20px',
 			},
 			onbordCaption: {
-				color: '#fff',
+				color: '#20203f',
 				fontSize: 12,
 				fontWeight: 500,
 				letterSpacing: 1,

@@ -45,7 +45,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             <React.Fragment>
                 <p className={css(this.styles.lyric)}>幸せとは星が降る夜と眩しい朝が繰り返すようなものじゃなく大切な人に降りかかった雨に傘を差せる事だ</p>
                 <footer className={css(this.styles.footer)}>
-                    <PlayButton link="https://youtube.com/watch?v=2Kajce92A" />
+                    <PlayButton black link="https://youtube.com/watch?v=2Kajce92A" />
                     <div className={css(this.styles.lyricDetail)}>
                         <span className={css(this.styles.title)}>瞬き</span>
                         <span className={css(this.styles.artist)}>back number</span>
@@ -65,15 +65,16 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
     get styles() {
         return StyleSheet.create({
             container: {
-                border: '1px solid #fff',
-                borderRadius: 2,
-                boxShadow: '0 2px 20px -10px rgba(0,0,0,0.50)',
+                backgroundColor: 'rgba(255,255,255,0.92)',
+                borderRadius: 8,
+                boxShadow: '0 2px 20px -8px rgba(0,0,0,0.62), 0 -1px 20px -8px rgba(0,0,0,0.62)',
                 boxSizing: 'border-box',
-                flex: '1 0 265px',
+                flex: '1 0 275px',
                 marginRight: 10,
-                padding: '0.66em 1.28em 0.72em 1em',
+                marginBottom: 8,
+                padding: '0.66em 1.12em 0.72em 1em',
                 textAlign: 'left',
-                width: '270px',
+                width: '275px',
                 ':first-child': {
                     marginLeft: 30,
                 },
@@ -81,18 +82,17 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                     marginRight: 30,
                 },
                 [MediaBreakPointUp.SM]: {
+                    boxShadow: '0 2px 20px -10px rgba(0,0,0,0.62), 0 -1px 20px -10px rgba(0,0,0,0.62)',
                     flex: '1 0 48%',
-                    margin: '0 1% 0 0',
+                    margin: '0 1% 8px 0 !important',
                     width: '48%',
                 },
                 [MediaBreakPointUp.MD]: {
                     flex: '1 0 40%',
-                    margin: '0 1% 0 0',
                     width: '40%',
                 },
                 [MediaBreakPointUp.LG]: {
                     flex: '1 0 30%',
-                    margin: '0 1% 0 0',
                     width: '30%',
                 },
             },
@@ -113,15 +113,15 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 justifyContent: 'flex-start',
             },
             lyric: {
-                color: '#fff',
-                fontSize: 14,
+                color: '#20203f',
+                fontSize: 16,
                 fontWeight: 400,
                 letterSpacing: '1px',
                 lineHeight: '2.05',
                 marginTop: 0,
                 marginBottom: 15,
                 [MediaBreakPointUp.SM]: {
-                    fontSize: 23,
+                    fontSize: 20,
                 },
             },
             restrictLabel: {
@@ -138,7 +138,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 flexWrap: 'wrap',
             },
             title: {
-                color: '#fff',
+                color: '#20203f',
                 flex: '1 0 100%',
                 fontSize: '0.68em',
                 fontWeight: 600,
@@ -146,7 +146,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 marginBottom: 5,
             },
             artist: {
-                color: '#fff',
+                color: '#20203f',
                 fontSize: '0.68em',
                 fontWeight: 200,
                 letterSpacing: '1px',

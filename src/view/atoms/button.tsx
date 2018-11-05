@@ -46,7 +46,7 @@ export class Button extends React.Component<IButtonProps, any> {
             button: {
                 backgroundImage: 'linear-gradient(135deg, #ef5489, #f7417f, #c11c54)',
                 borderRadius: 4,
-                boxShadow: '0 2px 15px -3px #3f3f3f',
+                boxShadow: '0 2px 15px -5px #3f3f3f',
                 color: '#fff',
                 cursor: 'pointer',
                 display: 'inline-block',
@@ -77,10 +77,11 @@ export class Button extends React.Component<IButtonProps, any> {
                 marginRight: 'auto',
                 marginLeft: 'auto',
                 borderRadius: '40px',
-                padding: '18px 50px 20px',
+                padding: '18px 25px 20px',
                 position: 'relative',
                 width: '90%',
                 [MediaBreakPointUp.SM]: {
+                    padding: '18px 50px 20px',
                     width: 'auto',
                 },
             },

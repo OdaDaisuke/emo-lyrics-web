@@ -5,6 +5,7 @@ import { FaPlay } from 'react-icons/fa'
 interface IPlayButtonProps {
     link: string
     className?: string
+    black?: boolean
 }
 
 export const PlayButton = (props: IPlayButtonProps) => {
@@ -12,8 +13,8 @@ export const PlayButton = (props: IPlayButtonProps) => {
         link: {
             alignItems: 'center',
             borderRadius: '50%',
-            border: '1px solid #fff',
-            color: '#fff',
+            border: (props.black) ? '1px solid #20203f' : '1px solid #fff',
+            color: (props.black) ? '#20203f' : '#fff',
             display: 'flex',
             flex: '0 1 auto',
             fontSize: '1em',
