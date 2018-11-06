@@ -41,8 +41,14 @@ export class FavoritesPage extends React.Component<IFavoritesPageProps, any> {
     if(!this.props.vm.favs) {
       return
     }
+    console.log(this.props.vm.favs)
     return this.props.vm.favs.map((fav, idx) => {
-      return <span key={idx}>{fav.LyricID}</span>
+      return <LyricCard
+        lyric={fav.lyric}
+        onClickLyric={this.props.vm.onClickLyric}
+        onClickFav={() => null}
+        onClickUnfav={() => null}
+        key={idx}>{fav.LyricID}</LyricCard>
     })
   }
 

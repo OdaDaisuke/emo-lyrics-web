@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { css, StyleSheet } from 'aphrodite'
-import { utils } from '../styles'
+import { MediaBreakPointUp } from '../styles'
 
 export interface ISentenceProps {
   center?: boolean
@@ -19,17 +19,25 @@ export class Sentence extends React.Component<ISentenceProps, any> {
     get wrapperClass() {
         return [
             css(this.styles.p),
+            this.props.center && css(this.styles.textCenter),
             this.props.className || "",
         ].join(" ")
     }
 
-    get styles() {
-    	const centering = this.props.center
+    get styles() {        
         return StyleSheet.create({
-            p: Object.assign({}, utils.p, {
-                fontWeight: '100',
-                textAlign: (centering) ? 'center': 'auto',
-            })
+            p: {
+                fontSize: 12,
+                letterSpacing: 2,
+                lineHeight: 2,
+                fontWeight: 200,
+                [MediaBreakPointUp.SM]: {
+                    fontSize: '0.9rem',
+                },    
+            },
+            textCenter: {
+                textAlign: 'center',
+            },
         })
     }
 

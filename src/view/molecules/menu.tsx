@@ -87,7 +87,8 @@ export class Menu extends React.Component<MenuProps, any> {
                 [MediaBreakPointUp.MD]: {
                     backgroundColor: 'transparent',
                     boxShadow: 'none',
-                    display: 'flex',
+                    display: 'block',
+                    flex: 1,
                     height: 'auto',
                     marginLeft: 50,
                     position: 'relative',
@@ -96,6 +97,8 @@ export class Menu extends React.Component<MenuProps, any> {
                 },
             },
             innerContainer: {
+                display: 'block',
+                width: '100%',
             },
             activeContainer: {
                 animationName: 'activeContainer',
@@ -119,6 +122,8 @@ export class Menu extends React.Component<MenuProps, any> {
                     borderBottom: '1px solid #fff',
                 },
                 [MediaBreakPointUp.MD]: {
+                    color: '#2f2f2f',
+                    display: 'inline-block',
                     flex: '1 0 auto',
                     fontSize: '0.92em',
                     marginBottom: 0,

@@ -78,6 +78,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				borderRadius: 4,
 				boxSizing: 'border-box',
 				color: '#fff',
+				cursor: 'pointer',
 				display: 'flex',
 				flexWrap: 'wrap',
 				height: '100%',
@@ -104,7 +105,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				flex: '0 1 80%',
 				[MediaBreakPointUp.SM]: {
 					display: 'inline',
-					flex: '1 !important',
+					flex: 'auto !important',
 					textAlign: 'left',
 				},
 			},
@@ -167,11 +168,14 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 			playButton: {
 				marginLeft: 6,
 				marginRight: 10,
+				[MediaBreakPointUp.SM]: {
+					marginLeft: -15,
+				},
 			},
 			playButtonWrap: {
 				[MediaBreakPointUp.SM]: {
 					display: 'flex',
-					flex: 1,
+					flex: 'auto',
 					justifyContent: 'flex-end',
 				},
 			},

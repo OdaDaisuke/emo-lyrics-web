@@ -11,15 +11,6 @@ export const utils = {
     },
   },
 
-  p: {
-    fontSize: 12,
-    letterSpacing: '2px',
-    lineHeight: 2,
-    [MediaBreakPointUp.SM]: {
-      fontSize: '0.9rem',
-    },
-  },
-
   pageCaptionStyle: {
     fontSize: '28px',
     fontWeight: 'lighter',

@@ -12,6 +12,7 @@ import { LyricCardList } from '../organisms'
 import { PagingBtnGroup } from '../molecules'
 import { FullWidthLayout } from '../layouts'
 import { RouteController } from '../../route/controller'
+import { MediaBreakPointUp } from '../styles';
 
 export interface ILyricsPageProps {
   history: any
@@ -101,7 +102,7 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
         textAlign: 'center',
       },
       emptyStatusLabel: {
-        color: '#5f5f5f',
+        color: '#fff',
         display: 'block',
         fontSize: '0.9em',
         letterSpacing: '1px',
@@ -114,7 +115,12 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
         flexWrap: 'wrap',
         marginTop: 40,
         justifyContent: 'center',
-        padding: '28px 0',
+        padding: '37px 0',
+        [MediaBreakPointUp.SM]: {
+          margin: '30px auto 0',
+          maxWidth: 500,
+          width: '80%',
+        },
       },
       blockCaption: {
         color: '#fff',
@@ -207,6 +213,7 @@ export class LyricsPageVM {
     this.favs!.push({
       ID: "",
       LyricID: l.ID,
+      lyric: null,
     })
 
   }

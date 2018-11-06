@@ -61,10 +61,12 @@ const styles = StyleSheet.create({
         boxSizing: 'border-box',
         display: 'flex',
         justifyContent: 'center',
-        paddingRight: '2.5%',
-        paddingLeft: '2.5%',
-        width: '100%',
-        [MediaBreakPointUp.SM]: {},
+        margin: '0 auto',
+        width: '95%',
+        [MediaBreakPointUp.SM]: {
+            maxWidth: 500,
+            width: '80%',
+        },
     },
     prevButton: {
         backgroundImage: 'linear-gradient(-135deg, #B27D8F 0%, #7D5261 100%)',

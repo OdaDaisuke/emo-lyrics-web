@@ -126,6 +126,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             },
             restrictLabel: {
                 color: '#6f6f7f',
+                display: 'block',
                 fontSize: '0.9em',
                 fontWeight: 400,
                 letterSpacing: '1px',

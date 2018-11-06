@@ -146,6 +146,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				},
 			},
 			pcCenter: {
+				color: '#fff !important',
 				[MediaBreakPointUp.SM]: {
 					textAlign: 'center',
 				},
@@ -165,6 +166,9 @@ export class Home extends React.Component<IHomeProps, any> {
 				transform: 'translate(0, -50%)',
 				width: 450,
 				zIndex: 1,
+				[MediaBreakPointUp.SM]: {
+					display: 'none',
+				},
 			},
 			stardustBottomLeftImg: {
 				width: 200,
@@ -202,7 +206,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			subTitle: {
 				color: '#20203f',
 				fontSize: 12,
-				fontWeight: 400,
+				fontWeight: 200,
 				letterSpacing: '1px',
 				lineHeight: '1.78',
 				marginTop: '0',
@@ -258,6 +262,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			},
 			emoi: {
 				color: '#6f6f7f',
+				fontWeight: 200,
 			},
         })
     }
