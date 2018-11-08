@@ -44,6 +44,7 @@ export class Menu extends React.Component<MenuProps, any> {
                 { to: "/signin", label: "ログイン", },
             ],
             authed: [
+                { to: "/lyrics", label: "HOME", },
                 { to: "/favorites", label: "お気に入り", },
                 { to: "/signout", label: "ログアウト", },
             ],
@@ -118,14 +119,12 @@ export class Menu extends React.Component<MenuProps, any> {
                 padding: '1em 1.25em',
                 textAlign: 'center',
                 textDecoration: 'none',
-                ':not(:last-child)': {
-                    borderBottom: '1px solid #fff',
-                },
                 [MediaBreakPointUp.MD]: {
                     color: '#2f2f2f',
                     display: 'inline-block',
                     flex: '1 0 auto',
                     fontSize: '0.92em',
+                    fontWeight: 500,
                     marginBottom: 0,
                     padding: '0.8em 1.5em'
                 },

@@ -28,7 +28,7 @@ export class SectionCaption extends React.Component<ISectionCaptionProps, any> {
             caption: {
                 color: '#3f3f3f',
                 fontsize: '1.146em',
-                fontWeight: 200,
+                fontWeight: 500,
                 letterSpacing: 2,
                 lineHeight: 1.82,
                 marginTop: '1em',

@@ -29,7 +29,6 @@ export class Home extends React.Component<IHomeProps, any> {
 					<div className={css(this.styles.stardustBottomLeft)}>
 						<img src="./assets/images/stardust_bottom_left.svg" className={css(this.styles.stardustBottomLeftImg)} />
 					</div>
-					<div className={css(this.styles.moon)}></div>
 					<div className={css(this.styles.innerFirstview)}>
 						<div className={css(this.styles.textCenter)}>
 							<h2 className={css(this.styles.pageTitle)}>
@@ -64,7 +63,7 @@ export class Home extends React.Component<IHomeProps, any> {
 						<div>
 							<SectionCaption isWhite>歌詞から曲を好きになる<br />音楽発見サービス</SectionCaption>
 						</div>
-						<Sentence className={css(this.styles.pcCenter)}>歌詞にはストーリーが込められている。<br />湧きあがる想いを込めて書いた詩も<br />無機質だけどカッコいい詩も<br />なんだっていい。<br />歌詞の良さを今一度味わって見ませんか。</Sentence>
+						<Sentence className={css(this.styles.pcCenter)}>歌詞にはアーティストのストーリーが込められている。<br />湧きあがる想いを込めて書いた詩も<br />無機質だけどカッコいい詩も<br />なんだっていい。<br />もっと自由に音楽を味わおう。</Sentence>
 						<AppealCard />
 					</div>
 				</div>
@@ -120,11 +119,9 @@ export class Home extends React.Component<IHomeProps, any> {
     get styles() {
         return StyleSheet.create({
             container: {
-				backgroundBlendMode: 'overlay',
-				backgroundColor: '#f4f4f4',
-				backgroundImage: 'url("./assets/images/live.jpg")',
+				backgroundColor: '#e8d103 !important',
 				backgroundSize: 'cover',
-				minHeight: '95vh',
+				minHeight: '92.5vh',
 				overflow: 'hidden',
 			},
 			innerContainer: {
@@ -135,6 +132,9 @@ export class Home extends React.Component<IHomeProps, any> {
 				paddingBottom: 20,
 				position: 'relative',
 				width: '87.5%',
+				[MediaBreakPointUp.SM]: {
+					width: '70%',
+				},
 			},
 			innerFirstview: {
 				position: 'relative',
@@ -156,20 +156,6 @@ export class Home extends React.Component<IHomeProps, any> {
 				left: 0,
 				position: 'absolute',
 			},
-			moon: {
-				backgroundColor: 'rgba(167, 151, 7, 0.5)',
-				borderRadius: '50%',
-				height: 450,
-				position: 'absolute',
-				right: -190,
-				top: '50vh',
-				transform: 'translate(0, -50%)',
-				width: 450,
-				zIndex: 1,
-				[MediaBreakPointUp.SM]: {
-					display: 'none',
-				},
-			},
 			stardustBottomLeftImg: {
 				width: 200,
 			},
@@ -187,10 +173,10 @@ export class Home extends React.Component<IHomeProps, any> {
 			pageTitle: {
 				color: '#20203f',
 				fontSize: 22,
-				fontWeight: 200,
+				fontWeight: 600,
 				letterSpacing: 2,
 				marginTop: 50,
-				marginBottom: 2,
+				marginBottom: 8,
 				textAlign: 'center',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
@@ -206,7 +192,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			subTitle: {
 				color: '#20203f',
 				fontSize: 12,
-				fontWeight: 200,
+				fontWeight: 600,
 				letterSpacing: '1px',
 				lineHeight: '1.78',
 				marginTop: '0',
@@ -262,7 +248,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			},
 			emoi: {
 				color: '#6f6f7f',
-				fontWeight: 200,
+				fontWeight: 600,
 			},
         })
     }
@@ -314,7 +300,7 @@ const AppealCard = () => {
 		container: {
 			display: 'flex',
 			flexWrap: 'wrap',
-			marginTop: 25,
+			marginTop: 35,
 			padding: 0,
 			[MediaBreakPointUp.SM]: {
 				marginTop: 40,

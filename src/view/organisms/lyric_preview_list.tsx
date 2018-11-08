@@ -13,8 +13,8 @@ export class LyricPreviewList extends React.Component<ILyricPreviewListProps, an
     render() {
         return (
             <ul className={css(this.styles.container)}>
-                <LyricPreviewCard />
-                <LyricPreviewCard />
+                <LyricPreviewCard lyric={this.firstLyric} />
+                <LyricPreviewCard lyric={this.secondLyric} />
                 <LyricPreviewCard
                     onClickSignin={this.props.onClickSignin}
                     isRistrict={true}
@@ -25,6 +25,9 @@ export class LyricPreviewList extends React.Component<ILyricPreviewListProps, an
         )
     }
 
+    firstLyric = "幸せとは星が降る夜と眩しい朝が繰り返すようなものじゃなく大切な人に降りかかった雨に傘を差せる事だ"
+    secondLyric = "幸せとは星が降る夜と眩しい朝が繰り返すようなものじゃなく大切な人に降りかかった雨に傘を差せる事だ"
+
     get styles() {
         return StyleSheet.create({
             container: {
@@ -32,6 +35,7 @@ export class LyricPreviewList extends React.Component<ILyricPreviewListProps, an
                 flexWrap: 'nowrap',
                 listStyle: 'none',
                 marginTop: '2em',
+                marginRight: 10,
                 marginBottom: 40,
                 overflowX: 'scroll',
                 padding: 0,

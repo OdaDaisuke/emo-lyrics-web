@@ -30,7 +30,7 @@ export class Sentence extends React.Component<ISentenceProps, any> {
                 fontSize: 12,
                 letterSpacing: 2,
                 lineHeight: 2,
-                fontWeight: 200,
+                fontWeight: 300,
                 [MediaBreakPointUp.SM]: {
                     fontSize: '0.9rem',
                 },    

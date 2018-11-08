@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import { FaPlay } from 'react-icons/fa'
+import { MediaBreakPointUp } from '../styles';
 
 interface IPlayButtonProps {
     link: string
@@ -18,13 +19,21 @@ export const PlayButton = (props: IPlayButtonProps) => {
             display: 'flex',
             flex: '0 1 auto',
             fontSize: '1em',
-            height: 40,
+            height: 45,
             justifyContent: 'center',
             marginRight: 15,
             paddingLeft: 2,
             textAlign: 'center',
             textDecoration: 'none',
-            width: 38,
+            transition: 'transform 0.2s',
+            width: 43,
+            ':hover': {
+                transform: 'scale(1.08)',
+            },
+            [MediaBreakPointUp.SM]: {
+                height: 55,
+                width: 53,
+            },
         },
     })
 

@@ -14,6 +14,7 @@ export const FavoriteButton = (props: IFavoriteButtonProps) => {
             border: "1px solid #fff",
             borderRadius: 4,
             color: "#fff",
+            cursor: 'pointer',
             display: 'inline-block',
             fontSize: '0.78em',
             marginRight: 15,
@@ -21,6 +22,16 @@ export const FavoriteButton = (props: IFavoriteButtonProps) => {
             padding: '4px 18px',
             textAlign: 'center',
             textDecoration: 'none',
+            transition: 'transform 0.2s',
+            ':hover': {
+                transform: 'scale(1.08)',
+            },
+            ':active': {
+                transform: 'scale(1.08)',
+            },
+            ':focus': {
+                transform: 'scale(1.08)',
+            },
         },
         favoitedIcon: {
         },

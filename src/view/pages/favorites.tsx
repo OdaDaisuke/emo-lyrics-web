@@ -6,8 +6,10 @@ import { bind } from 'bind-decorator'
 import { LyricService, Tracker, AccountService } from '../../domain'
 import * as interfaces from '../../interfaces'
 import { FullWidthLayout } from '../layouts'
+import { SectionCaption } from '../atoms'
 import { RouteController } from '../../route/controller'
-import { LyricCard } from '../molecules';
+import { LyricCardMini } from '../molecules'
+import { MediaBreakPointUp } from '../styles'
 
 export interface IFavoritesPageProps {
   vm: FavoritesPageVM
@@ -22,6 +24,7 @@ export class FavoritesPage extends React.Component<IFavoritesPageProps, any> {
         innerContainerClassName={css(this.styles.innerContainer)}
         isAuthed={this.props.vm.isAuthed}
       >
+        <SectionCaption isWhite>お気に入り</SectionCaption>
         {this.renderMmain}
       </FullWidthLayout>
     )
@@ -34,21 +37,11 @@ export class FavoritesPage extends React.Component<IFavoritesPageProps, any> {
       )
     }
 
-    return this.renderLyrics
-  }
-
-  get renderLyrics() {
-    if(!this.props.vm.favs) {
-      return
-    }
-    console.log(this.props.vm.favs)
     return this.props.vm.favs.map((fav, idx) => {
-      return <LyricCard
+      return <LyricCardMini
         lyric={fav.lyric}
         onClickLyric={this.props.vm.onClickLyric}
-        onClickFav={() => null}
-        onClickUnfav={() => null}
-        key={idx}>{fav.LyricID}</LyricCard>
+        key={idx}>{fav.LyricID}</LyricCardMini>
     })
   }
 
@@ -57,13 +50,18 @@ export class FavoritesPage extends React.Component<IFavoritesPageProps, any> {
       container: {
         backgroundColor: '#2F2F41',
         minHeight: '97vh',
+        overflow: 'hidden',
       	position: 'relative',
       },
       innerContainer: {
         color: '#fff',
         marginRight: 'auto',
         marginLeft: 'auto',
-        width: '87%',
+        width: '92.5%',
+        [MediaBreakPointUp.SM]: {
+          maxWidth: 700,
+          width: '80%',
+        },
       },
       emptyStatusLabel: {
         color: '#fff',

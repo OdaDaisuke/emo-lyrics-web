@@ -1,42 +1,23 @@
 import * as React from 'react'
+import { observer } from 'mobx-react'
 import { css, StyleSheet } from 'aphrodite'
-import { bind } from 'bind-decorator'
-import { FavoriteButton, PlayButton } from '../atoms'
+import { PlayButton } from '../atoms'
 import { MediaBreakPointUp } from '../styles'
-import { Lyric, Fav } from '../../interfaces'
+import { Lyric } from '../../interfaces'
 
-export interface LyricCardProps {
+export interface LyricCardMiniProps {
 	lyric: Lyric | null
 	onClickLyric: () => void
-	onClickFav: () => void
-	onClickUnfav: () => void
-	favs?: Fav[] | null
 }
 
-export class LyricCard extends React.Component<LyricCardProps, any> {
-	state = {
-		favorited: false
-	}
-
-	constructor(props: any) {
-		super(props)
-		this.setState({
-			favorited: this.favorited
-		})
-	}
-
+@observer
+export class LyricCardMini extends React.Component<LyricCardMiniProps, any> {
 	render(): JSX.Element {
 		if(!this.props.lyric) {
 			return <span></span>
 		}
 		return (
 			<div className={css(this.styles.container)}>
-				<div className={css(this.styles.favWrap)}>
-					<FavoriteButton
-						favorited={this.state.favorited}
-						onClick={this.onClickFavButton}
-					/>
-				</div>
 				<p onClick={this.props.onClickLyric} className={css(this.styles.lyric)}>
 					{this.props.lyric.Lyric}
 				</p>
@@ -56,50 +37,27 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 		)
 	}
 
-	@bind
-	onClickFavButton() {
-		this.setState({
-			favorited: !this.state.favorited,
-		})
-		if(!this.favorited) {
-			this.props.onClickUnfav()
-			return
-		}
-		this.props.onClickFav()
-	}
-
-	get favorited() {
-		if(!this.props.favs) {
-			return false
-		}
-		let favorited = false
-		this.props.favs.map((fav: Fav) => {
-			if(fav.LyricID == this.props.lyric!.ID) {
-				favorited = true
-			}
-		})
-		return favorited
-	}
-
 	get styles() {
 		return StyleSheet.create({
 			container: {
 				alignContent: 'center',
 				alignItems: 'center',
 				backgroundImage: '#fff',
+				border: '1px solid #fff',
 				borderRadius: 4,
 				boxSizing: 'border-box',
 				color: '#fff',
+				cursor: 'pointer',
 				display: 'flex',
 				flexWrap: 'wrap',
 				height: '100%',
-				minHeight: 300,
+				marginTop: 15,
+				marginBottom: 15,
 				padding: '20px 20px',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
-					margin: '0 auto',
-					maxWidth: 720,
-					width: '75%',
+					marginTop: 22,
+					marginBottom: 22,
 				},
 			},
 			flexRow: {
@@ -109,7 +67,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				justifyContent: 'flex-start',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
-					justifyContent: 'center',
+					justifyContent: 'flex-start',
 				},
 			},
 			detailWrap: {
@@ -122,15 +80,13 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 			},
 			lyric: {
 				color: '#fff',
-				cursor: 'pointer',
-				fontSize: 17,
+				fontSize: 15,
 				fontWeight: 200,
 				letterSpacing: 2,
 				lineHeight: 2,
 				marginTop: 0,
 				[MediaBreakPointUp.SM]: {
 					fontSize: '1.58rem',
-					textAlign: 'center',
 				},
 			},
 			title: {
@@ -144,7 +100,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
 					display: 'block',
-					fontSize: '0.92rem',
+					fontSize: '0.8rem',
 					marginBottom: '2px',
 					width: '100%',
 				},
@@ -154,7 +110,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 				fontWeight: 200,
 				letterSpacing: 1,
 				[MediaBreakPointUp.SM]: {
-					fontSize: '0.92rem',
+					fontSize: '0.8rem',
 				},
 			},
 			url: {
@@ -188,8 +144,8 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 			playButtonWrap: {
 				[MediaBreakPointUp.SM]: {
 					display: 'flex',
-					flex: 'auto',
-					justifyContent: 'flex-end',
+					flex: '0',
+					marginLeft: 15,
 				},
 			},
 			favWrap: {

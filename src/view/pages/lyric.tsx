@@ -3,11 +3,14 @@ import { css, StyleSheet } from 'aphrodite'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { bind } from 'bind-decorator'
+import { FaTwitter } from 'react-icons/fa'
 import { LyricService, Tracker, AccountService } from '../../domain'
 import * as interfaces from '../../interfaces'
-import { PlayButton, FavoriteButton } from '../atoms'
+import { PlayButton, FavoriteButton, BadgeButton } from '../atoms'
 import { FullWidthLayout } from '../layouts'
+import { MediaBreakPointUp } from '../styles'
 import { RouteController } from '../../route/controller'
+import * as configs from '../../configs'
 
 export interface ILyricPageProps {
   history: any
@@ -59,22 +62,39 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
           <span
             className={css(this.styles.backLabel)}
             onClick={this.props.vm.onClickBackPage
-          }>{"< 一覧へ"}</span>
+          }>&lt; 一覧へ</span>
           <PlayButton
             className={css(this.styles.playButton)}
             link={this.props.vm.lyric.Url}
           />
         </div>
+        <div className={css(this.styles.share)}>
+          <BadgeButton link={this.tweetLink} type="tweet">
+            <FaTwitter size={18} color="#fff" />
+          </BadgeButton>
+        </div>
       </div>
     )
   }
+
+  get tweetLink() {
+		if(!this.props.vm.lyric) {
+			return ""
+    }
+    const lyric = this.props.vm.lyric
+		let lyricLabel = lyric.Lyric.substr(0, 80)
+		if(lyricLabel.length > 80) {
+			lyricLabel += "..."
+		}
+		return `https://twitter.com/intent/tweet?url=${configs.env.siteUrl}&text=「${lyric.Lyric}」&hashtags=歌詞から曲を好きになる`
+	}  
 
   get styles() {
     return StyleSheet.create({
       container: {
         backgroundColor: '#2F2F41',
         minHeight: '97vh',
-      	position: 'relative',
+        position: 'relative',
       },
       innerContainer: {
         alignContent: 'center',
@@ -86,6 +106,11 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
         marginRight: 'auto',
         marginLeft: 'auto',
         width: '87%',
+        [MediaBreakPointUp.SM]: {
+					margin: '0 auto',
+					maxWidth: 720,
+					width: '75%',
+				},
       },
       emptyStatusLabel: {
         color: '#fff',
@@ -99,6 +124,11 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
         letterSpacing: 2,
         lineHeight: 2,
         marginTop: '-15vh',
+        [MediaBreakPointUp.SM]: {
+          fontSize: '1.88em',
+          marginTop: '-12vh',
+          textAlign: 'center',
+        },
       },
       lyricDetail: {
         marginBottom: 30,
@@ -126,8 +156,10 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
         marginBottom: 8,
       },
       backLabel: {
+        cursor: 'pointer',
         fontSize: '0.9em',
         letterSpacing: 2,
+        marginLeft: -70,
       },
       playButton: {
         marginLeft: 20,
@@ -150,7 +182,13 @@ export class LyricPage extends React.Component<ILyricPageProps, any> {
 			},
 			stardustTopRightImg: {
 				width: 150,
-			},
+      },
+      share: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: 15,
+        marginBottom: -50,
+      },
     })
   }
 
@@ -174,6 +212,9 @@ export class LyricPageVM {
   @observable.ref
   favs: interfaces.Fav[] | null = null
 
+  @observable
+  favorited: boolean = false
+
   constructor(
     lyricService: LyricService,
     accountService: AccountService,
@@ -188,6 +229,7 @@ export class LyricPageVM {
     this.lyricId = lyricId
     this.loadLyric()
     this.loadFavs()
+    this.setFavoriteStatus()
     this.isAuthed = this.accountService.isAuthed
   }
 
@@ -225,12 +267,14 @@ export class LyricPageVM {
 
     if(this.favorited) {
       this.accountService.unFav(this.lyric.ID)
+      this.favorited = false
 			return null
-		}
+    }
+    this.favorited = true
     this.accountService.postFav(this.lyric.ID)
 	}
 
-	get favorited() {
+	setFavoriteStatus() {
 		if(!this.favs) { return false }
     if(!this.lyric) { return false }
     const lyric = this.lyric
@@ -241,7 +285,7 @@ export class LyricPageVM {
 				favorited = true
 			}
 		})
-		return favorited
+		this.favorited = favorited
 	}
 
 }

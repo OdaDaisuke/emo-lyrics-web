@@ -90,7 +90,7 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
 		if(lyricLabel.length > 80) {
 			lyricLabel += "..."
 		}
-		return `https://twitter.com/intent/tweet?url=${configs.env.siteUrl}&text=「${lyric}」&hashtags=エモ詩&via=hinodeya_pon`
+		return `https://twitter.com/intent/tweet?url=${configs.env.siteUrl}&text=「${lyric.Lyric}」&hashtags=歌詞から曲を好きになる`
 	}  
 
   get styles() {
@@ -111,6 +111,7 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
       },
       share: {
         backgroundColor: '#3d3d50',
+        borderRadius: 2,
         display: 'flex',
         flexWrap: 'wrap',
         marginTop: 40,
@@ -203,14 +204,14 @@ export class LyricsPageVM {
   }
 
   @bind
-  onClickFav() {
-    if(!this.lyrics || !this.accountService) {
+  async onClickFav() {
+    if(!this.lyrics || !this.accountService || !this.favs) {
       return null
     }
     const l = this.lyrics[this.lyricIdx]
-    this.accountService.postFav(l.ID)
+    await this.accountService.postFav(l.ID)
 
-    this.favs!.push({
+    this.favs.push({
       ID: "",
       LyricID: l.ID,
       lyric: null,
@@ -219,16 +220,16 @@ export class LyricsPageVM {
   }
 
   @bind
-  onClickUnfav() {
-    if(!this.lyrics || !this.accountService) {
+  async onClickUnfav() {
+    if(!this.lyrics || !this.accountService || !this.favs) {
       return null
     }
     const l = this.lyrics[this.lyricIdx]
-    this.accountService.unFav(l.ID)
+    await this.accountService.unFav(l.ID)
 
-    this.favs!.map((fav, idx) => {
-      if(fav.LyricID === l.ID) {
-        this.favs!.slice(idx, 1)
+    this.favs.map((fav, idx) => {
+      if(fav.LyricID === l.ID && this.favs) {
+        this.favs.slice(idx, 1)
       }
     })
   }
