@@ -25,7 +25,7 @@ export class LyricPreviewList extends React.Component<ILyricPreviewListProps, an
         )
     }
 
-    firstLyric = "幸せとは星が降る夜と眩しい朝が繰り返すようなものじゃなく大切な人に降りかかった雨に傘を差せる事だ"
+    firstLyric = "同僚に笑われても、デスクの上の写真立てに飾った家族が自慢なんだ"
     secondLyric = "幸せとは星が降る夜と眩しい朝が繰り返すようなものじゃなく大切な人に降りかかった雨に傘を差せる事だ"
 
     get styles() {
