@@ -5,6 +5,8 @@ import { MediaBreakPointUp } from '../styles'
 
 interface ILyricPreviewCardProps {
     lyric?: string
+    artist?: string
+    title?: string
     isRistrict?: boolean
     onClickSignin?: () => void
     isAuthed?: boolean
@@ -48,8 +50,8 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 <footer className={css(this.styles.footer)}>
                     <PlayButton black link="https://youtube.com/watch?v=2Kajce92A" />
                     <div className={css(this.styles.lyricDetail)}>
-                        <span className={css(this.styles.title)}>瞬き</span>
-                        <span className={css(this.styles.artist)}>back number</span>
+                        <span className={css(this.styles.title)}>{this.props.title}</span>
+                        <span className={css(this.styles.artist)}>{this.props.artist}</span>
                     </div>
                 </footer>
             </React.Fragment>
