@@ -17,7 +17,7 @@ export const PlayButton = (props: IPlayButtonProps) => {
             border: (props.black) ? '1px solid #20203f' : '1px solid #fff',
             color: (props.black) ? '#20203f' : '#fff',
             display: 'flex',
-            flex: '0 1 auto',
+            flex: '0 0 auto',
             fontSize: '1em',
             height: 45,
             justifyContent: 'center',

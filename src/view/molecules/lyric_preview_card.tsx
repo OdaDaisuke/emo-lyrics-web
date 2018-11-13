@@ -45,7 +45,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
         }
 
         return (
-            <React.Fragment>
+            <>
                 <p className={css(this.styles.lyric)}>{this.props.lyric}</p>
                 <footer className={css(this.styles.footer)}>
                     <PlayButton black link="https://youtube.com/watch?v=2Kajce92A" />
@@ -54,7 +54,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                         <span className={css(this.styles.artist)}>{this.props.artist}</span>
                     </div>
                 </footer>
-            </React.Fragment>
+            </>
         )
     }
 
@@ -68,17 +68,15 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
     get styles() {
         return StyleSheet.create({
             container: {
-                backgroundColor: 'transparent',
-                border: '1px solid #fff',
-                borderRadius: 2,
-                boxShadow: '3px 3px 0 #fff',
+                backgroundColor: '#fff',
+                borderRadius: 3,
                 boxSizing: 'border-box',
-                flex: '1 0 275px',
+                flex: '1 0 230px',
                 marginBottom: 8,
                 marginRight: 15,
-                padding: '1em 1.12em 1.3em 1em',
+                padding: '0.7em 0.4em 0.7em 1em',
                 textAlign: 'left',
-                width: '275px',
+                width: 230,
                 ':first-child': {
                     marginLeft: 30,
                 },
@@ -104,11 +102,12 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 alignItems: 'center',
                 backgroundColor: '#fff',
                 display: 'flex',
+                flex: '1 0 275px',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
                 padding: '0.75em 0',
                 textAlign: 'center',
-                width: '90%',
+                width: 275,
             },
             footer: {
                 display: 'flex',
@@ -117,9 +116,9 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             },
             lyric: {
                 color: '#20203f',
-                fontSize: 16,
-                fontWeight: 300,
-                letterSpacing: '1px',
+                fontSize: 15,
+                fontWeight: 600,
+                letterSpacing: 1,
                 lineHeight: '2.05',
                 marginTop: 0,
                 marginBottom: 8,
@@ -138,6 +137,8 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 width: '100%',
             },
             lyricDetail: {
+                alignContent: 'center',
+                alignItems: 'center',
                 display: 'flex',
                 flexWrap: 'wrap',
             },
@@ -151,7 +152,7 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             },
             artist: {
                 color: '#20203f',
-                fontSize: '0.68em',
+                fontSize: '0.69em',
                 fontWeight: 200,
                 letterSpacing: '1px',
             },

@@ -137,10 +137,12 @@ export class Home extends React.Component<IHomeProps, any> {
 				},
 			},
 			innerFirstview: {
+				marginBottom: 30,
 				position: 'relative',
 				zIndex: 2,
 				[MediaBreakPointUp.SM]: {
-					margin: '0 auto',
+					marginRight: 'auto',
+					marginLeft: 'auto',
 					maxWidth: '1100px',
 					width: '90',
 				},
@@ -172,12 +174,13 @@ export class Home extends React.Component<IHomeProps, any> {
 			},
 			pageTitle: {
 				color: '#20203f',
-				fontSize: 22,
+				fontSize: 24,
 				fontWeight: 600,
 				letterSpacing: 2,
 				marginTop: 50,
 				marginBottom: 8,
 				textAlign: 'center',
+				transform: 'skew(-5deg)',
 				width: '100%',
 				[MediaBreakPointUp.SM]: {
 					fontSize: 28,
