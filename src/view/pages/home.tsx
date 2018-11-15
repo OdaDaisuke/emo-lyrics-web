@@ -4,7 +4,7 @@ import { bind } from 'bind-decorator'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { Button, SectionCaption, Sentence } from '../atoms'
-import { LyricPreviewList } from '../organisms'
+import { LyricPreviewCard } from '../molecules'
 import { FullWidthLayout } from '../layouts'
 import { AccountService, Tracker } from '../../domain'
 import { MediaBreakPointUp } from '../styles'
@@ -23,24 +23,17 @@ export class Home extends React.Component<IHomeProps, any> {
 			<>
 				<FullWidthLayout
 					className={css(this.styles.container)}
-					transparentHeader={false}
 					isAuthed={this.props.vm.isAuthed}
+					transparentHeader
 				>
 					<div className={css(this.styles.stardustBottomLeft)}>
 						<img src="./assets/images/stardust_bottom_left.svg" className={css(this.styles.stardustBottomLeftImg)} />
 					</div>
 					<div className={css(this.styles.innerFirstview)}>
-						<div className={css(this.styles.textCenter)}>
-							<h2 className={css(this.styles.pageTitle)}>
-								"5秒"で曲を好きになる
-							</h2>
-							<p className={css(this.styles.subTitle)}>歌詞が主役の音楽発見サービス<br />エモい歌詞、揃えてます</p>
+						<div className={css(this.styles.titleWrap)}>
+							<p className={css(this.styles.title)}>歌詞が主役の音楽発見サービス<br />エモい歌詞、揃えてます</p>
 						</div>
-						<LyricPreviewList
-							onClickSignin={this.props.vm.signin}
-							isAuthed={this.props.vm.isAuthed}
-							onClickToTL={this.props.vm.onClickToTL}
-						/>
+						<LyricPreviewCard />
 						{this.onboardButtonBlock}
 					</div>
 				</FullWidthLayout>
@@ -105,13 +98,16 @@ export class Home extends React.Component<IHomeProps, any> {
 				<Button
 						onClick={this.props.vm.signin}
 						isSignin={false}
+						isRadius
+						enableNextArrow
 				>歌詞をさがす</Button>
 			)
 		}
 		return (
 			<Button
 					onClick={this.props.vm.signin}
-					isSignin={true}
+					isSignin
+					enableNextArrow
 			>Twitterで始める</Button>
 		)
 	}
@@ -119,10 +115,17 @@ export class Home extends React.Component<IHomeProps, any> {
     get styles() {
         return StyleSheet.create({
             container: {
-				backgroundColor: '#e8d103 !important',
+				backgroundBlendMode: 'overlay',
+				backgroundColor: '#232323',
+				backgroundImage: 'url("./assets/images/chima.jpg")',
+				backgroundPosition: 'center bottom',
 				backgroundSize: 'cover',
 				minHeight: '92.5vh',
 				overflow: 'hidden',
+				[MediaBreakPointUp.SM]: {
+					backgroundColor: '#1b1b1b',
+					backgroundPosition: 'center 55%',
+				},
 			},
 			innerContainer: {
 				marginRight: 'auto',
@@ -133,6 +136,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				position: 'relative',
 				width: '87.5%',
 				[MediaBreakPointUp.SM]: {
+					maxWidth: 620,
 					width: '70%',
 				},
 			},
@@ -159,7 +163,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				position: 'absolute',
 			},
 			stardustBottomLeftImg: {
-				width: 200,
+				width: 120,
 			},
 			stardustTopRight: {
 				position: 'absolute',
@@ -192,16 +196,42 @@ export class Home extends React.Component<IHomeProps, any> {
 				color: '#20203f',
 				textShadow: '1px 1px 10px #301341',
 			},
-			subTitle: {
-				color: '#20203f',
-				fontSize: 12,
-				fontWeight: 600,
-				letterSpacing: '1px',
-				lineHeight: '1.78',
-				marginTop: '0',
-				marginBottom: '5px',
+			titleWrap: {
+				marginTop: '12vh',
+				textAlign: 'center',
 				[MediaBreakPointUp.SM]: {
-					fontSize: '0.88em',
+					marginTop: '8vh',
+				},
+			},
+			title: {
+				color: '#fff',
+				display: 'inline-block',
+				fontSize: '1.14em',
+				fontStyle: 'italic',
+				fontWeight: 700,
+				letterSpacing: 0,
+				lineHeight: '1.78',
+				position: 'relative',
+				[MediaBreakPointUp.SM]: {
+					fontSize: '1.55em',
+				},
+				':before': {
+					content: "''",
+					position: "absolute",
+					bottom: "17px",
+					left: "-20px",
+					borderTop: "2px solid #fff",
+					width: "35px",
+					transform: "rotate(65deg)",
+				},
+				':after': {
+					content: "''",
+					position: "absolute",
+					bottom: "17px",
+					right: "-20px",
+					borderTop: "2px solid #fff",
+					width: "35px",
+					transform: "rotate(-65deg)",
 				},
 			},
 			lyricSentence: {
@@ -211,8 +241,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				letterSpacing: 1,
 				lineHeight: 2.35,
 				[MediaBreakPointUp.SM]: {
-					fontSize: 25,
-					fontWeight: 'bold',
+					fontSize: 14,
 					marginBottom: 25,
 				},
 			},
@@ -225,7 +254,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				marginBottom: '20px',
 			},
 			onbordCaption: {
-				color: '#20203f',
+				color: '#fff',
 				fontSize: 12,
 				fontWeight: 500,
 				letterSpacing: 1,
@@ -250,8 +279,8 @@ export class Home extends React.Component<IHomeProps, any> {
 				color: '#fff !important',
 			},
 			emoi: {
-				color: '#6f6f7f',
-				fontWeight: 600,
+				color: '#fff',
+				fontWeight: 200,
 			},
         })
     }
@@ -338,10 +367,16 @@ const AppealCard = () => {
 			fontWeight: 'bold',
 			lineHeight: 1,
 			marginRight: 8,
+			[MediaBreakPointUp.SM]: {
+				fontSize: '2.24em',
+			},
 		},
 		text: {
 			fontSize: '0.83em',
 			letterSpacing: 2,
+			[MediaBreakPointUp.SM]: {
+				fontSize: '1.1em',
+			},
 		},
 	})
 

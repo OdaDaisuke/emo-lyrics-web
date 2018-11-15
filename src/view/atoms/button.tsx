@@ -6,6 +6,7 @@ import { MediaBreakPointUp } from '../styles'
 export interface IButtonProps {
   onClick?: (event: React.FormEvent<any>) => void,
   isSignin?: boolean
+  isRadius?: boolean
   className?: string
   enableNextArrow?: boolean
   enablePrevArrow?: boolean
@@ -33,6 +34,7 @@ export class Button extends React.Component<IButtonProps, any> {
             css(this.styles.button),
             this.props.enableNextArrow && css(this.styles.nextArrow),
             this.props.isSignin && css(this.styles.signinButton),
+            this.props.isRadius && css(this.styles.radius),
             this.props.className || "",
         ].join(" ")
     }
@@ -72,7 +74,7 @@ export class Button extends React.Component<IButtonProps, any> {
             },
             signinButton: {
                 backgroundColor: '#4F9DF7',
-                backgroundImage: 'linear-gradient(90deg, #7CB9FF 0%, #3A9CF9 53%, #56E5FF 100%) !important',
+                backgroundImage: 'linear-gradient(55deg, rgb(79, 150, 230) 0%, rgb(25, 171, 226) 53%, rgb(42, 240, 251) 100%) !important',
                 fontSize: '1.15em',
                 marginRight: 'auto',
                 marginLeft: 'auto',
@@ -89,11 +91,24 @@ export class Button extends React.Component<IButtonProps, any> {
                 ':before': {
                     content: "'>'",
                     fontSize: 14,
-                    fontWeight: 200,
+                    fontWeight: 300,
                     position: 'absolute',
-                    right: 10,
+                    right: 15,
                     top: '50%',
                     transform: 'translate(0, -50%)',
+                },
+            },
+            radius: {
+                backgroundImage: 'linear-gradient(65deg, rgb(232, 69, 125), rgb(224, 67, 110), rgb(239, 137, 99))',
+                borderRadius: '40px',
+                fontWeight: 700,
+                fontSize: '0.98em',
+                minWidth: '250px',
+                padding: '16px 32px',
+                [MediaBreakPointUp.SM]: {
+                    fontSize: '1.14em',
+                    minWidth: '300px',
+                    padding: '19px 36px',
                 },
             },
         })

@@ -16,45 +16,16 @@ interface ILyricPreviewCardProps {
 export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, any> {
     render() {
         return (
-            <li className={this.containerStyle}>
-                {this.innerContent}
-            </li>
-        )
-    }
-
-    get innerContent() {
-        if(this.props.isRistrict) {
-            if(this.props.isAuthed) {
-                return (
-                    <div>
-                        <span className={css(this.styles.restrictLabel)}>もっと見るには</span>
-                        <Button onClick={this.props.onClickToTL}>タイムラインへ</Button>
-                    </div>
-                )
-            } else {
-                return (
-                    <div className={css(this.styles.restrictedContainer)}>
-                        <span className={css(this.styles.restrictLabel)}>続きを見るには</span>
-                        <Button
-                            isSignin={true}
-                            onClick={this.props.onClickSignin}
-                        >Twitterログイン</Button>
-                    </div>
-                )
-            }
-        }
-
-        return (
-            <>
-                <p className={css(this.styles.lyric)}>{this.props.lyric}</p>
-                <footer className={css(this.styles.footer)}>
-                    <PlayButton black link="https://youtube.com/watch?v=2Kajce92A" />
-                    <div className={css(this.styles.lyricDetail)}>
-                        <span className={css(this.styles.title)}>{this.props.title}</span>
-                        <span className={css(this.styles.artist)}>{this.props.artist}</span>
-                    </div>
-                </footer>
-            </>
+            <div className={this.containerStyle}>
+                <p className={css(this.styles.lyric)}>同僚に笑われても、デスクの上の写真立てに飾った家族が自慢なんだ</p>
+                    <footer className={css(this.styles.footer)}>
+                        <PlayButton link="https://www.youtube.com/watch?v=gp7BjltjDeE" />
+                        <div className={css(this.styles.lyricDetail)}>
+                            <span className={css(this.styles.title)}>遅くなるから</span>
+                            <span className={css(this.styles.artist)}>セットラウンドリー</span>
+                       </div>
+                    </footer>
+            </div>
         )
     }
 
@@ -68,24 +39,18 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
     get styles() {
         return StyleSheet.create({
             container: {
-                backgroundColor: '#fff',
-                borderRadius: 3,
+                border: '1px solid #fff',
+                borderRadius: 2,
+                boxShadow: '4px 4px 0 #3f3f3f, 6px 6px 0 #fff',
                 boxSizing: 'border-box',
-                flex: '1 0 230px',
-                marginBottom: 8,
-                marginRight: 15,
+                flex: '1 0 270px',
+                margin: '0 auto 45px',
                 padding: '0.7em 0.4em 0.7em 1em',
                 textAlign: 'left',
-                width: 230,
-                ':first-child': {
-                    marginLeft: 30,
-                },
-                ':last-child': {
-                    marginRight: 30,
-                },
+                width: 270,
                 [MediaBreakPointUp.SM]: {
                     flex: '1 0 48%',
-                    margin: '0 1% 8px 0 !important',
+                    padding: '1em 1em 1em 1.45em',
                     width: '48%',
                 },
                 [MediaBreakPointUp.MD]: {
@@ -100,7 +65,6 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
             restrictedContainer: {
                 alignContent: 'center',
                 alignItems: 'center',
-                backgroundColor: '#fff',
                 display: 'flex',
                 flex: '1 0 275px',
                 flexWrap: 'wrap',
@@ -115,15 +79,15 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 justifyContent: 'flex-start',
             },
             lyric: {
-                color: '#20203f',
-                fontSize: 15,
-                fontWeight: 600,
+                color: '#fff',
+                fontSize: 13,
+                fontWeight: 400,
                 letterSpacing: 1,
                 lineHeight: '2.05',
                 marginTop: 0,
                 marginBottom: 8,
                 [MediaBreakPointUp.SM]: {
-                    fontSize: 20,
+                    fontSize: 16,
                 },
             },
             restrictLabel: {
@@ -143,15 +107,15 @@ export class LyricPreviewCard extends React.Component<ILyricPreviewCardProps, an
                 flexWrap: 'wrap',
             },
             title: {
-                color: '#20203f',
+                color: '#fff',
                 flex: '1 0 100%',
                 fontSize: '0.68em',
                 fontWeight: 600,
                 letterSpacing: '1px',
-                marginBottom: 0,
+                marginBottom: 5,
             },
             artist: {
-                color: '#20203f',
+                color: '#fff',
                 fontSize: '0.69em',
                 fontWeight: 200,
                 letterSpacing: '1px',

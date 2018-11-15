@@ -7,6 +7,7 @@ interface MenuProps {
     isDrawerOpen: boolean
     isAuthed: boolean
     toggleMenu: () => void
+    isWhite?: boolean,
 }
 
 export class Menu extends React.Component<MenuProps, any> {
@@ -31,11 +32,18 @@ export class Menu extends React.Component<MenuProps, any> {
                 <Link
                     onClick={this.props.toggleMenu}
                     to={linkSummary.to}
-                    className={css(this.styles.link)}
+                    className={this.linkClass}
                     key={linkSummary.to}
                 >{linkSummary.label}</Link>
             )
         })
+    }
+
+    get linkClass() {
+        return [
+            css(this.styles.link),
+            (this.props.isWhite) && css(this.styles.white),
+        ].join(" ")
     }
 
     get linkSummaries() {
@@ -94,6 +102,7 @@ export class Menu extends React.Component<MenuProps, any> {
                     marginLeft: 50,
                     position: 'relative',
                     right: 0,
+                    textAlign: 'right',
                     width: 'auto',
                 },
             },
@@ -120,7 +129,6 @@ export class Menu extends React.Component<MenuProps, any> {
                 textAlign: 'center',
                 textDecoration: 'none',
                 [MediaBreakPointUp.MD]: {
-                    color: '#2f2f2f',
                     display: 'inline-block',
                     flex: '1 0 auto',
                     fontSize: '0.92em',
@@ -130,6 +138,9 @@ export class Menu extends React.Component<MenuProps, any> {
                 },
             },
             '@keyframes activeContainer': this.activeContainerKeyframes,
+            white: {
+                color: '#fff',
+            },
         })
     }
 

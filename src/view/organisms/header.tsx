@@ -33,6 +33,7 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
                         {this.iconInnerContent}
                     </div>
                     <Menu
+                        isWhite={this.props.isTransparent}
                         isAuthed={this.props.isAuthed}
                         isDrawerOpen={this.state.isDrawerOpen}
                         toggleMenu={this.onClickToggleMenu}
