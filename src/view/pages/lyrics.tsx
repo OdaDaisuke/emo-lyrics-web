@@ -240,7 +240,6 @@ export class LyricsPageVM {
     }
 
     this.beforeChangeLyric()
-    this.tracker!.trackLeaveLyric(this.lyrics[this.lyricIdx].ID)
 
     const nextIdx = this.lyricIdx + 1
     if(nextIdx < this.lyrics.length) {
@@ -259,9 +258,6 @@ export class LyricsPageVM {
   @bind
   onClickPrev() {
     this.beforeChangeLyric()
-    if(this.lyrics) {
-      this.tracker!.trackLeaveLyric(this.lyrics[this.lyricIdx].ID)
-    }
 
     const prevIdx = this.lyricIdx - 1
     if(prevIdx >= 0) {

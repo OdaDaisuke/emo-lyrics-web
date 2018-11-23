@@ -12,10 +12,6 @@ export class Tracker {
         this.cloudFunctionsClient.trackPageView(this.userId)
     }
 
-    trackLeaveLyric(lyricID: number) {
-        this.cloudFunctionsClient.trackLeaveLyric(lyricID)
-    }
-
     trackLyricView(lyricID: number) {
         this.cloudFunctionsClient.trackLyricView(lyricID)
     }
