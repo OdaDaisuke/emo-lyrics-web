@@ -1,7 +1,5 @@
 import * as React from 'react'
-import { bind } from 'bind-decorator'
-import { css, StyleSheet } from 'aphrodite'
-import { utils } from '../styles'
+import { css, StyleSheet } from 'aphrodite/no-important'
 
 export interface ISectionCaptionProps {
   className?: string
@@ -35,7 +33,7 @@ export class SectionCaption extends React.Component<ISectionCaptionProps, any> {
                 marginBottom: '1em',
             },
             textWhite: {
-                color: '#fff',
+                color: '#fff !important',
             },
         })
     }

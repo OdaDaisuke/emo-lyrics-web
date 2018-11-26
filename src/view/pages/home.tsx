@@ -42,7 +42,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				<div className={css(this.styles.sectionWrap)}>
 					<div className={css(this.styles.innerContainer)}>
 						<div className={css(this.styles.textCenter)}>
-							<SectionCaption className={css(this.styles.pink)}>詞はストーリーだ</SectionCaption>
+							<SectionCaption>詞はストーリーだ</SectionCaption>
 						</div>
 						<p className={css(this.styles.lyricSentence)}>{this.lyricSentence}</p>
 						<div className={css(this.styles.textCenter)}>
@@ -125,7 +125,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				overflow: 'hidden',
 				[MediaBreakPointUp.SM]: {
 					backgroundColor: '#1b1b1b',
-					backgroundPosition: 'center 55%',
+					backgroundPosition: 'center 75%',
 					height: '95vh',
 				},
 			},
@@ -355,20 +355,19 @@ const AppealCard = () => {
 			display: 'flex',
 			flex: '1 0 50%',
 			justifyContent: 'flex-start',
-			marginBottom: 15,
+			marginBottom: 18,
 			[MediaBreakPointUp.SM]: {
+				justifyContent: 'center',
 				marginBottom: 30,
 			},
-			':nth-child(2n - 1)': {
+			':nth-child(1)': {
 				[MediaBreakPointUp.SM]: {
-					justifyContent: 'flex-end',
-					paddingRight: 15,
+					paddingLeft: 100,
 				},	
 			},
-			':nth-child(2n)': {
+			':nth-child(2)': {
 				[MediaBreakPointUp.SM]: {
-					justifyContent: 'flex-start',
-					paddingLeft: 15,
+					paddingRight: 100,
 				},	
 			},
 		},
@@ -395,7 +394,6 @@ const AppealCard = () => {
 			{ head: "5", text: "秒で読める" },
 			{ head: "800", text: "以上の歌詞" },
 			{ head: "10", text: "ジャンル" },
-			{ head: "2", text: "秒で登録" },
 		]
 		return keyVals.map((item, idx) => {
 			return (
