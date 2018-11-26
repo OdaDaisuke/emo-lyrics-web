@@ -26,15 +26,17 @@ export class Home extends React.Component<IHomeProps, any> {
 					isAuthed={this.props.vm.isAuthed}
 					transparentHeader
 				>
-					<div className={css(this.styles.stardustBottomLeft)}>
-						<img src="./assets/images/stardust_bottom_left.svg" className={css(this.styles.stardustBottomLeftImg)} />
-					</div>
-					<div className={css(this.styles.innerFirstview)}>
-						<div className={css(this.styles.titleWrap)}>
-							<p className={css(this.styles.title)}>歌詞が主役の音楽発見サービス<br />エモい歌詞、揃えてます</p>
+					<div className={css(this.styles.innerFirstView)}>
+						<div className={css(this.styles.stardustBottomLeft)}>
+							<img src="./assets/images/stardust_bottom_left.svg" className={css(this.styles.stardustBottomLeftImg)} />
 						</div>
-						<LyricPreviewCard />
-						{this.onboardButtonBlock}
+						<div className={css(this.styles.innerFirstview)}>
+							<div className={css(this.styles.titleWrap)}>
+								<p className={css(this.styles.title)}>歌詞が主役の音楽発見サービス<br />エモい歌詞、揃えてます</p>
+							</div>
+							<LyricPreviewCard />
+							{this.onboardButtonBlock}
+						</div>
 					</div>
 				</FullWidthLayout>
 				<div className={css(this.styles.sectionWrap)}>
@@ -115,17 +117,25 @@ export class Home extends React.Component<IHomeProps, any> {
     get styles() {
         return StyleSheet.create({
             container: {
-				backgroundBlendMode: 'overlay',
-				backgroundColor: '#232323',
 				backgroundImage: 'url("./assets/images/chima.jpg")',
 				backgroundPosition: 'center bottom',
 				backgroundSize: 'cover',
-				minHeight: '92.5vh',
+				height: 520,
+				minHeight: 500,
 				overflow: 'hidden',
 				[MediaBreakPointUp.SM]: {
 					backgroundColor: '#1b1b1b',
 					backgroundPosition: 'center 55%',
+					height: '95vh',
 				},
+			},
+			innerFirstView: {
+				backgroundColor: 'rgba(0,0,0,0.72)',
+				height: '100%',
+				left: 0,
+				position: 'absolute',
+				top: 0,
+				width: '100%',
 			},
 			innerContainer: {
 				marginRight: 'auto',
@@ -197,10 +207,10 @@ export class Home extends React.Component<IHomeProps, any> {
 				textShadow: '1px 1px 10px #301341',
 			},
 			titleWrap: {
-				marginTop: '12vh',
+				marginTop: '85px',
 				textAlign: 'center',
 				[MediaBreakPointUp.SM]: {
-					marginTop: '8vh',
+					marginTop: '16vh',
 				},
 			},
 			title: {
@@ -279,7 +289,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				color: '#fff !important',
 			},
 			emoi: {
-				color: '#fff',
+				color: '#3f3f4f',
 				fontWeight: 200,
 			},
         })
