@@ -120,8 +120,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				backgroundImage: 'url("./assets/images/chima.jpg")',
 				backgroundPosition: 'center bottom',
 				backgroundSize: 'cover',
-				height: 520,
-				minHeight: 500,
+				height: 550,
 				overflow: 'hidden',
 				[MediaBreakPointUp.SM]: {
 					backgroundColor: '#1b1b1b',
