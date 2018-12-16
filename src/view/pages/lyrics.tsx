@@ -39,7 +39,7 @@ export class LyricsPage extends React.Component<ILyricsPageProps, any> {
   get mainContent() {
     if(!this.props.vm.lyrics) {
       return (
-        <p className={css(this.styles.emptyStatusLabel)}>歌詞が取得できませんでした。</p>
+        <p className={css(this.styles.emptyStatusLabel)}>歌詞を取得中です。</p>
       )
     }
 

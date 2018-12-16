@@ -12,6 +12,9 @@ interface MenuProps {
 
 export class Menu extends React.Component<MenuProps, any> {
     render(): JSX.Element {
+        if(!this.props.isAuthed) {
+            return <span></span>
+        }
         return (
             <nav className={this.containerClass}>
                 <div className={css(this.styles.innerContainer)}>
@@ -22,10 +25,7 @@ export class Menu extends React.Component<MenuProps, any> {
     }
 
     get innerContent() {
-        let linkSummaries = this.linkSummaries.default
-        if(this.props.isAuthed) {
-            linkSummaries = this.linkSummaries.authed
-        }
+        let linkSummaries = this.linkSummaries.authed
 
         return linkSummaries.map(linkSummary => {
             return (

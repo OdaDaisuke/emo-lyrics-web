@@ -52,6 +52,9 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
     }
 
     get iconInnerContent() {
+        if(!this.props.isAuthed) {
+            return
+        }
         if(this.state.isDrawerOpen) {
             return <FaTimes size={20} color="#fff" />
         } else {

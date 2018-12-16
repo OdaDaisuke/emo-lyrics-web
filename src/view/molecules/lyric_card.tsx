@@ -61,7 +61,7 @@ export class LyricCard extends React.Component<LyricCardProps, any> {
 		this.setState({
 			favorited: !this.state.favorited,
 		})
-		if(!this.favorited) {
+		if(this.favorited) {
 			this.props.onClickUnfav()
 			return
 		}

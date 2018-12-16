@@ -13,7 +13,6 @@ export interface LyricCardMiniProps {
 @observer
 export class LyricCardMini extends React.Component<LyricCardMiniProps, any> {
 	render(): JSX.Element {
-		console.log(this.props.lyric)
 		if(!this.props.lyric) {
 			return <span></span>
 		}

@@ -74,6 +74,7 @@ export class AccountService {
   }
 
   async postFav(lyricId: number) {
+    console.log(this.me)
     if(!this.me) {
       return null
     }
