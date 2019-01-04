@@ -15,7 +15,6 @@ interface IHomeProps {
 	history: any
 }
 
-@observer
 export class Home extends React.Component<IHomeProps, any> {
     render(): JSX.Element {
 
@@ -35,7 +34,8 @@ export class Home extends React.Component<IHomeProps, any> {
 								<p className={css(this.styles.title)}>歌詞が主役の音楽発見サービス<br />エモい歌詞、揃えてます</p>
 							</div>
 							<LyricPreviewCard />
-							<p className={css(this.styles.closeNotice)}><nobr>2019/01/04より<wbr />一時的にクローズします。</nobr></p>
+							<p className={css(this.styles.closeNotice)}>2019/01/04より<br />一時的にクローズします。</p>
+							<Button>Twitterで登録</Button>
 						</div>
 					</div>
 				</FullWidthLayout>
@@ -69,7 +69,7 @@ export class Home extends React.Component<IHomeProps, any> {
 			css(this.styles.aboutSection),
 		].join(" ")
 	}
-	
+
 	get lyricSentence() {
 		return "「どうしようもないことで僕らは泣いたり笑ったりしている。同じ話さどいつもこいつも。俺だけがまともだって思ってる。」「愛想をつかれても諦めないよ。急に来ても良いように。掃除をしておこう  シャツも洗っておこう」「洗濯物を畳むのも面倒臭いな。闘い疲れたってほど闘っちゃないけど、あなたにもわかるでしょう？街が眠る前に。」「きったねえ世の中だけどきっかけになったもんなんて人それぞれ色々あるだろうから今この瞬間まだ何もやりてぇことが見つかってねえっつうティーンエージャー。あんたみたいな人間のために俺は生きてきたのさ。」「幾千もの星のような雲のような「どこまでも」が音を立てて崩れるさま」「あいつらが簡単にやっちまう30回のセックスよりも「グミ・チョコレート・パイン」を青春時代に1回読むってことの方が僕にとっては価値があるのさ」「この蒼くて広い世界に無数に散らばった中から、別々に二人選んだ糸をお互いたぐり寄せあったんだ。」"
 	}
@@ -94,6 +94,7 @@ export class Home extends React.Component<IHomeProps, any> {
 				>歌詞をさがす</Button>
 			)
 		}
+
 		return (
 			<Button
 					onClick={this.props.vm.signin}
@@ -299,7 +300,6 @@ export class HomeVM {
 	private router: RouteController
 	private tracker: Tracker
 
-	@observable
 	isAuthed: boolean = false
 
 	constructor(accountService: AccountService, router: RouteController, tracker: Tracker) {
@@ -319,7 +319,7 @@ export class HomeVM {
 
 		this.accountService.signinWithTwitter().then(account => {
 			this.router.push('/lyrics')
-			this.tracker.trackSignup(account)	
+			this.tracker.trackSignup(account)
 		})
 	}
 
@@ -360,12 +360,12 @@ const AppealCard = () => {
 			':nth-child(1)': {
 				[MediaBreakPointUp.SM]: {
 					paddingLeft: 100,
-				},	
+				},
 			},
 			':nth-child(2)': {
 				[MediaBreakPointUp.SM]: {
 					paddingRight: 100,
-				},	
+				},
 			},
 		},
 		head: {
@@ -389,7 +389,7 @@ const AppealCard = () => {
 	const items = () => {
 		const keyVals = [
 			{ head: "5", text: "秒で読める" },
-			{ head: "800", text: "以上の歌詞" },
+			{ head: "200", text: "以上の歌詞" },
 			{ head: "10", text: "ジャンル" },
 		]
 		return keyVals.map((item, idx) => {
@@ -401,7 +401,7 @@ const AppealCard = () => {
 			)
 		})
 	}
-	
+
 	return (
 		<ul className={css(styles.container)}>
 			{items()}
