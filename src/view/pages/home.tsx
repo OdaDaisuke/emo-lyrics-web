@@ -35,7 +35,7 @@ export class Home extends React.Component<IHomeProps, any> {
 								<p className={css(this.styles.title)}>歌詞が主役の音楽発見サービス<br />エモい歌詞、揃えてます</p>
 							</div>
 							<LyricPreviewCard />
-							{this.onboardButtonBlock}
+							<p className={css(this.styles.closeNotice)}><nobr>2019/01/04より<wbr />一時的にクローズします。</nobr></p>
 						</div>
 					</div>
 				</FullWidthLayout>
@@ -45,9 +45,6 @@ export class Home extends React.Component<IHomeProps, any> {
 							<SectionCaption>詞はストーリーだ</SectionCaption>
 						</div>
 						<p className={css(this.styles.lyricSentence)}>{this.lyricSentence}</p>
-						<div className={css(this.styles.textCenter)}>
-							{this.onboardButton}
-						</div>
 					</div>
 				</div>
 				<div className={this.aboutSectionClass}>
@@ -60,14 +57,6 @@ export class Home extends React.Component<IHomeProps, any> {
 						</div>
 						<Sentence className={css(this.styles.pcCenter)}>歌詞にはアーティストのストーリーが込められている。<br />湧きあがる想いを込めて書いた詩も<br />無機質だけどカッコいい詩も<br />なんだっていい。<br />もっと自由に音楽を味わおう。</Sentence>
 						<AppealCard />
-					</div>
-				</div>
-				<div className={css(this.styles.sectionWrap)}>
-					<div className={css(this.styles.innerContainer)}>
-						<div className={css(this.styles.textCenter)}>
-							<Sentence className={css(this.styles.emoi)} center>エモい歌詞、揃えてます</Sentence>
-							{this.onboardButton}
-						</div>
 					</div>
 				</div>
 			</>
@@ -159,6 +148,15 @@ export class Home extends React.Component<IHomeProps, any> {
 					maxWidth: '1100px',
 					width: '90',
 				},
+			},
+			closeNotice: {
+				color: '#fff',
+				fontSize: '1.0679em',
+				fontStyle: 'italic',
+				fontWeight: 'bold',
+				letterSpacing: '2px !important',
+				lineHeight: 1.72,
+				textAlign: 'center',
 			},
 			pcCenter: {
 				color: '#fff !important',
