@@ -7,3 +7,4 @@ yarn-error.log
 *.hot-update.json
 webpack.config.js
 public/assets
+.env
