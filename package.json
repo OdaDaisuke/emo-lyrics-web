@@ -28,7 +28,7 @@
     "firebase": "^5.5.1",
     "memoizee": "^0.4.14",
     "mobx": "^4.1.0",
-    "puppeteer": "^1.2.0",
+    "puppeteer": "^1.13.0",
     "react": "^16.2.0",
     "react-alert": "^4.0.1",
     "react-dom": "^16.2.0",
