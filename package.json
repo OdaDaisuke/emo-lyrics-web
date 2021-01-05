@@ -22,7 +22,7 @@
     "@types/react-router-dom": "^4.2.5",
     "@types/uuid": "^3.4.4",
     "aphrodite": "^2.1.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "browser-sync": "^2.24.4",
     "browser-sync-webpack-plugin": "^2.2.2",
     "firebase": "^5.5.1",
